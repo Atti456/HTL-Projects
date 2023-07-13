@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0038)http://www.htl-wels.ac.at/rf/main.html -->
+<HTML xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40"><HEAD><TITLE>Main</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<LINK 
+href="../../sander-Dateien/stylesheet.css" type=text/css rel=stylesheet>
+<META content="Microsoft FrontPage 5.0" name=GENERATOR>
+<style>
+<!--
+ p.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+p.MsoBodyTextIndent3
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:56.25pt;
+	margin-bottom:.0001pt;
+	font-size:14.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY background=background/synapse_background.gif>
+<h1>JAR (Java-Archive) Files</h1>
+<h2>Java Archive</h2>
+<p>Wenn man mit der Entwicklung seiner Applikation fertig ist, m&uuml;ssen neu 
+  entwickelte Klassen und die von ihnen ben&ouml;tigten Resourcen zum Einsatz 
+  gebracht werden. Statt die Klassen in einzelnen Ordnern abzulegen (mit Pfaden 
+  entsprechend der Paket-Struktur), empfiehlt es sich, die Klassen in einer einzigen 
+  Datei zusammenzupacken, in einem sogenannten JAR-File.</p>
+<h2>JAR-Files</h2>
+<p>Ein JAR-File kann beliebige und auch beliebig viele Dateien aufnehmen. Sie 
+  dienen dazu, zusammengeh&ouml;rige class-Files und andere Dateien zusammen zu 
+  packen. Dies erfolgt im ZIP-File Format. Ein JAR-File enth&auml;lt f&uuml;r 
+  die enthaltenen Dateien den relativen Pfad (der dem Paketnamen entspricht) und 
+  den Namen. Die Dateien werden komprimiert, diese kann aber auch unterdr&uuml;ckt 
+  werden. </p>
+<p>
+<h2>JAR-Files erstellen</h2>
+<p>F&uuml;r die Erstellung gibt es das Java Archive Tool. Entwicklungsumgebungen 
+  wie Eclipse bieten den Export als JAR-Archive an.</p>
+<h2>Java Archive Tool</h2>
+<p>Dieses Tool wird &uuml;ber die Kommandozeile bedient.</p>
+<p>Bsp.:</p>
+<p>Ein JAR-File erstellen (<strong>c</strong> reate):</p>
+<p>jar cf anwedung.jar *.class *.gif *.au</p>
+<p>Ein JAR-File erg&auml;nzen (<strong>u</strong> pdate):</p>
+<p>jar uf anwedung.jar diese.class</p>
+<p>Ein JAR-File anzeigen(<strong>t</strong> of contents):</p>
+<p>jar tf anwedung.jar</p>
+<p>Ein JAR-File auspacken(<strong>e</strong> xtract):</p>
+<p>jar xf anwedung.jar</p>
+<h2>JAR-Files mit Eclipse</h2>
+<p>File - Export - JAR-File - Namen und Pfad angeben - Finish</p>
+<h2>Das JAR-File Manifest</h2>
+<p>Wenn ein JAR-File erstellt wird , erh&auml;lt es automatisch ein Manifest. 
+  Dies ist eine spezielle Datei mit Pfad und Namen META-INF/MANIFEST.MF. Die Manifest-Datei 
+  enth&auml;lt Meta-Informationen &uuml;ber das JAR-Archive und &uuml;ber einelne 
+  Dateien. Im Manifest k&ouml;nnen weitere Informationen aufgenommen werden.</p>
+<p> 
+<h2>Applikationen aus einem JAR-File starten</h2>
+<p>Befindet sich die zu startende Klasse in einem JAR-File, die nicht im Class-Path 
+  liegt, dann hat man zwei M&ouml;glichkeiten, die Anwendung mit dem java Kommando 
+  zu starten:</p>
+<p>mit der Option -classpath oder mit der Option -jar.</p>
+<p>
+<h2>java -classpath</h2>
+<p>java -classpath pfad\jar1.jar;pfad\jar2.jar package.Startklasse</p>
+<h2>java -jar</h2>
+<p>F&uuml;r diese Option muss die Manifest-Datei erg&auml;nzt werden. Dazu legt 
+  man sich eine Text-Datei an (der Name sei mainClass.txt) Als Inhalt bekommt 
+  die Datei folgendes:</p>
+<p>Main-Class: package.Classname</p>
+<p>&quot;Leerzeile&quot;</p>
+<p>Wichtig ist, dass eine Leerzeile folgt. Dann wird das Manifest im JAR-File 
+  folgendermassen ge&auml;ndert.</p>
+<p>jar -ufm anwendung.jar mainClass.txt</p>
+<p>Die Anwendung wird nun so gestartet:</p>
+<p>java -jar anwendung.jar</p>
+<p>Bei einigen Betriebssystemen (W2K, NT) wird damit eine Verkn&uuml;pfung auf 
+  das JAR-File m&ouml;glich, die ein Starten von Java-Programmen durch einen Doppelklick 
+  auf den JAR-File Namen erlauben.</p>
+<h1>JavaDoc</h1>
+<h2>Allgemeines</h2>
+<p>JavaDoc ist ein im JDK enthaltenes Utility. Mit seiner Hilfe werden die im 
+  Sprachstandard bereits enthaltenen Dokumentationskommentare von Java eine HTML-Referenz 
+  umgesetzt. Voraussetzung dazu ist &quot;Disziplin&quot; und Tool-Unterst&uuml;tzung.</p>
+<h2>Java-Kommentarsyntax</h2>
+<p>Ein JavaDoc-Kommentar wird immer mit /** eingeleitet und mit */ abgeschlossen</p>
+<p>@see ref - f&uuml;gt einen Verweis ein. Es gibt dazu unterschiedliche Varianten 
+  dazu. </p>
+<ul>
+  <li>@see classname</li>
+  <li>@see package.classname</li>
+  <li>@see package.classname#method</li>
+</ul>
+<p>@version text - F&uuml;gt einen Versionseintrag ein. JavaDoc ignoriert diese 
+  Eintr&auml;ge solange nicht die Kommandozeilenoption -version angegeben ist.</p>
+<p>@author text - F&uuml;gt einen Authoreintrag ein. JavaDoc ignoriert auch diesen 
+  Eintrag, solange nicht die Kommandozeilenoption -author angegeben ist.</p>
+<p>@param param-name description - Dient der Beschreibung von Mehtoden Paramentern.</p>
+<p>@return description - Dokumentation von R&uuml;ckgabewerten.</p>
+<p>@exception package.classname description - F&uuml;gt eine Beschreibung der 
+  geworfenen Exception ein.</p>
+<table border="2" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1" height="156" bgcolor="#EEEEAA">
+  <tr> 
+    <td width="100%" height="100
+	"> <p class="MsoBodyTextIndent3"><font color="#000000">/**</font></p>
+      <p class="MsoBodyTextIndent3"><font color="#000000">*</font></p>
+      <p class="MsoBodyTextIndent3"><font color="#000000">* Dieser Text erscheint 
+        auch in der Kurzfassung.</font></p>
+      <p class="MsoBodyTextIndent3"><font color="#000000">* </font></p>
+      <p class="MsoBodyTextIndent3"><font color="#000000">* Weitere Zeilen erscheinen 
+        nur in der ausf&uuml;hrlichen Darstellung.</font></p>
+      <p class="MsoBodyTextIndent3"><font color="#000000">*</font></p>
+      <p class="MsoBodyTextIndent3"><font color="#000000">* @return java.lang.String</font></p>
+      <p class="MsoBodyTextIndent3"><font color="#000000">* @param text java.lang.String</font></p>
+      <p class="MsoBodyTextIndent3"><font color="#000000">* @param count int</font></p>
+      <p class="MsoBodyTextIndent3"><font color="#000000">* @see javadoc.JavaDocReal</font></p>
+      <p class="MsoBodyTextIndent3"><font color="#000000">*/</font></p>
+      <p class="MsoBodyTextIndent3"><font color="#000000">String document(String 
+        text, int count);</font></p>
+      </td>
+  </tr>
+</table>
+<p><h2>JavaDoc und Eclipse</h2></p>
+In Eclipse markiert man mit der rechten Maustaste die Klasse die dokumentiert 
+werden soll und w&auml;hlt dann Export aus. Im Dialog w&auml;hlt man den JavaDoc 
+aus und gibt anschlie&szlig;end den Pfad zum Programm javadoc.exe an (Javadoc 
+Command) und den Pfad und Dateinamen f&uuml;r das HTML Dokumentationsfile. Beim 
+dr&uuml;cken von Finish wird die Dokumentation erstellt. 
+</BODY></HTML>

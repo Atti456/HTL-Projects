@@ -1,0 +1,50 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="25dp"
+    android:layout_height="156dp"
+    android:background="@drawable/table_border_group"
+    tools:context="com.example.battleships_solitaire.Model.CellGroupFragment">
+
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+
+            android:background="@drawable/table_border_cell"
+            android:gravity="center"
+            android:tag="0"
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+
+            android:background="@drawable/table_border_cell"
+            android:gravity="center"
+            android:tag="1"
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+
+            android:background="@drawable/table_border_cell"
+            android:gravity="center"
+            android:tag="2"
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+</android.support.constraint.ConstraintLayout>

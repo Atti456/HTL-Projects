@@ -1,0 +1,26 @@
+table, th,td {
+  border: 1px solid black;
+  border-collapse: separate;
+    font-size: 20pt;
+
+}
+
+td
+{
+    border-spacing: 4px;
+}
+
+th, tr, td{
+    font-style: oblique;
+    background-color: lawngreen;
+}
+
+#dark
+{
+    background-color: green;
+}
+
+#oliv
+{
+    background-color: darkolivegreen;
+}

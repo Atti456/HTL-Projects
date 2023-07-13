@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0038)http://www.htl-wels.ac.at/rf/main.html -->
+<HTML xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40"><HEAD><TITLE>Main</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<LINK 
+href="../../sander-Dateien/stylesheet.css" type=text/css rel=stylesheet>
+<META content="Microsoft FrontPage 5.0" name=GENERATOR>
+<style>
+<!--
+ p.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+p.MsoBodyTextIndent3
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:56.25pt;
+	margin-bottom:.0001pt;
+	font-size:14.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY background=background/synapse_background.gif>
+<h1>Übung3</h1>
+<p>
+<br>
+In einem Programm zur Ausfertigung von Warenbestellungen benötigt man die 
+Klassen <br>
+WARE, BESTELLPOSITION und BESTELLUNG.<br>
+<br>
+(public wird mit + und private mit - in der UML (Unified Modeling Language) 
+bezeichnet)<br>
+<br>
+Die Klasse Ware:<br>
+<br>
+private:  </p>
+<p>-nummer:String<br>
+-bezeichnung:String<br>
+-preis:double <br>
+<br>
+public:  </p>
+<p>+Ware(nummer:string,bezeichnung:string,preis:double)<br>
++getBezeichnung():String<br>
++getNummer():String<br>
++getPreis():double<br>
++putPreis(preis:double):void<br>
++putNummer(nummer:int):void<br>
+  +putBezeichnung(bezeichnung:String):void<br>
+<br>
+In einem Objekt der Klasse WARE sollen die Nummer (nummer), die Beszeichnung (bezeichnung)<br>
+und der Preis (preis) der Ware gespeichert werden. nummer und bezeichnung sind 
+vom Typ <br>
+string, preis vom Typ double. Als Währungseinheit wird Euro angenommen, sie wird 
+aber nicht<br>
+gespeichert.<br>
+<br>
+Die Klasse Bestellposition:<br>
+<br>
+private:  </p>
+<p>-ware:Ware<br>
+-menge:int<br>
+<br>
+public:  </p>
+<p>+Bestellposition(ware:Ware,menge:int)<br>
++getMenge():int<br>
++getWare():Ware<br>
++putMenge(menge:int):void<br>
++putWare(ware:Ware):void<br>
+<br>
+<br>
+In einem Objekt der Klasse Bestellposition soll lediglich die bestellte Menge 
+(menge)<br>
+einer Ware gespeichert werden. Für den Bezug auf die bestellte Ware muss es eine 
+Referenz<br>
+auf die bestellte Ware aufnehmen (ware).<br>
+<br>
+Die Klasse Bestellung:<br>
+<br>
+private:</p>
+<p>&nbsp;-positionen:Bestellposition[]<br>
+<br>
+public:  </p>
+<p>+Bestellung()<br>
++nimmAuf(position:Bestellposition)<br>
++zeigeAn():void<br>
+<br>
+In einem Objekt der Klasse Bestellung soll eine Reihe von Bestellpositionen 
+gespeichert<br>
+werden, z.B. in einem Array (positionen).<br>
+<br>
+Für den Bezug auf die Bestellpositionen muss das Array Referenzen auf die 
+Bestellpositionen<br>
+aufnehmen.<br>
+<br>
+Die Methode nimmAuf() fügt eine Bestellposition in die Bestellung ein.<br>
+<br>
+Die Methode zeigeAn() gibt die Bestellung in Form einer Auflistung auf der 
+Konsole aus.<br>
+<br>
+Testen Sie die Klasse in der Hauptfunktion (main). Die Anwendung könnte so 
+aussehen.<br>
+<br>
+..<br>
+..<br>
+..<br>
+hammer = new Ware(1,&quot;Hammer&quot;,100);<br>
+zange = new Ware(2,&quot;Zange&quot;,230);<br>
+reifen = new Ware(3,&quot;Reifen&quot;,400);<br>
+<br>
+  Bestellposition bpn = new Bestellposition{<br>
+&nbsp;&nbsp; new Bestellposition (hammer,30),<br>
+&nbsp;&nbsp; new Bestellposition (zange,20),<br>
+&nbsp;&nbsp; new Bestellposition (reifen,310),</p>
+<p>};<br>
+<br>
+Bestellung best;<br>
+<br>
+for(int i=0;i&lt;bpn.length;i++)<br>
+{<br>
+best.nimmAuf(bpn[i]);<br>
+}<br>
+best.zeigeAn();<br>
+..<br>
+..<br>
+<br>
+&nbsp;</p>
+
+</BODY></HTML>

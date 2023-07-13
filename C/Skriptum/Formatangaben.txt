@@ -1,0 +1,38 @@
+Formatangaben für printf
+Formatangabe	Eingabewert
+%d	int
+%i	int
+%u	unsigned int
+%o	Oktalzahl
+%x	Hexadezimalzahl
+%c	char
+%f	float, double, long double
+%e	float, double, long double in Expontialform
+%g	float, double, long double in Exponential- oder Dezimalform
+%s	Zeichenkette (String)
+%p	Zeiger (Pointer)
+
+Formatangaben für scanf
+Formatangabe	Eingabewert
+%d	int
+%hd	short int
+%ld	long int
+%i	int in Dezimalform, Oktalform mit 0, Hexadezimalform mit 0x
+%u	int ohne Vorzeicen
+%hu	short int ohne Vorzeichen
+%lu	long int ohne Vorzeichen
+%o	int in Oktalform
+%ho	short in Oktalform
+%lo	long in Oktalform
+%x	int in Hexadezimalform
+%hx	short in Hexadezimalform
+%lx	long in Hexadezimalform
+%c	char
+%f	float
+%lf	double 
+%e	float in Exponentialform
+%le	double in Exponentialform
+%g	float in Exponential- oder Dezimalform
+%Lg	long double
+%s	Zeichenkette (String)
+%p	Zeiger (Pointer)

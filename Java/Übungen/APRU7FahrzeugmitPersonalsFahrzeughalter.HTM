@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0038)http://www.htl-wels.ac.at/rf/main.html -->
+<HTML xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40"><HEAD><TITLE>Main</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<LINK 
+href="../../sander-Dateien/stylesheet.css" type=text/css rel=stylesheet>
+<META content="Microsoft FrontPage 5.0" name=GENERATOR>
+<style>
+<!--
+ p.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+p.MsoBodyTextIndent3
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:56.25pt;
+	margin-bottom:.0001pt;
+	font-size:14.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY background=background/synapse_background.gif>
+<h1>Übung 7</h1>
+<p> Aufgabe Fahrzeug und Fahrzeughalter</p>
+<p>Ausgangspunkt dieser Aufgabe ist die L&ouml;sung der &Uuml;bung 5</p>
+<p>Gegeben sind folgende Klassen.</p>
+<p><br>
+  Fahrzeug als Superklasse, Motorrad und PKW als Subklassen von Fahrzeug.</p>
+<p>Die Klasse Fahrzeug:</p>
+<p>.....</p>
+<p>-typ:String</p>
+<p>-anzahlRaeder:int</p>
+<p>&nbsp;</p>
+<p>+Fahrzeug(halter:Fahrzeughalter,anzahlRaeder:int)</p>
+<p>#Fahrzeug(halter:Fahrzeughalter,typ:String, anzahlRaeder:int)</p>
+<p>+getTyp( ):String</p>
+<p>+getAnzahlRaeder( ):int</p>
+<p>&nbsp;</p>
+<p>Die Klasse Motorrad:</p>
+<p>+Motorrad( )Klase</p>
+<p>Die Klasse PKW:</p>
+<p>-anzahlTueren:int</p>
+<p>+PKW(anzahlRaeder:int, anzahlTueren:int)</p>
+<p>+getAnzahlTueren( ):int</p>
+<p>&nbsp;</p>
+<p>Die Klasse Person</p>
+<p>-vorname:String</p>
+<p>-nachname:String</p>
+<p>+Person(vorname:String, nachname:String)</p>
+<p>+getVorname( ):String</p>
+<p>+getNachname( ):String</p>
+<p>+toString( ):String</p>
+<p>Die Klasse Fahrzeughlater erbt von der Klasse Person</p>
+<p>+Fahrzeughalter(vorname:String,nachname:String)</p>
+<p>+uebernimm(f:Fahrzeug)</p>
+<p>+getFahrzeug( ):Fahrzeug</p>
+<p>Implementieren Sie die Klassen so, dass das folgende Programm korrekt abl&auml;uft:</p>
+<p>Den linken Teil, Fahrzeug, PKW und Motorrad kennen wir bereits.</p>
+<p>Neu hinzugekommen ist die Klasse Fahrzeughalter, die von der Klasse Person 
+  erbt.</p>
+<p>Die bisherigen Klassen m&uuml;ssen entsprechend angepasst werden. Deren Konstruktoren 
+  haben einen zus&auml;tzlichen Parameter vom Typ Fahrzeughalter. Ein Fahrzeug 
+  wird also immer f&uuml;r einen Fahrzeughalter erstellt.</p>
+<p>Die Verbindung vom Fahrzeughalter zum Fahrzeug wird vom Konstruktor der Klasse 
+  Fahrzeug hergestellt, indem die Methode uebernimm( ) aufgerufen wird.</p>
+<p>Das Hauptprogramm testet die 1:1 Bezeihung zwischen Fahrzeug und Fahrzeughalter, 
+  und sieht so aus:</p>
+<p>Fahrzeughalter[ ] fzh = new Fahrzeughalter[ ] { new Fahrzeughalter(&quot;Riese&quot;, 
+  &quot;Goliath&quot;),</p>
+<p>new Fahrzeughalter(&quot;Berty&quot;,&quot;Vogts&quot;),</p>
+<p>new Fahrzeughalter(&quot;Uwe&quot;, &quot;Seeler&quot;)};</p>
+<p>Fahrzeug[ ] fz = new Fahrzeug [ ] { new Fahrzeug(fzh[0],16),</p>
+<p>new PKW(fzh[1],4,5),</p>
+<p>new Motorrad(fzh2])};</p>
+<p>for(int i = 0; i &lt; fzh.length; i++)</p>
+<p>{</p>
+<p>System.out.println(&quot;Das Fahrzeug von&quot; + fzh[i] + &quot; ist ein &quot;+ 
+  fzh[i].getFahrzeug( )+&quot;.&quot;);</p>
+<p>}</p>
+<p>for(int i = 0; i &lt; fzh.length; i++)</p>
+<p>{</p>
+<p>System.out.println(&quot;Das Fahrzeug ist ein&quot; + fz[i] + &quot; ist ein 
+  &quot;+ &quot;.&quot;);</p>
+<p>System.out.println(&quot;Es geh&ouml;rt &quot; + fz[i].getHalter( )+&quot;.&quot;);</p>
+<p>}</p>
+<p>Es hat folgende Ausgabe:</p>
+<p>Das Fahrzeug von Riese Goliath ist ein allgemeines Fahrzeug mit 16 R&auml;dern.</p>
+<p>Es geh&ouml;rt Riese Goliath.</p>
+<p>............</p>
+</BODY></HTML>

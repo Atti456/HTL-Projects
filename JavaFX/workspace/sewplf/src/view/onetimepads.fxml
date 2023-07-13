@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.onetimepadsController">
+   <children>
+      <Spinner fx:id="keylengthfield" layoutX="121.0" layoutY="107.0" />
+      <Label layoutX="28.0" layoutY="111.0" text="Key-Length:" />
+      <Label layoutX="345.0" layoutY="111.0" text="Filename:" />
+      <TextField fx:id="filenametextField" layoutX="403.0" layoutY="107.0" prefHeight="25.0" prefWidth="101.0" />
+      <Button fx:id="choosefrom" layoutX="520.0" layoutY="107.0" mnemonicParsing="false" onAction="#filechooser" text="Choose" />
+      <Button fx:id="generateButton" layoutX="345.0" layoutY="233.0" mnemonicParsing="false" onAction="#generate" prefHeight="66.0" prefWidth="109.0" text="Generate" />
+      <ProgressBar fx:id="progressbar" layoutX="100.0" layoutY="266.0" prefWidth="200.0" progress="0.0" />
+      <Label fx:id="statustext" layoutX="100.0" layoutY="299.0" text="Status" />
+      <Label fx:id="statusprozent" layoutX="100.0" layoutY="225.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,37 @@
+
+a:link,a:visited,a:hover,a:active {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+
+	font-size:small;
+
+	text-decoration:none;
+
+}
+
+
+a:link {
+
+	color:#339;
+
+}
+
+
+a:visited {
+
+	color:#909;
+
+}
+
+a:hover {
+
+	color:#C00;
+
+}
+
+
+a:active {
+
+	color:#999;
+
+}

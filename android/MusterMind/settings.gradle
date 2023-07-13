@@ -1,0 +1,5 @@
+/*
+ * Copyright (c) 2020. Alexander Artelsmair, Markus Pechhacker
+ */
+
+include ':app'

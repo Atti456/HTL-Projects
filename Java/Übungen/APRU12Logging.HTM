@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0038)http://www.htl-wels.ac.at/rf/main.html -->
+<HTML xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40"><HEAD><TITLE>Main</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<LINK 
+href="../../sander-Dateien/stylesheet.css" type=text/css rel=stylesheet>
+<META content="Microsoft FrontPage 5.0" name=GENERATOR>
+<style>
+<!--
+ p.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+p.MsoBodyTextIndent3
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:56.25pt;
+	margin-bottom:.0001pt;
+	font-size:14.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY background=background/synapse_background.gif>
+<h1>Übung 11</h1>
+<p> Aufgabe Logging Service</p>
+<p>Implementieren sie eine Klasse LoggingService, die einen einfachen Logging-Service 
+  zur Verf&uuml;gung stellt. Die Klasse soll eine Methode schreibe( ) zur Verf&uuml;gung 
+  stellen, die einen &uuml;bergebenen String zusammen mit dem aktuellen Datum 
+  und der aktuellen Uhrzeit in eine Datei schreibt. Ist die Datei noch nicht vorhanden, 
+  soll sie automatisch erzeugt werden. Der Konstruktor nimmt als Argument einen 
+  String, der den Pfad und den Dateinamen spezifiziert, z. B.: C:\loggingdateien\diese.log</p>
+<p>Die Klasse LoggingService</p>
+<p>-logDatei:PrintWriter</p>
+<p>+LoggingService(name:String)</p>
+<p>+schreibe(nachricht:String)</p>
+<p>+schliesse( )</p>
+<p>Hinweise f&uuml;r die Implementierung:</p>
+<p>F&uuml;r die Datei-Ausgabe kann die Klasse Printwriter-Klasse verwendet werden. 
+  Sie hat einen Konstruktor, de z.B. ein Objekt vom Typ FileOutputStream als Argument 
+  akzeptiert. Dieses Objekt stellt eine Verbindung zu der Datei her.</p>
+<p>Der zu benutzende Konstruktor der FileOutputStream:</p>
+<p>public FileOutputStream(String fileName, boolean append)</p>
+<p>Der zu benutzende Konstruktor der Klasse PrintWriter:</p>
+<p>public PrintWriter(OutputStream out)</p>
+<p>Zur Ermittlung des Datums und der Uhrzeit bietet sich die Klasse java.util.Date 
+  an. Sie hat auch eine geeignete Methode toString( ) f&uuml;r eine String-Repr&auml;sentation 
+  eines Date-Objekts.</p>
+<p>Die Ausgabe in die Datei erfolgt am Besten mit der Methode println der Klasse 
+  PrintWriter.</p>
+<p>Beim folgenden Programmger&uuml;st wird davon ausgegangen das das Paket java.io 
+  vollst&auml;ndig importiert wird.</p>
+<p>public class LoggingService</p>
+<p>{</p>
+<p>private PrintWriter ausgabe = null;</p>
+<p>public LoggingService(String name)</p>
+<p>{</p>
+<p>try</p>
+<p>{</p>
+<p>// Ein Objekt der Klasse PrintWriter erzeugen. Dabei braucht man eine Instanz 
+  der Klasse FileOutputStream.</p>
+<p>}</p>
+<p>catch(java.io.IOException ioe)</p>
+<p>{</p>
+<p>ioe.printStackTrace( );</p>
+<p>System.ext(-1);</p>
+<p>}</p>
+<p>......</p>
+<p>}</p>
+<p>public void schreibe(String nachricht)</p>
+<p>{</p>
+<p>// Ein Date-Objekt erstellen.</p>
+<p>// Den Ausgabe-String komponieren und ausgeben.</p>
+<p>}</p>
+<p>public void schliesse( )</p>
+<p>{</p>
+<p>// Das close durchf&uuml;hren</p>
+<p>}</p>
+<p>}</p>
+<p>&nbsp;</p>
+</BODY></HTML>

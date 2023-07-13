@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://code.makery.ch/library/javafx-8-tutorial/part5/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JavaFX 8 Tutorial - Part 5: Storing Data as XML | code.makery.ch</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+    /**
+     * @license
+     * MyFonts Webfont Build ID 2872352, 2014-08-27T06:57:40-0400
+     * 
+     * The fonts listed in this notice are subject to the End User License
+     * Agreement(s) entered into by the website owner. All other parties are 
+     * explicitly restricted from using the Licensed Webfonts(s).
+     * 
+     * You may obtain a valid license at the URLs below.
+     * 
+     * Webfont: Museo Slab 700 by exljbris
+     * URL: http://www.myfonts.com/fonts/exljbris/museo-slab/700/
+     * Copyright: Copyright (c) 2009 by Jos Buivenga. All rights reserved.
+     * Licensed pageviews: 500,000
+     * 
+     * License: http://www.myfonts.com/viewlicense?type=web&buildid=2872352
+     * 
+     * © 2014 MyFonts Inc
+    */
+    -->
+    <link href="./JavaFX 8 Tutorial - Part 5_ Storing Data as XML _ code.makery.ch_files/style.min.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="canonical" href="http://code.makery.ch/library/javafx-8-tutorial/part5/">
+  
+    <!-- Alternate Languages -->
+    <link rel="alternate" hreflang="en" href="http://code.makery.ch/library/javafx-8-tutorial/part5/">
+    <link rel="alternate" hreflang="es" href="http://code.makery.ch/library/javafx-8-tutorial/es/part5/">
+    <link rel="alternate" hreflang="fa" href="http://code.makery.ch/library/javafx-8-tutorial/fa/part5/">
+    <link rel="alternate" hreflang="fr" href="http://code.makery.ch/library/javafx-8-tutorial/fr/part5/">
+    <link rel="alternate" hreflang="id" href="http://code.makery.ch/library/javafx-8-tutorial/id/part5/">
+    <link rel="alternate" hreflang="it" href="http://code.makery.ch/library/javafx-8-tutorial/it/part5/">
+    <link rel="alternate" hreflang="kr" href="http://code.makery.ch/library/javafx-8-tutorial/kr/part5/">
+    <link rel="alternate" hreflang="pt" href="http://code.makery.ch/library/javafx-8-tutorial/pt/part5/">
+    <link rel="alternate" hreflang="ru" href="http://code.makery.ch/library/javafx-8-tutorial/ru/part5/">
+    <link rel="alternate" hreflang="tr" href="http://code.makery.ch/library/javafx-8-tutorial/tr/part5/">
+    <link rel="alternate" hreflang="uk" href="http://code.makery.ch/library/javafx-8-tutorial/uk/part5/">
+    <link rel="alternate" hreflang="zh-cn" href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part5/">
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="http://code.makery.ch/rss" title="code.makery.ch - RSS Feed">
+
+    <meta name="description" content="Save data as XML with JAXB. Learn how to use the JavaFX FileChooser and the JavaFX Menu.">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="JavaFX 8 Tutorial - Part 5: Storing Data as XML | code.makery.ch">
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="Save data as XML with JAXB. Learn how to use the JavaFX FileChooser and the JavaFX Menu.">
+    <meta property="og:url" content="http://code.makery.ch/library/javafx-8-tutorial/part5/">
+    <meta property="og:image" content="http://code.makery.ch/assets/library/javafx-8-tutorial/part5/addressapp-part5.png">
+    
+    <link rel="author" href="https://plus.google.com/+MarcoJakob7">
+    
+    <link href="./JavaFX 8 Tutorial - Part 5_ Storing Data as XML _ code.makery.ch_files/prettify.min.css" rel="stylesheet" type="text/css" media="all">
+
+    
+    <script async="" src="./JavaFX 8 Tutorial - Part 5_ Storing Data as XML _ code.makery.ch_files/analytics.js.Download"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-34917397-3', 'makery.ch');
+  ga('send', 'pageview');
+</script>
+  <script type="text/javascript" async="" src="./JavaFX 8 Tutorial - Part 5_ Storing Data as XML _ code.makery.ch_files/embed.js.Download"></script><link rel="preload" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.188f59a1df04c219bf32da7f76545092.css"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.037f55c32651d22255e90738c195e946.js"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.2fd6d206c06cd51584499fe8219aa635.js"><link rel="preload" as="script" href="https://disqus.com/next/config.js"></head>
+  <body onload="prettyPrint()">
+    <header class="site-header container">
+  <h1 class="site-title">
+    <a href="http://code.makery.ch/"><span class="main-text">code</span>.makery</a>
+  </h1>
+  <div class="site-intro">
+    <p>Learning how to code.</p>
+  </div>
+  
+  <div class="ribbon">
+    <a href="https://tinyletter.com/codemakery" title="Get Updates">Subscribe to <i class="fa fa-envelope-o"></i> Updates </a>
+  </div>
+</header>
+    
+    <div class="container article-container">
+      
+<nav class="site-navigation">
+  <ul>
+    <li><a class="black-link" href="http://code.makery.ch/">Home</a></li>
+    <li><a class="main-link" href="http://code.makery.ch/library/">Library</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/paths/">Paths</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/blog/">Blog</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/about/">About</a></li>
+  </ul>
+</nav>
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="github-edit">
+            <a href="https://github.com/marcojakob/code.makery.ch/edit/master/collections/library/javafx-8-tutorial-en-part5.md">Edit on GitHub</a>
+          </div>
+        </div>
+      </div>
+      
+      <article class="row">
+        <aside class="col-md-3">
+          <div class="visible-md-block visible-lg-block">
+          <div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Articles in this Series</h4>  
+  </div>
+
+  <div class="list-group">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/" class="list-group-item">
+        Introduction</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part1/" class="list-group-item">
+        Part 1: Scene Builder</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part2/" class="list-group-item">
+        Part 2: Model and TableView</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part3/" class="list-group-item">
+        Part 3: Interacting with the User</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part4/" class="list-group-item">
+        Part 4: CSS Styling</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part5/" class="list-group-item active">
+        Part 5: Storing Data as XML</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part6/" class="list-group-item">
+        Part 6: Statistics Chart</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part7/" class="list-group-item">
+        Part 7: Deployment</a>
+  </div>
+</div>
+<div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Download Sources</h4>  
+  </div>
+
+  <div class="list-group">
+      <a href="https://github.com/marcojakob/tutorial-javafx-8/releases/download/v1.1/addressapp-jfx8u40-part-5.zip" class="list-group-item">
+<i class="fa fa-fw fa-download"></i>        Part 5 as Eclipse Project <em>(requires at least JDK 8u40)</em></a>
+  </div>
+</div>
+
+          <div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Languages</h4>  
+  </div>
+  <div class="list-group">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part5/" class="list-group-item active">
+        <i class="fa fa-fw fa-globe"></i> English
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/es/part5/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Español
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/fa/part5/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> فارسی
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/fr/part5/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Français
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/id/part5/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Bahasa Indonesia
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/it/part5/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Italiano
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/kr/part5/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> 한국어
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/pt/part5/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Português
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/ru/part5/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Русский
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/tr/part5/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Türkçe
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/uk/part5/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Українська
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part5/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> 中文（简体）
+      </a>
+  </div>
+</div>
+
+          </div>
+        </aside>
+        <div class="col-md-9">
+          <header class="article-header">
+            <h1 class="article-title">JavaFX 8 Tutorial - Part 5: Storing Data as XML</h1>
+            <div class="article-date">
+  Apr 25, 2014
+  • Updated Mar 12, 2015
+
+</div>
+          </header>
+          
+          <aside class="visible-xs-block visible-sm-block">
+            <div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Articles in this Series <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/">
+        Introduction</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part1/">
+        Part 1: Scene Builder</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part2/">
+        Part 2: Model and TableView</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part3/">
+        Part 3: Interacting with the User</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part4/">
+        Part 4: CSS Styling</a></li>
+      <li class=" active"><a href="http://code.makery.ch/library/javafx-8-tutorial/part5/">
+        Part 5: Storing Data as XML</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part6/">
+        Part 6: Statistics Chart</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part7/">
+        Part 7: Deployment</a></li>
+  </ul>
+</div>
+<div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Download Sources <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=""><a href="https://github.com/marcojakob/tutorial-javafx-8/releases/download/v1.1/addressapp-jfx8u40-part-5.zip">
+<i class="fa fa-fw fa-download"></i>        Part 5 as Eclipse Project <em>(requires at least JDK 8u40)</em></a></li>
+  </ul>
+</div>
+
+            <div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=" active">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/part5/"><i class="fa fa-fw fa-globe"></i> English</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/es/part5/"><i class="fa fa-fw fa-globe"></i> Español</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/fa/part5/"><i class="fa fa-fw fa-globe"></i> فارسی</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/fr/part5/"><i class="fa fa-fw fa-globe"></i> Français</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/id/part5/"><i class="fa fa-fw fa-globe"></i> Bahasa Indonesia</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/it/part5/"><i class="fa fa-fw fa-globe"></i> Italiano</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/kr/part5/"><i class="fa fa-fw fa-globe"></i> 한국어</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/pt/part5/"><i class="fa fa-fw fa-globe"></i> Português</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/ru/part5/"><i class="fa fa-fw fa-globe"></i> Русский</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/tr/part5/"><i class="fa fa-fw fa-globe"></i> Türkçe</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/uk/part5/"><i class="fa fa-fw fa-globe"></i> Українська</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part5/"><i class="fa fa-fw fa-globe"></i> 中文（简体）</a>
+    </li>
+  </ul>
+</div>
+
+          </aside>
+          
+          <div class="article-content">
+            <p><img src="./JavaFX 8 Tutorial - Part 5_ Storing Data as XML _ code.makery.ch_files/addressapp-part5.png" alt="Screenshot AddressApp Part 5"></p>
+<h2 id="topics-in-part-5">Topics in Part 5</h2>
+<ul>
+<li><strong>Persisting data as XML</strong></li>
+<li>Using the JavaFX <strong>FileChooser</strong></li>
+<li>Using the JavaFX <strong>Menu</strong></li>
+<li>Saving the last opened file path in <strong>user preferences</strong></li>
+</ul>
+<hr>
+<p>At the moment our address application's data only resides in memory. Every time we close the application, the data is lost. So it's about time to start thinking about persistently storing data.</p>
+<h2 id="saving-user-preferences">Saving User Preferences</h2>
+<p>Java allows us to save some application state using a class called <code>Preferences</code>. Depending on the operating system, the <code>Preferences</code> are saved in different places (e.g. the registry file in Windows).</p>
+<p>We won't be able to use <code>Preferences</code> to store our entire address book. But it allows us to <strong>save some simple application state</strong>. One such thing is the <strong>path to the last opened file</strong>. With this information we could load the last application state whenever the user restarts the application.</p>
+<p>The following two methods take care of saving and retrieving Preferences. Add them to the end of your <code>MainApp</code> class:</p>
+<h5 id="mainapp-java">MainApp.java</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="com">/**
+ * Returns the person file preference, i.e. the file that was last opened.
+ * The preference is read from the OS specific registry. If no such
+ * preference can be found, null is returned.
+ * 
+ * @return
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="typ">File</span><span class="pln"> getPersonFilePath</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Preferences</span><span class="pln"> prefs </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Preferences</span><span class="pun">.</span><span class="pln">userNodeForPackage</span><span class="pun">(</span><span class="typ">MainApp</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">);</span><span class="pln">
+    </span><span class="typ">String</span><span class="pln"> filePath </span><span class="pun">=</span><span class="pln"> prefs</span><span class="pun">.</span><span class="pln">get</span><span class="pun">(</span><span class="str">"filePath"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">filePath </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">File</span><span class="pun">(</span><span class="pln">filePath</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="com">/**
+ * Sets the file path of the currently loaded file. The path is persisted in
+ * the OS specific registry.
+ * 
+ * @param file the file or null to remove the path
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setPersonFilePath</span><span class="pun">(</span><span class="typ">File</span><span class="pln"> file</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Preferences</span><span class="pln"> prefs </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Preferences</span><span class="pun">.</span><span class="pln">userNodeForPackage</span><span class="pun">(</span><span class="typ">MainApp</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">file </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        prefs</span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="str">"filePath"</span><span class="pun">,</span><span class="pln"> file</span><span class="pun">.</span><span class="pln">getPath</span><span class="pun">());</span><span class="pln">
+
+        </span><span class="com">// Update the stage title.</span><span class="pln">
+        primaryStage</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"AddressApp - "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> file</span><span class="pun">.</span><span class="pln">getName</span><span class="pun">());</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        prefs</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">(</span><span class="str">"filePath"</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="com">// Update the stage title.</span><span class="pln">
+        primaryStage</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"AddressApp"</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+
+<h2 id="persisting-data-as-xml">Persisting Data as XML</h2>
+<h3 id="why-xml-">Why XML?</h3>
+<p>One of the most common ways to persist data is using a database. Databases usually contain some kind of relational data (like tables) while the data we need to save are objects. This is called the <a href="http://wikipedia.org/wiki/Object-relational_impedance_mismatch">object-relational impedance mismatch</a>. It is quite some work to match objects to relational database tables. There are some frameworks that help with the matching (e.g. <a href="http://www.hibernate.org/">Hibernate</a>, the most popular one) but it still requires quite some work to set up.</p>
+<p>For our simple data model it's much easier to use XML. We'll use a library called <a href="https://jaxb.java.net/">JAXB</a> (<strong>J</strong>ava <strong>A</strong>rchitecture for <strong>X</strong>ML <strong>B</strong>inding). With just a few lines of code JAXB will allow us to generate XML output like this:</p>
+<h5 id="example-xml-output">Example xml output</h5>
+<pre class="prettyprint lang-xml prettyprinted" style=""><span class="tag">&lt;persons&gt;</span><span class="pln">
+    </span><span class="tag">&lt;person&gt;</span><span class="pln">
+        </span><span class="tag">&lt;birthday&gt;</span><span class="pln">1999-02-21</span><span class="tag">&lt;/birthday&gt;</span><span class="pln">
+        </span><span class="tag">&lt;city&gt;</span><span class="pln">some city</span><span class="tag">&lt;/city&gt;</span><span class="pln">
+        </span><span class="tag">&lt;firstName&gt;</span><span class="pln">Hans</span><span class="tag">&lt;/firstName&gt;</span><span class="pln">
+        </span><span class="tag">&lt;lastName&gt;</span><span class="pln">Muster</span><span class="tag">&lt;/lastName&gt;</span><span class="pln">
+        </span><span class="tag">&lt;postalCode&gt;</span><span class="pln">1234</span><span class="tag">&lt;/postalCode&gt;</span><span class="pln">
+        </span><span class="tag">&lt;street&gt;</span><span class="pln">some street</span><span class="tag">&lt;/street&gt;</span><span class="pln">
+    </span><span class="tag">&lt;/person&gt;</span><span class="pln">
+    </span><span class="tag">&lt;person&gt;</span><span class="pln">
+        </span><span class="tag">&lt;birthday&gt;</span><span class="pln">1999-02-21</span><span class="tag">&lt;/birthday&gt;</span><span class="pln">
+        </span><span class="tag">&lt;city&gt;</span><span class="pln">some city</span><span class="tag">&lt;/city&gt;</span><span class="pln">
+        </span><span class="tag">&lt;firstName&gt;</span><span class="pln">Anna</span><span class="tag">&lt;/firstName&gt;</span><span class="pln">
+        </span><span class="tag">&lt;lastName&gt;</span><span class="pln">Best</span><span class="tag">&lt;/lastName&gt;</span><span class="pln">
+        </span><span class="tag">&lt;postalCode&gt;</span><span class="pln">1234</span><span class="tag">&lt;/postalCode&gt;</span><span class="pln">
+        </span><span class="tag">&lt;street&gt;</span><span class="pln">some street</span><span class="tag">&lt;/street&gt;</span><span class="pln">
+    </span><span class="tag">&lt;/person&gt;</span><span class="pln">
+</span><span class="tag">&lt;/persons&gt;</span></pre>
+
+
+
+
+<h3 id="using-jaxb">Using JAXB</h3>
+<p>JAXB is already included in the JDK. That means we don't need to include any additional library.</p>
+<p>JAXB provides two main features: the ability to <strong>marshal</strong> Java objects into XML and to <strong>unmarshal</strong> XML back into Java objects.</p>
+<p>For JAXB to be able to do the conversion, we need to prepare our model.</p>
+<h4 id="preparing-the-model-class-for-jaxb">Preparing the Model Class for JAXB</h4>
+<p>Our data that we want to save resides in the <code>personData</code> variable inside our <code>MainApp</code> class. JAXB requires the top most class to be annotated with <code>@XmlRootElement</code>. <code>personData</code> is of class <code>ObservableList</code> and we can't put any annotations to <code>ObservableList</code>. So we need to create another class that is only used to hold our list of <code>Persons</code> for saving to XML. </p>
+<p>The new class we create is called <code>PersonListWrapper</code> and is put into the <code>ch.makery.address.model</code> package.</p>
+<h5 id="personlistwrapper-java">PersonListWrapper.java</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">package</span><span class="pln"> ch</span><span class="pun">.</span><span class="pln">makery</span><span class="pun">.</span><span class="pln">address</span><span class="pun">.</span><span class="pln">model</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="typ">List</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> javax</span><span class="pun">.</span><span class="pln">xml</span><span class="pun">.</span><span class="pln">bind</span><span class="pun">.</span><span class="pln">annotation</span><span class="pun">.</span><span class="typ">XmlElement</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javax</span><span class="pun">.</span><span class="pln">xml</span><span class="pun">.</span><span class="pln">bind</span><span class="pun">.</span><span class="pln">annotation</span><span class="pun">.</span><span class="typ">XmlRootElement</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">/**
+ * Helper class to wrap a list of persons. This is used for saving the
+ * list of persons to XML.
+ * 
+ * @author Marco Jakob
+ */</span><span class="pln">
+</span><span class="lit">@XmlRootElement</span><span class="pun">(</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> </span><span class="str">"persons"</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">PersonListWrapper</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Person</span><span class="pun">&gt;</span><span class="pln"> persons</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="lit">@XmlElement</span><span class="pun">(</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> </span><span class="str">"person"</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Person</span><span class="pun">&gt;</span><span class="pln"> getPersons</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> persons</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setPersons</span><span class="pun">(</span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Person</span><span class="pun">&gt;</span><span class="pln"> persons</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">persons </span><span class="pun">=</span><span class="pln"> persons</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<p>Notice the two annotations: </p>
+<ul>
+<li><code>@XmlRootElement</code> defines the name of the root element.</li>
+<li><code>@XmlElement</code> is an optional name we can specify for the element.</li>
+</ul>
+<h4 id="reading-and-writing-data-with-jaxb">Reading and Writing Data with JAXB</h4>
+<p>We'll make our <code>MainApp</code> class responsible for reading and writing the person data. Add the following two methods to the end of <code>MainApp.java</code>:</p>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="com">/**
+ * Loads person data from the specified file. The current person data will
+ * be replaced.
+ * 
+ * @param file
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> loadPersonDataFromFile</span><span class="pun">(</span><span class="typ">File</span><span class="pln"> file</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">JAXBContext</span><span class="pln"> context </span><span class="pun">=</span><span class="pln"> </span><span class="typ">JAXBContext</span><span class="pln">
+                </span><span class="pun">.</span><span class="pln">newInstance</span><span class="pun">(</span><span class="typ">PersonListWrapper</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">);</span><span class="pln">
+        </span><span class="typ">Unmarshaller</span><span class="pln"> um </span><span class="pun">=</span><span class="pln"> context</span><span class="pun">.</span><span class="pln">createUnmarshaller</span><span class="pun">();</span><span class="pln">
+
+        </span><span class="com">// Reading XML from the file and unmarshalling.</span><span class="pln">
+        </span><span class="typ">PersonListWrapper</span><span class="pln"> wrapper </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">PersonListWrapper</span><span class="pun">)</span><span class="pln"> um</span><span class="pun">.</span><span class="pln">unmarshal</span><span class="pun">(</span><span class="pln">file</span><span class="pun">);</span><span class="pln">
+
+        personData</span><span class="pun">.</span><span class="pln">clear</span><span class="pun">();</span><span class="pln">
+        personData</span><span class="pun">.</span><span class="pln">addAll</span><span class="pun">(</span><span class="pln">wrapper</span><span class="pun">.</span><span class="pln">getPersons</span><span class="pun">());</span><span class="pln">
+
+        </span><span class="com">// Save the file path to the registry.</span><span class="pln">
+        setPersonFilePath</span><span class="pun">(</span><span class="pln">file</span><span class="pun">);</span><span class="pln">
+
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="com">// catches ANY exception</span><span class="pln">
+        </span><span class="typ">Alert</span><span class="pln"> alert </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Alert</span><span class="pun">(</span><span class="typ">AlertType</span><span class="pun">.</span><span class="pln">ERROR</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"Error"</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setHeaderText</span><span class="pun">(</span><span class="str">"Could not load data"</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setContentText</span><span class="pun">(</span><span class="str">"Could not load data from file:\n"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> file</span><span class="pun">.</span><span class="pln">getPath</span><span class="pun">());</span><span class="pln">
+
+        alert</span><span class="pun">.</span><span class="pln">showAndWait</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="com">/**
+ * Saves the current person data to the specified file.
+ * 
+ * @param file
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> savePersonDataToFile</span><span class="pun">(</span><span class="typ">File</span><span class="pln"> file</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">JAXBContext</span><span class="pln"> context </span><span class="pun">=</span><span class="pln"> </span><span class="typ">JAXBContext</span><span class="pln">
+                </span><span class="pun">.</span><span class="pln">newInstance</span><span class="pun">(</span><span class="typ">PersonListWrapper</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">);</span><span class="pln">
+        </span><span class="typ">Marshaller</span><span class="pln"> m </span><span class="pun">=</span><span class="pln"> context</span><span class="pun">.</span><span class="pln">createMarshaller</span><span class="pun">();</span><span class="pln">
+        m</span><span class="pun">.</span><span class="pln">setProperty</span><span class="pun">(</span><span class="typ">Marshaller</span><span class="pun">.</span><span class="pln">JAXB_FORMATTED_OUTPUT</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="com">// Wrapping our person data.</span><span class="pln">
+        </span><span class="typ">PersonListWrapper</span><span class="pln"> wrapper </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">PersonListWrapper</span><span class="pun">();</span><span class="pln">
+        wrapper</span><span class="pun">.</span><span class="pln">setPersons</span><span class="pun">(</span><span class="pln">personData</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="com">// Marshalling and saving XML to the file.</span><span class="pln">
+        m</span><span class="pun">.</span><span class="pln">marshal</span><span class="pun">(</span><span class="pln">wrapper</span><span class="pun">,</span><span class="pln"> file</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="com">// Save the file path to the registry.</span><span class="pln">
+        setPersonFilePath</span><span class="pun">(</span><span class="pln">file</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="com">// catches ANY exception</span><span class="pln">
+        </span><span class="typ">Alert</span><span class="pln"> alert </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Alert</span><span class="pun">(</span><span class="typ">AlertType</span><span class="pun">.</span><span class="pln">ERROR</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"Error"</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setHeaderText</span><span class="pun">(</span><span class="str">"Could not save data"</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setContentText</span><span class="pun">(</span><span class="str">"Could not save data to file:\n"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> file</span><span class="pun">.</span><span class="pln">getPath</span><span class="pun">());</span><span class="pln">
+
+        alert</span><span class="pun">.</span><span class="pln">showAndWait</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<p>The marshalling/unmarshalling is ready. Let's create the save/load menu to actually be able to use it.</p>
+<h2 id="handling-menu-actions">Handling Menu Actions</h2>
+<p>In our <code>RootLayout.fxml</code> there is already a menu, but we haven't used it yet. Before we add action to the menu we'll first create all menu items.</p>
+<p>Open the <code>RootLayout.fxml</code> file in Scene Builder and drag the necessary menu items from the <em>library</em> group to the <code>MenuBar</code> bar in the <em>hierarchy</em> group. Create a <strong>New</strong>, <strong>Open...</strong>, <strong>Save</strong>, <strong>Save As...</strong>, and <strong>Exit</strong> menu item.</p>
+<p><img src="./JavaFX 8 Tutorial - Part 5_ Storing Data as XML _ code.makery.ch_files/add-menu-items.png" alt="Add Menu Items"></p>
+<p>Hint: Using the <em>Accelerator</em> setting under the <em>Properties</em> group you can set shortcut keys to menu items.</p>
+<h3 id="the-rootlayoutcontroller">The RootLayoutController</h3>
+<p>For handling menu actions we'll need a new controller class. Create a class <code>RootLayoutController</code> inside the controller package <code>ch.makery.address.view</code>. </p>
+<p>Add the following content to the controller:</p>
+<h5 id="rootlayoutcontroller-java">RootLayoutController.java</h5>
+<pre class="prettyprint lang-java pre-scrollable prettyprinted" style=""><span class="kwd">package</span><span class="pln"> ch</span><span class="pun">.</span><span class="pln">makery</span><span class="pun">.</span><span class="pln">address</span><span class="pun">.</span><span class="pln">view</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">File</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">fxml</span><span class="pun">.</span><span class="pln">FXML</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">scene</span><span class="pun">.</span><span class="pln">control</span><span class="pun">.</span><span class="typ">Alert</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">scene</span><span class="pun">.</span><span class="pln">control</span><span class="pun">.</span><span class="typ">Alert</span><span class="pun">.</span><span class="typ">AlertType</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">stage</span><span class="pun">.</span><span class="typ">FileChooser</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> ch</span><span class="pun">.</span><span class="pln">makery</span><span class="pun">.</span><span class="pln">address</span><span class="pun">.</span><span class="typ">MainApp</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">/**
+ * The controller for the root layout. The root layout provides the basic
+ * application layout containing a menu bar and space where other JavaFX
+ * elements can be placed.
+ * 
+ * @author Marco Jakob
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">RootLayoutController</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="com">// Reference to the main application</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">MainApp</span><span class="pln"> mainApp</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="com">/**
+     * Is called by the main application to give a reference back to itself.
+     * 
+     * @param mainApp
+     */</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setMainApp</span><span class="pun">(</span><span class="typ">MainApp</span><span class="pln"> mainApp</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">mainApp </span><span class="pun">=</span><span class="pln"> mainApp</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Creates an empty address book.
+     */</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> handleNew</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        mainApp</span><span class="pun">.</span><span class="pln">getPersonData</span><span class="pun">().</span><span class="pln">clear</span><span class="pun">();</span><span class="pln">
+        mainApp</span><span class="pun">.</span><span class="pln">setPersonFilePath</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Opens a FileChooser to let the user select an address book to load.
+     */</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> handleOpen</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">FileChooser</span><span class="pln"> fileChooser </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FileChooser</span><span class="pun">();</span><span class="pln">
+
+        </span><span class="com">// Set extension filter</span><span class="pln">
+        </span><span class="typ">FileChooser</span><span class="pun">.</span><span class="typ">ExtensionFilter</span><span class="pln"> extFilter </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FileChooser</span><span class="pun">.</span><span class="typ">ExtensionFilter</span><span class="pun">(</span><span class="pln">
+                </span><span class="str">"XML files (*.xml)"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"*.xml"</span><span class="pun">);</span><span class="pln">
+        fileChooser</span><span class="pun">.</span><span class="pln">getExtensionFilters</span><span class="pun">().</span><span class="pln">add</span><span class="pun">(</span><span class="pln">extFilter</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="com">// Show open file dialog</span><span class="pln">
+        </span><span class="typ">File</span><span class="pln"> file </span><span class="pun">=</span><span class="pln"> fileChooser</span><span class="pun">.</span><span class="pln">showOpenDialog</span><span class="pun">(</span><span class="pln">mainApp</span><span class="pun">.</span><span class="pln">getPrimaryStage</span><span class="pun">());</span><span class="pln">
+
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">file </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            mainApp</span><span class="pun">.</span><span class="pln">loadPersonDataFromFile</span><span class="pun">(</span><span class="pln">file</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Saves the file to the person file that is currently open. If there is no
+     * open file, the "save as" dialog is shown.
+     */</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> handleSave</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">File</span><span class="pln"> personFile </span><span class="pun">=</span><span class="pln"> mainApp</span><span class="pun">.</span><span class="pln">getPersonFilePath</span><span class="pun">();</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">personFile </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            mainApp</span><span class="pun">.</span><span class="pln">savePersonDataToFile</span><span class="pun">(</span><span class="pln">personFile</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            handleSaveAs</span><span class="pun">();</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Opens a FileChooser to let the user select a file to save to.
+     */</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> handleSaveAs</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">FileChooser</span><span class="pln"> fileChooser </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FileChooser</span><span class="pun">();</span><span class="pln">
+
+        </span><span class="com">// Set extension filter</span><span class="pln">
+        </span><span class="typ">FileChooser</span><span class="pun">.</span><span class="typ">ExtensionFilter</span><span class="pln"> extFilter </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FileChooser</span><span class="pun">.</span><span class="typ">ExtensionFilter</span><span class="pun">(</span><span class="pln">
+                </span><span class="str">"XML files (*.xml)"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"*.xml"</span><span class="pun">);</span><span class="pln">
+        fileChooser</span><span class="pun">.</span><span class="pln">getExtensionFilters</span><span class="pun">().</span><span class="pln">add</span><span class="pun">(</span><span class="pln">extFilter</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="com">// Show save file dialog</span><span class="pln">
+        </span><span class="typ">File</span><span class="pln"> file </span><span class="pun">=</span><span class="pln"> fileChooser</span><span class="pun">.</span><span class="pln">showSaveDialog</span><span class="pun">(</span><span class="pln">mainApp</span><span class="pun">.</span><span class="pln">getPrimaryStage</span><span class="pun">());</span><span class="pln">
+
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">file </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="com">// Make sure it has the correct extension</span><span class="pln">
+            </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="pln">file</span><span class="pun">.</span><span class="pln">getPath</span><span class="pun">().</span><span class="pln">endsWith</span><span class="pun">(</span><span class="str">".xml"</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                file </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">File</span><span class="pun">(</span><span class="pln">file</span><span class="pun">.</span><span class="pln">getPath</span><span class="pun">()</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">".xml"</span><span class="pun">);</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+            mainApp</span><span class="pun">.</span><span class="pln">savePersonDataToFile</span><span class="pun">(</span><span class="pln">file</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Opens an about dialog.
+     */</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> handleAbout</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">Alert</span><span class="pln"> alert </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Alert</span><span class="pun">(</span><span class="typ">AlertType</span><span class="pun">.</span><span class="pln">INFORMATION</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"AddressApp"</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setHeaderText</span><span class="pun">(</span><span class="str">"About"</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setContentText</span><span class="pun">(</span><span class="str">"Author: Marco Jakob\nWebsite: http://code.makery.ch"</span><span class="pun">);</span><span class="pln">
+
+        alert</span><span class="pun">.</span><span class="pln">showAndWait</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Closes the application.
+     */</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> handleExit</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">exit</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+
+<h4 id="filechooser">FileChooser</h4>
+<p>Take note of the methods that use the <code>FileChooser</code> class inside <code>RootLayoutController</code> above. First, a new object of the class <code>FileChooser</code> is created. Then, an extension filter is added so that only files ending in <code>.xml</code> are displayed. Finally, the file chooser is displayed on top of the primary stage.</p>
+<p>If the user closes the dialog without choosing a file, <code>null</code> is returned. Otherwise, we get the selected file and we can pass it to the <code>loadPersonDataFromFile(...)</code> or <code>savePersonDataToFile(...)</code> method of <code>MainApp</code>. </p>
+<h3 id="connecting-the-fxml-view-to-the-controller">Connecting the fxml View to the Controller</h3>
+<ol>
+<li><p>Open <code>RootLayout.fxml</code> in Scene Builder. In the <em>Controller</em> group select the <code>RootLayoutController</code> as Controller class. </p>
+</li>
+<li><p>Go back to the <em>Hierarchy</em> group and select a menu item. In the <em>Code</em> group under <strong>On Action</strong> you should see a choice of all the available controller methods. Choose the corresponding method for each menu item.<br><img src="./JavaFX 8 Tutorial - Part 5_ Storing Data as XML _ code.makery.ch_files/menu-actions.png" alt="Menu Actions"></p>
+</li>
+<li><p>Repeat the steps for every menu item.</p>
+</li>
+<li><p>Close Scene Builder and hit <strong>Refresh (F5)</strong> on your project's root folder. This will make Eclipse aware of the changes you made in Scene Builder.</p>
+</li>
+</ol>
+<h3 id="connecting-the-mainapp-and-rootlayoutcontroller">Connecting the MainApp and RootLayoutController</h3>
+<p>In several places, the <code>RootLayoutController</code> needs a reference back to the <code>MainApp</code>. We haven't passed the reference to the <code>RootLayoutController</code> yet.</p>
+<p>Open the <code>MainApp</code> class and replace the <code>initRootLayout()</code> method with the following code:</p>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="com">/**
+ * Initializes the root layout and tries to load the last opened
+ * person file.
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> initRootLayout</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// Load root layout from fxml file.</span><span class="pln">
+        </span><span class="typ">FXMLLoader</span><span class="pln"> loader </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FXMLLoader</span><span class="pun">();</span><span class="pln">
+        loader</span><span class="pun">.</span><span class="pln">setLocation</span><span class="pun">(</span><span class="typ">MainApp</span><span class="pun">.</span><span class="kwd">class</span><span class="pln">
+                </span><span class="pun">.</span><span class="pln">getResource</span><span class="pun">(</span><span class="str">"view/RootLayout.fxml"</span><span class="pun">));</span><span class="pln">
+        rootLayout </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">BorderPane</span><span class="pun">)</span><span class="pln"> loader</span><span class="pun">.</span><span class="pln">load</span><span class="pun">();</span><span class="pln">
+
+        </span><span class="com">// Show the scene containing the root layout.</span><span class="pln">
+        </span><span class="typ">Scene</span><span class="pln"> scene </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Scene</span><span class="pun">(</span><span class="pln">rootLayout</span><span class="pun">);</span><span class="pln">
+        primaryStage</span><span class="pun">.</span><span class="pln">setScene</span><span class="pun">(</span><span class="pln">scene</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="com">// Give the controller access to the main app.</span><span class="pln">
+        </span><span class="typ">RootLayoutController</span><span class="pln"> controller </span><span class="pun">=</span><span class="pln"> loader</span><span class="pun">.</span><span class="pln">getController</span><span class="pun">();</span><span class="pln">
+        controller</span><span class="pun">.</span><span class="pln">setMainApp</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">);</span><span class="pln">
+
+        primaryStage</span><span class="pun">.</span><span class="pln">show</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">IOException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">// Try to load last opened person file.</span><span class="pln">
+    </span><span class="typ">File</span><span class="pln"> file </span><span class="pun">=</span><span class="pln"> getPersonFilePath</span><span class="pun">();</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">file </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        loadPersonDataFromFile</span><span class="pun">(</span><span class="pln">file</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<p>Notice the two changes: The lines that <em>give the controller access to the main app</em> and the last three lines to <em>load the last opened person file</em>.</p>
+<h3 id="testing">Testing</h3>
+<p>Doing a test drive of your application you should be able to use the menus to save the person data to a file. </p>
+<p>When you open the <code>xml</code> file in an editor you will notice that the birthday is not saved correctly, it's an empty <code>&lt;birthday/&gt;</code> tag. The reason is that JAXB does not know how to convert the <code>LocalDate</code> to XML. We must provide a custom <code>LocalDateAdapter</code> to define this conversion.</p>
+<p>Create a new class inside <code>ch.makery.address.util</code> called <code>LocalDateAdapter</code> with the following content:</p>
+<h5 id="localdateadapter-java">LocalDateAdapter.java</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">package</span><span class="pln"> ch</span><span class="pun">.</span><span class="pln">makery</span><span class="pun">.</span><span class="pln">address</span><span class="pun">.</span><span class="pln">util</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">time</span><span class="pun">.</span><span class="typ">LocalDate</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> javax</span><span class="pun">.</span><span class="pln">xml</span><span class="pun">.</span><span class="pln">bind</span><span class="pun">.</span><span class="pln">annotation</span><span class="pun">.</span><span class="pln">adapters</span><span class="pun">.</span><span class="typ">XmlAdapter</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">/**
+ * Adapter (for JAXB) to convert between the LocalDate and the ISO 8601 
+ * String representation of the date such as '2012-12-03'.
+ * 
+ * @author Marco Jakob
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">LocalDateAdapter</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">XmlAdapter</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">LocalDate</span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="lit">@Override</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">LocalDate</span><span class="pln"> unmarshal</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> v</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">LocalDate</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="pln">v</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="lit">@Override</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> marshal</span><span class="pun">(</span><span class="typ">LocalDate</span><span class="pln"> v</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> v</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<p>Then open <code>Person.java</code> and add the following annotation to the <code>getBirthday()</code> method:</p>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="lit">@XmlJavaTypeAdapter</span><span class="pun">(</span><span class="typ">LocalDateAdapter</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="typ">LocalDate</span><span class="pln"> getBirthday</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> birthday</span><span class="pun">.</span><span class="pln">get</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<p>Now, test again. Try saving and loading the xml file. After a restart, it should automatically load the last used file.</p>
+<h2 id="how-it-works">How It Works</h2>
+<p>Let's see how it all works together:</p>
+<ol>
+<li>The application is started using the <code>main(...)</code> method inside <code>MainApp</code>.</li>
+<li>The constructor <code>public MainApp()</code> is called and adds some sample data.</li>
+<li><code>MainApp</code>s <code>start(...)</code> method is called and calls <code>initRootLayout()</code> to initialize the root layout from <code>RootLayout.fxml</code>. The fxml file has the information about which controller to use and links the view to its <code>RootLayoutController</code>. </li>
+<li>The <code>MainApp</code> gets the <code>RootLayoutController</code> from the fxml loader and passes a reference to itself to the controller. With this reference the controller can later access the (public) methods of <code>MainApp</code>.</li>
+<li>At the end of the <code>initRootLayout()</code> method we try to get the <em>last opened person file</em> from <code>Preferences</code>. If the <code>Preferences</code> know about such an XML file, we'll load the data from this XML file. This will apparently overwrite the sample data from the constructor. </li>
+</ol>
+<h3 id="what-s-next-">What's Next?</h3>
+<p>In Tutorial <a href="http://code.makery.ch/library/javafx-8-tutorial/part6/">Part 6</a> we'll add a birthday statistics chart.</p>
+<h5 id="some-other-articles-you-might-find-interesting">Some other articles you might find interesting</h5>
+<ul>
+<li><a href="http://code.makery.ch/blog/javafx-dialogs-official/">JavaFX Dialogs (official)</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-date-picker/">JavaFX Date Picker</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-event-handling-examples/">JavaFX Event Handling Examples</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/">JavaFX TableView Sorting and Filtering</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-tableview-cell-renderer/">JavaFX TableView Cell Renderer</a></li>
+</ul>
+
+
+          </div>
+          
+          <hr>
+          
+  <nav>
+    <div class="article-paging">
+      <ul class="pagination">
+              <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/" data-toggle="tooltip" title="" data-original-title="Introduction">Intro</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part1/" data-toggle="tooltip" title="" data-original-title="Part 1: Scene Builder">1</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part2/" data-toggle="tooltip" title="" data-original-title="Part 2: Model and TableView">2</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part3/" data-toggle="tooltip" title="" data-original-title="Part 3: Interacting with the User">3</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part4/" data-toggle="tooltip" title="" data-original-title="Part 4: CSS Styling">4</a>
+      </li>
+        <li class="active">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part5/" data-toggle="tooltip" title="" data-original-title="Part 5: Storing Data as XML">5</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part6/" data-toggle="tooltip" title="" data-original-title="Part 6: Statistics Chart">6</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part7/" data-toggle="tooltip" title="" data-original-title="Part 7: Deployment">7</a>
+      </li>
+    
+      </ul>
+    </div>
+  </nav>
+
+        </div>
+      </article>
+      
+      
+      <section class="row">
+        <div class="col-md-offset-3 col-md-9">
+          <h2>Comments</h2>
+          <div id="disqus_thread"><iframe id="dsq-app1925" name="dsq-app1925" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./JavaFX 8 Tutorial - Part 5_ Storing Data as XML _ code.makery.ch_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 9025px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+        </div>
+      </section>
+      
+    </div>
+        
+    <footer class="site-footer container-fluid">
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+      <p>
+        <a class="btn btn-sm btn-social-icon btn-twitter" href="https://twitter.com/codemakery" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow me on Twitter">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-googleplus" href="https://plus.google.com/+MarcoJakob7" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow me on Google+">
+          <i class="fa fa-google-plus"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-rss" href="http://code.makery.ch/rss" data-toggle="tooltip" data-placement="top" title="" data-original-title="Subscribe to RSS Feed">
+          <i class="fa fa-rss"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-mail" href="https://tinyletter.com/codemakery" data-toggle="tooltip" data-placement="top" title="" data-original-title="Receive Email Updates">
+          <i class="fa fa-envelope" style="margin-top: -1px;"></i>
+        </a>
+      </p>
+      <p>
+        Subscribe to receive updates by <a href="https://tinyletter.com/codemakery">Email</a>.
+      </p>
+      
+      <form class="form-inline" action="https://tinyletter.com/codemakery" method="post" target="popupwindow" onsubmit="window.open(&#39;https://tinyletter.com/codemakery&#39;, &#39;popupwindow&#39;, &#39;scrollbars=yes,width=800,height=600&#39;);return true">
+        <div class="form-group">
+          <input type="text" class="form-control" name="email" id="tlemail" placeholder="Enter email">
+          <input type="hidden" value="1" name="embed">
+          <input type="submit" class="form-control btn-primary" value="Get updates">
+        </div>
+      </form>
+      
+      <p>
+        <small>
+          Created by <a href="http://code.makery.ch/about">Marco Jakob</a> • Licensed under <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
+        </small>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    
+    
+    
+  <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 5_ Storing Data as XML _ code.makery.ch_files/prettify.min.js.Download"></script>
+
+                                    
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'codemakery'; // Required - the forum shortname
+    var disqus_identifier = '/java/javafx-8-tutorial-part5/';
+    var disqus_url = 'http://code.makery.ch/library/javafx-8-tutorial/part5/';
+    var disqus_title = 'JavaFX 8 Tutorial - Part 5: Storing Data as XML';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+    
+
+    
+      <script src="./JavaFX 8 Tutorial - Part 5_ Storing Data as XML _ code.makery.ch_files/jquery.min.js.Download"></script>
+      <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 5_ Storing Data as XML _ code.makery.ch_files/bootstrap.min.js.Download"></script>
+      <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 5_ Storing Data as XML _ code.makery.ch_files/bootstrap-init-tooltips.min.js.Download"></script>
+    
+  
+<iframe style="display: none;" src="./JavaFX 8 Tutorial - Part 5_ Storing Data as XML _ code.makery.ch_files/saved_resource(1).html"></iframe></body></html>

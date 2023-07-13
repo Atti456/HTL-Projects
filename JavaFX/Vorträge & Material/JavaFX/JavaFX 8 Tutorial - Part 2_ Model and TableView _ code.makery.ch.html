@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://code.makery.ch/library/javafx-8-tutorial/part2/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JavaFX 8 Tutorial - Part 2: Model and TableView | code.makery.ch</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+    /**
+     * @license
+     * MyFonts Webfont Build ID 2872352, 2014-08-27T06:57:40-0400
+     * 
+     * The fonts listed in this notice are subject to the End User License
+     * Agreement(s) entered into by the website owner. All other parties are 
+     * explicitly restricted from using the Licensed Webfonts(s).
+     * 
+     * You may obtain a valid license at the URLs below.
+     * 
+     * Webfont: Museo Slab 700 by exljbris
+     * URL: http://www.myfonts.com/fonts/exljbris/museo-slab/700/
+     * Copyright: Copyright (c) 2009 by Jos Buivenga. All rights reserved.
+     * Licensed pageviews: 500,000
+     * 
+     * License: http://www.myfonts.com/viewlicense?type=web&buildid=2872352
+     * 
+     * © 2014 MyFonts Inc
+    */
+    -->
+    <link href="./JavaFX 8 Tutorial - Part 2_ Model and TableView _ code.makery.ch_files/style.min.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="canonical" href="http://code.makery.ch/library/javafx-8-tutorial/part2/">
+  
+    <!-- Alternate Languages -->
+    <link rel="alternate" hreflang="en" href="http://code.makery.ch/library/javafx-8-tutorial/part2/">
+    <link rel="alternate" hreflang="es" href="http://code.makery.ch/library/javafx-8-tutorial/es/part2/">
+    <link rel="alternate" hreflang="fa" href="http://code.makery.ch/library/javafx-8-tutorial/fa/part2/">
+    <link rel="alternate" hreflang="fr" href="http://code.makery.ch/library/javafx-8-tutorial/fr/part2/">
+    <link rel="alternate" hreflang="id" href="http://code.makery.ch/library/javafx-8-tutorial/id/part2/">
+    <link rel="alternate" hreflang="it" href="http://code.makery.ch/library/javafx-8-tutorial/it/part2/">
+    <link rel="alternate" hreflang="kr" href="http://code.makery.ch/library/javafx-8-tutorial/kr/part2/">
+    <link rel="alternate" hreflang="pt" href="http://code.makery.ch/library/javafx-8-tutorial/pt/part2/">
+    <link rel="alternate" hreflang="ru" href="http://code.makery.ch/library/javafx-8-tutorial/ru/part2/">
+    <link rel="alternate" hreflang="tr" href="http://code.makery.ch/library/javafx-8-tutorial/tr/part2/">
+    <link rel="alternate" hreflang="uk" href="http://code.makery.ch/library/javafx-8-tutorial/uk/part2/">
+    <link rel="alternate" hreflang="zh-cn" href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part2/">
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="http://code.makery.ch/rss" title="code.makery.ch - RSS Feed">
+
+    <meta name="description" content="Use a JavaFX TableView to display an ObservableList of Persons.">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="JavaFX 8 Tutorial - Part 2: Model and TableView | code.makery.ch">
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="Use a JavaFX TableView to display an ObservableList of Persons.">
+    <meta property="og:url" content="http://code.makery.ch/library/javafx-8-tutorial/part2/">
+    <meta property="og:image" content="http://code.makery.ch/assets/library/javafx-8-tutorial/part2/addressapp-part2.png">
+    
+    <link rel="author" href="https://plus.google.com/+MarcoJakob7">
+    
+    <link href="./JavaFX 8 Tutorial - Part 2_ Model and TableView _ code.makery.ch_files/prettify.min.css" rel="stylesheet" type="text/css" media="all">
+
+    
+    <script async="" src="./JavaFX 8 Tutorial - Part 2_ Model and TableView _ code.makery.ch_files/analytics.js.Download"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-34917397-3', 'makery.ch');
+  ga('send', 'pageview');
+</script>
+  <script type="text/javascript" async="" src="./JavaFX 8 Tutorial - Part 2_ Model and TableView _ code.makery.ch_files/embed.js.Download"></script><link rel="preload" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.188f59a1df04c219bf32da7f76545092.css"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.037f55c32651d22255e90738c195e946.js"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.2fd6d206c06cd51584499fe8219aa635.js"><link rel="preload" as="script" href="https://disqus.com/next/config.js"></head>
+  <body onload="prettyPrint()">
+    <header class="site-header container">
+  <h1 class="site-title">
+    <a href="http://code.makery.ch/"><span class="main-text">code</span>.makery</a>
+  </h1>
+  <div class="site-intro">
+    <p>Learning how to code.</p>
+  </div>
+  
+  <div class="ribbon">
+    <a href="https://tinyletter.com/codemakery" title="Get Updates">Subscribe to <i class="fa fa-envelope-o"></i> Updates </a>
+  </div>
+</header>
+    
+    <div class="container article-container">
+      
+<nav class="site-navigation">
+  <ul>
+    <li><a class="black-link" href="http://code.makery.ch/">Home</a></li>
+    <li><a class="main-link" href="http://code.makery.ch/library/">Library</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/paths/">Paths</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/blog/">Blog</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/about/">About</a></li>
+  </ul>
+</nav>
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="github-edit">
+            <a href="https://github.com/marcojakob/code.makery.ch/edit/master/collections/library/javafx-8-tutorial-en-part2.md">Edit on GitHub</a>
+          </div>
+        </div>
+      </div>
+      
+      <article class="row">
+        <aside class="col-md-3">
+          <div class="visible-md-block visible-lg-block">
+          <div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Articles in this Series</h4>  
+  </div>
+
+  <div class="list-group">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/" class="list-group-item">
+        Introduction</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part1/" class="list-group-item">
+        Part 1: Scene Builder</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part2/" class="list-group-item active">
+        Part 2: Model and TableView</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part3/" class="list-group-item">
+        Part 3: Interacting with the User</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part4/" class="list-group-item">
+        Part 4: CSS Styling</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part5/" class="list-group-item">
+        Part 5: Storing Data as XML</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part6/" class="list-group-item">
+        Part 6: Statistics Chart</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part7/" class="list-group-item">
+        Part 7: Deployment</a>
+  </div>
+</div>
+<div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Download Sources</h4>  
+  </div>
+
+  <div class="list-group">
+      <a href="https://github.com/marcojakob/tutorial-javafx-8/releases/download/v1.1/addressapp-jfx8u40-part-2.zip" class="list-group-item">
+<i class="fa fa-fw fa-download"></i>        Part 2 as Eclipse Project <em>(requires at least JDK 8u40)</em></a>
+  </div>
+</div>
+
+          <div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Languages</h4>  
+  </div>
+  <div class="list-group">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part2/" class="list-group-item active">
+        <i class="fa fa-fw fa-globe"></i> English
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/es/part2/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Español
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/fa/part2/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> فارسی
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/fr/part2/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Français
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/id/part2/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Bahasa Indonesia
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/it/part2/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Italiano
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/kr/part2/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> 한국어
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/pt/part2/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Português
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/ru/part2/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Русский
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/tr/part2/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Türkçe
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/uk/part2/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Українська
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part2/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> 中文（简体）
+      </a>
+  </div>
+</div>
+
+          </div>
+        </aside>
+        <div class="col-md-9">
+          <header class="article-header">
+            <h1 class="article-title">JavaFX 8 Tutorial - Part 2: Model and TableView</h1>
+            <div class="article-date">
+  Apr 23, 2014
+  • Updated Mar 12, 2015
+
+</div>
+          </header>
+          
+          <aside class="visible-xs-block visible-sm-block">
+            <div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Articles in this Series <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/">
+        Introduction</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part1/">
+        Part 1: Scene Builder</a></li>
+      <li class=" active"><a href="http://code.makery.ch/library/javafx-8-tutorial/part2/">
+        Part 2: Model and TableView</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part3/">
+        Part 3: Interacting with the User</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part4/">
+        Part 4: CSS Styling</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part5/">
+        Part 5: Storing Data as XML</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part6/">
+        Part 6: Statistics Chart</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part7/">
+        Part 7: Deployment</a></li>
+  </ul>
+</div>
+<div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Download Sources <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=""><a href="https://github.com/marcojakob/tutorial-javafx-8/releases/download/v1.1/addressapp-jfx8u40-part-2.zip">
+<i class="fa fa-fw fa-download"></i>        Part 2 as Eclipse Project <em>(requires at least JDK 8u40)</em></a></li>
+  </ul>
+</div>
+
+            <div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=" active">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/part2/"><i class="fa fa-fw fa-globe"></i> English</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/es/part2/"><i class="fa fa-fw fa-globe"></i> Español</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/fa/part2/"><i class="fa fa-fw fa-globe"></i> فارسی</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/fr/part2/"><i class="fa fa-fw fa-globe"></i> Français</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/id/part2/"><i class="fa fa-fw fa-globe"></i> Bahasa Indonesia</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/it/part2/"><i class="fa fa-fw fa-globe"></i> Italiano</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/kr/part2/"><i class="fa fa-fw fa-globe"></i> 한국어</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/pt/part2/"><i class="fa fa-fw fa-globe"></i> Português</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/ru/part2/"><i class="fa fa-fw fa-globe"></i> Русский</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/tr/part2/"><i class="fa fa-fw fa-globe"></i> Türkçe</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/uk/part2/"><i class="fa fa-fw fa-globe"></i> Українська</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part2/"><i class="fa fa-fw fa-globe"></i> 中文（简体）</a>
+    </li>
+  </ul>
+</div>
+
+          </aside>
+          
+          <div class="article-content">
+            <p><img src="./JavaFX 8 Tutorial - Part 2_ Model and TableView _ code.makery.ch_files/addressapp-part2.png" alt="Screenshot AddressApp Part 2"></p>
+<h2 id="topics-in-part-2">Topics in Part 2</h2>
+<ul>
+<li>Creating a <strong>model</strong> class</li>
+<li>Using the model class in an <strong>ObservableList</strong></li>
+<li>Show data in the <strong>TableView</strong> using <strong>Controllers</strong></li>
+</ul>
+<hr>
+<h2 id="create-the-model-class">Create the Model Class</h2>
+<p>We need a model class to hold information about the people in our address book. Add a new class to the model package (<code>ch.makery.address.model</code>) called <code>Person</code>. The <code>Person</code> class will have a few instance variables for the name, address and birthday. Add the following code to the class. I'll explain some JavaFX specifics after the code.</p>
+<h5 id="person-java">Person.java</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">package</span><span class="pln"> ch</span><span class="pun">.</span><span class="pln">makery</span><span class="pun">.</span><span class="pln">address</span><span class="pun">.</span><span class="pln">model</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">time</span><span class="pun">.</span><span class="typ">LocalDate</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">beans</span><span class="pun">.</span><span class="pln">property</span><span class="pun">.</span><span class="typ">IntegerProperty</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">beans</span><span class="pun">.</span><span class="pln">property</span><span class="pun">.</span><span class="typ">ObjectProperty</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">beans</span><span class="pun">.</span><span class="pln">property</span><span class="pun">.</span><span class="typ">SimpleIntegerProperty</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">beans</span><span class="pun">.</span><span class="pln">property</span><span class="pun">.</span><span class="typ">SimpleObjectProperty</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">beans</span><span class="pun">.</span><span class="pln">property</span><span class="pun">.</span><span class="typ">SimpleStringProperty</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">beans</span><span class="pun">.</span><span class="pln">property</span><span class="pun">.</span><span class="typ">StringProperty</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">/**
+ * Model class for a Person.
+ *
+ * @author Marco Jakob
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Person</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">StringProperty</span><span class="pln"> firstName</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">StringProperty</span><span class="pln"> lastName</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">StringProperty</span><span class="pln"> street</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">IntegerProperty</span><span class="pln"> postalCode</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">StringProperty</span><span class="pln"> city</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">ObjectProperty</span><span class="pun">&lt;</span><span class="typ">LocalDate</span><span class="pun">&gt;</span><span class="pln"> birthday</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="com">/**
+     * Default constructor.
+     */</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Person</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Constructor with some initial data.
+     * 
+     * @param firstName
+     * @param lastName
+     */</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Person</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> firstName</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> lastName</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">firstName </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">SimpleStringProperty</span><span class="pun">(</span><span class="pln">firstName</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">lastName </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">SimpleStringProperty</span><span class="pun">(</span><span class="pln">lastName</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="com">// Some initial dummy data, just for convenient testing.</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">street </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">SimpleStringProperty</span><span class="pun">(</span><span class="str">"some street"</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">postalCode </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">SimpleIntegerProperty</span><span class="pun">(</span><span class="lit">1234</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">city </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">SimpleStringProperty</span><span class="pun">(</span><span class="str">"some city"</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">birthday </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">SimpleObjectProperty</span><span class="pun">&lt;</span><span class="typ">LocalDate</span><span class="pun">&gt;(</span><span class="typ">LocalDate</span><span class="pun">.</span><span class="pln">of</span><span class="pun">(</span><span class="lit">1999</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">21</span><span class="pun">));</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> getFirstName</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> firstName</span><span class="pun">.</span><span class="pln">get</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setFirstName</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> firstName</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">firstName</span><span class="pun">.</span><span class="pln">set</span><span class="pun">(</span><span class="pln">firstName</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">StringProperty</span><span class="pln"> firstNameProperty</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> firstName</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> getLastName</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> lastName</span><span class="pun">.</span><span class="pln">get</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setLastName</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> lastName</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">lastName</span><span class="pun">.</span><span class="pln">set</span><span class="pun">(</span><span class="pln">lastName</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">StringProperty</span><span class="pln"> lastNameProperty</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> lastName</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> getStreet</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> street</span><span class="pun">.</span><span class="pln">get</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setStreet</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> street</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">street</span><span class="pun">.</span><span class="pln">set</span><span class="pun">(</span><span class="pln">street</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">StringProperty</span><span class="pln"> streetProperty</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> street</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> getPostalCode</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> postalCode</span><span class="pun">.</span><span class="pln">get</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setPostalCode</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> postalCode</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">postalCode</span><span class="pun">.</span><span class="pln">set</span><span class="pun">(</span><span class="pln">postalCode</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">IntegerProperty</span><span class="pln"> postalCodeProperty</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> postalCode</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> getCity</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> city</span><span class="pun">.</span><span class="pln">get</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setCity</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> city</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">city</span><span class="pun">.</span><span class="pln">set</span><span class="pun">(</span><span class="pln">city</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">StringProperty</span><span class="pln"> cityProperty</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> city</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">LocalDate</span><span class="pln"> getBirthday</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> birthday</span><span class="pun">.</span><span class="pln">get</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setBirthday</span><span class="pun">(</span><span class="typ">LocalDate</span><span class="pln"> birthday</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">birthday</span><span class="pun">.</span><span class="pln">set</span><span class="pun">(</span><span class="pln">birthday</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">ObjectProperty</span><span class="pun">&lt;</span><span class="typ">LocalDate</span><span class="pun">&gt;</span><span class="pln"> birthdayProperty</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> birthday</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+
+<h3 id="explanations">Explanations</h3>
+<ul>
+<li>With JavaFX it's common to use <a href="http://docs.oracle.com/javase/8/javafx/api/javafx/beans/property/Property.html"><code>Properties</code></a> for all fields of a model class. A <code>Property</code> allows us, for example, to automatically be notified when the <code>lastName</code> or any other variable is changed. This helps us keep the view in sync with the data. To learn more about <code>Properties</code> read <a href="http://docs.oracle.com/javase/8/javafx/properties-binding-tutorial/binding.htm">Using JavaFX Properties and Binding</a>.</li>
+<li><a href="http://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html"><code>LocalDate</code></a>, the type we're using for <code>birthday</code>, is part of the new <a href="http://docs.oracle.com/javase/tutorial/datetime/iso/">Date and Time API for JDK 8</a>.</li>
+</ul>
+<hr>
+<h2 id="a-list-of-persons">A List of Persons</h2>
+<p>The main Data that our application manages, is a bunch of persons. Let's create a list for <code>Person</code> objects inside the <code>MainApp</code> class. All other controller classes will later get access to that central list inside the <code>MainApp</code>. </p>
+<h3 id="observablelist">ObservableList</h3>
+<p>We are working with JavaFX view classes that need to be informed about any changes made to the list of persons. This is important, since otherwise the view would not be in sync with the data. For this purpose, JavaFX introduces some new <a href="http://docs.oracle.com/javase/8/javafx/collections-tutorial/collections.htm">Collection classes</a>. </p>
+<p>From those collections, we need the <code>ObservableList</code>. To create a new <code>ObservableList</code>, add the following code at the beginning of the <code>MainApp</code> class. We'll also add a constructor that creates some sample data and a public getter method:</p>
+<h5 id="mainapp-java">MainApp.java</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="pln">
+    </span><span class="com">// ... AFTER THE OTHER VARIABLES ...</span><span class="pln">
+
+    </span><span class="com">/**
+     * The data as an observable list of Persons.
+     */</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">ObservableList</span><span class="pun">&lt;</span><span class="typ">Person</span><span class="pun">&gt;</span><span class="pln"> personData </span><span class="pun">=</span><span class="pln"> </span><span class="typ">FXCollections</span><span class="pun">.</span><span class="pln">observableArrayList</span><span class="pun">();</span><span class="pln">
+
+    </span><span class="com">/**
+     * Constructor
+     */</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">MainApp</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// Add some sample data</span><span class="pln">
+        personData</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Person</span><span class="pun">(</span><span class="str">"Hans"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Muster"</span><span class="pun">));</span><span class="pln">
+        personData</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Person</span><span class="pun">(</span><span class="str">"Ruth"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Mueller"</span><span class="pun">));</span><span class="pln">
+        personData</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Person</span><span class="pun">(</span><span class="str">"Heinz"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Kurz"</span><span class="pun">));</span><span class="pln">
+        personData</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Person</span><span class="pun">(</span><span class="str">"Cornelia"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Meier"</span><span class="pun">));</span><span class="pln">
+        personData</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Person</span><span class="pun">(</span><span class="str">"Werner"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Meyer"</span><span class="pun">));</span><span class="pln">
+        personData</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Person</span><span class="pun">(</span><span class="str">"Lydia"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Kunz"</span><span class="pun">));</span><span class="pln">
+        personData</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Person</span><span class="pun">(</span><span class="str">"Anna"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Best"</span><span class="pun">));</span><span class="pln">
+        personData</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Person</span><span class="pun">(</span><span class="str">"Stefan"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Meier"</span><span class="pun">));</span><span class="pln">
+        personData</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Person</span><span class="pun">(</span><span class="str">"Martin"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Mueller"</span><span class="pun">));</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Returns the data as an observable list of Persons. 
+     * @return
+     */</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">ObservableList</span><span class="pun">&lt;</span><span class="typ">Person</span><span class="pun">&gt;</span><span class="pln"> getPersonData</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> personData</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">// ... THE REST OF THE CLASS ...</span></pre>
+
+
+<hr>
+<h2 id="the-personoverviewcontroller">The PersonOverviewController</h2>
+<p>Now let's finally get some data into our table. We'll need a controller for our <code>PersonOverview.fxml</code>.</p>
+<ol>
+<li>Create a normal class inside the <strong>view</strong> package called <code>PersonOverviewController.java</code>. (We must put it in the same package as the <code>PersonOverview.fxml</code>, otherwise the SceneBuilder won't find it.)</li>
+<li>We'll add some instance variables that give us access to the table and the labels inside the view. The fields and some methods have a special <code>@FXML</code> annotation. This is necessary for the fxml file to have access to private fields and private methods. After we have everything set up in the fxml file, the application will automatically fill the variables when the fxml file is loaded. So let's add the following code:</li>
+</ol>
+<div class="alert alert-info">
+<strong>Note:</strong> Remember to always use the <strong>javafx imports</strong>, NOT awt or swing!
+</div>
+
+
+<h5 id="personoverviewcontroller-java">PersonOverviewController.java</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">package</span><span class="pln"> ch</span><span class="pun">.</span><span class="pln">makery</span><span class="pun">.</span><span class="pln">address</span><span class="pun">.</span><span class="pln">view</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">fxml</span><span class="pun">.</span><span class="pln">FXML</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">scene</span><span class="pun">.</span><span class="pln">control</span><span class="pun">.</span><span class="typ">Label</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">scene</span><span class="pun">.</span><span class="pln">control</span><span class="pun">.</span><span class="typ">TableColumn</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">scene</span><span class="pun">.</span><span class="pln">control</span><span class="pun">.</span><span class="typ">TableView</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> ch</span><span class="pun">.</span><span class="pln">makery</span><span class="pun">.</span><span class="pln">address</span><span class="pun">.</span><span class="typ">MainApp</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> ch</span><span class="pun">.</span><span class="pln">makery</span><span class="pun">.</span><span class="pln">address</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">Person</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">PersonOverviewController</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">TableView</span><span class="pun">&lt;</span><span class="typ">Person</span><span class="pun">&gt;</span><span class="pln"> personTable</span><span class="pun">;</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">TableColumn</span><span class="pun">&lt;</span><span class="typ">Person</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln"> firstNameColumn</span><span class="pun">;</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">TableColumn</span><span class="pun">&lt;</span><span class="typ">Person</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln"> lastNameColumn</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">Label</span><span class="pln"> firstNameLabel</span><span class="pun">;</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">Label</span><span class="pln"> lastNameLabel</span><span class="pun">;</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">Label</span><span class="pln"> streetLabel</span><span class="pun">;</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">Label</span><span class="pln"> postalCodeLabel</span><span class="pun">;</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">Label</span><span class="pln"> cityLabel</span><span class="pun">;</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">Label</span><span class="pln"> birthdayLabel</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="com">// Reference to the main application.</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">MainApp</span><span class="pln"> mainApp</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="com">/**
+     * The constructor.
+     * The constructor is called before the initialize() method.
+     */</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">PersonOverviewController</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Initializes the controller class. This method is automatically called
+     * after the fxml file has been loaded.
+     */</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> initialize</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// Initialize the person table with the two columns.</span><span class="pln">
+        firstNameColumn</span><span class="pun">.</span><span class="pln">setCellValueFactory</span><span class="pun">(</span><span class="pln">cellData </span><span class="pun">-&gt;</span><span class="pln"> cellData</span><span class="pun">.</span><span class="pln">getValue</span><span class="pun">().</span><span class="pln">firstNameProperty</span><span class="pun">());</span><span class="pln">
+        lastNameColumn</span><span class="pun">.</span><span class="pln">setCellValueFactory</span><span class="pun">(</span><span class="pln">cellData </span><span class="pun">-&gt;</span><span class="pln"> cellData</span><span class="pun">.</span><span class="pln">getValue</span><span class="pun">().</span><span class="pln">lastNameProperty</span><span class="pun">());</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Is called by the main application to give a reference back to itself.
+     * 
+     * @param mainApp
+     */</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setMainApp</span><span class="pun">(</span><span class="typ">MainApp</span><span class="pln"> mainApp</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">mainApp </span><span class="pun">=</span><span class="pln"> mainApp</span><span class="pun">;</span><span class="pln">
+
+        </span><span class="com">// Add observable list data to the table</span><span class="pln">
+        personTable</span><span class="pun">.</span><span class="pln">setItems</span><span class="pun">(</span><span class="pln">mainApp</span><span class="pun">.</span><span class="pln">getPersonData</span><span class="pun">());</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+
+<p>Now this code will probably need some explaining:</p>
+<ul>
+<li>All fields and methods where the fxml file needs access must be annotated with <code>@FXML</code>. Actually, only if they are private, but it's better to have them private and mark them with the annotation!</li>
+<li>The <code>initialize()</code> method is automatically called after the fxml file has been loaded. At this time, all the FXML fields should have been initialized already.</li>
+<li>The <code>setCellValueFactory(...)</code> that we set on the table colums are used to determine which field inside the <code>Person</code> objects should be used for the particular column. The arrow <code>-&gt;</code> indicates that we're using a Java 8 feature called <em>Lambdas</em>. (Another option would be to use a <a href="http://docs.oracle.com/javase/8/javafx/api/">PropertyValueFactory</a>, but this is not type-safe).</li>
+</ul>
+<div class="alert alert-info">
+  <p>
+    We're only using <code>StringProperty</code> values for our table columns in this example. When you want to use <code>IntegerProperty</code> or <code>DoubleProperty</code>, the <code>setCellValueFactory(...)</code> must have an additional <code>asObject()</code>:
+  </p>
+  <p>
+  </p><pre>myIntegerColumn.setCellValueFactory(cellData -&gt; 
+      cellData.getValue().myIntegerProperty().<mark>asObject()</mark>);</pre>
+  <p></p>
+  <p>
+    This is necessary because of a bad design decision of JavaFX (see <a href="https://community.oracle.com/thread/2575601">this discussion</a>).
+  </p>
+</div>
+
+
+<h3 id="connecting-mainapp-with-the-personoverviewcontroller">Connecting MainApp with the PersonOverviewController</h3>
+<p>The <code>setMainApp(...)</code> method must be called by the <code>MainApp</code> class. This gives us a way to access the <code>MainApp</code> object and get the list of <code>Persons</code> and other things. Replace the <code>showPersonOverview()</code> method with the following. It contains two additional lines:</p>
+<h5 id="mainapp-java-new-showpersonoverview-method">MainApp.java - new showPersonOverview() method</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="com">/**
+ * Shows the person overview inside the root layout.
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> showPersonOverview</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// Load person overview.</span><span class="pln">
+        </span><span class="typ">FXMLLoader</span><span class="pln"> loader </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FXMLLoader</span><span class="pun">();</span><span class="pln">
+        loader</span><span class="pun">.</span><span class="pln">setLocation</span><span class="pun">(</span><span class="typ">MainApp</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">.</span><span class="pln">getResource</span><span class="pun">(</span><span class="str">"view/PersonOverview.fxml"</span><span class="pun">));</span><span class="pln">
+        </span><span class="typ">AnchorPane</span><span class="pln"> personOverview </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">AnchorPane</span><span class="pun">)</span><span class="pln"> loader</span><span class="pun">.</span><span class="pln">load</span><span class="pun">();</span><span class="pln">
+
+        </span><span class="com">// Set person overview into the center of root layout.</span><span class="pln">
+        rootLayout</span><span class="pun">.</span><span class="pln">setCenter</span><span class="pun">(</span><span class="pln">personOverview</span><span class="pun">);</span><span class="pln">
+
+</span><mark><span class="pln">        </span><span class="com">// Give the controller access to the main app.</span><span class="pln">
+        </span><span class="typ">PersonOverviewController</span><span class="pln"> controller </span><span class="pun">=</span><span class="pln"> loader</span><span class="pun">.</span><span class="pln">getController</span><span class="pun">();</span><span class="pln">
+        controller</span><span class="pun">.</span><span class="pln">setMainApp</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">);</span></mark><span class="pln">
+
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">IOException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+
+
+<hr>
+<h2 id="hook-the-view-to-the-controller">Hook the View to the Controller</h2>
+<p>We're almost there! But one little thing is missing: We haven't told our <code>PersonOverview.fxml</code> file yet, which controller to use and which element should match to which field inside the controller.</p>
+<ol>
+<li><p>Open <code>PersonOverview.fxml</code> with the <em>SceneBuilder</em>.</p>
+</li>
+<li><p>Open the <em>Controller</em> group on the left side and select the <code>PersonOverviewController</code> as <strong>controller class</strong>.<br><img src="./JavaFX 8 Tutorial - Part 2_ Model and TableView _ code.makery.ch_files/set-controller-class.png" alt="Set Controller Class"></p>
+</li>
+<li><p>Select the <code>TableView</code> in the <em>Hierarchy</em> group and choose in the <em>Code</em> group the <code>personTable</code> field as <strong>fx:id</strong>.<br><img src="./JavaFX 8 Tutorial - Part 2_ Model and TableView _ code.makery.ch_files/set-tableview-fx-id.png" alt="Set TableView fx:id"></p>
+</li>
+<li><p>Do the same for the columns and select <code>firstNameColumn</code> and <code>lastNameColumn</code> as <strong>fx:id</strong> respectively.</p>
+</li>
+<li><p>For <strong>each label</strong> in the second column, choose the corresponding <strong>fx:id</strong>.<br><img src="./JavaFX 8 Tutorial - Part 2_ Model and TableView _ code.makery.ch_files/set-label-fx-id.png" alt="Set Label fx:id"></p>
+</li>
+<li><p>Important: Go back to Eclipse and <strong>refresh the entire AddressApp project</strong> (F5). This is necessary because Eclipse sometimes doesn't know about changes that were made inside the Scene Builder.</p>
+</li>
+</ol>
+<hr>
+<h2 id="start-the-application">Start the Application</h2>
+<p>When you start your application now, you should see something like the screenshot at the beginning of this blog post. </p>
+<p>Congratulations!</p>
+<p><em>Note: The labels will not update when a person is selected, yet. We will program user interactions in the next part of the tutorial.</em></p>
+<h3 id="what-s-next-">What's Next?</h3>
+<p>In <a href="http://code.makery.ch/library/javafx-8-tutorial/part3/">Tutorial Part 3</a> we will add more functionality like adding, deleting and editing Persons.</p>
+<h5 id="some-other-articles-you-might-find-interesting">Some other articles you might find interesting</h5>
+<ul>
+<li><a href="http://code.makery.ch/blog/javafx-dialogs-official/">JavaFX Dialogs (official)</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-date-picker/">JavaFX Date Picker</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-event-handling-examples/">JavaFX Event Handling Examples</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/">JavaFX TableView Sorting and Filtering</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-tableview-cell-renderer/">JavaFX TableView Cell Renderer</a></li>
+</ul>
+
+
+          </div>
+          
+          <hr>
+          
+  <nav>
+    <div class="article-paging">
+      <ul class="pagination">
+              <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/" data-toggle="tooltip" title="" data-original-title="Introduction">Intro</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part1/" data-toggle="tooltip" title="" data-original-title="Part 1: Scene Builder">1</a>
+      </li>
+        <li class="active">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part2/" data-toggle="tooltip" title="" data-original-title="Part 2: Model and TableView">2</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part3/" data-toggle="tooltip" title="" data-original-title="Part 3: Interacting with the User">3</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part4/" data-toggle="tooltip" title="" data-original-title="Part 4: CSS Styling">4</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part5/" data-toggle="tooltip" title="" data-original-title="Part 5: Storing Data as XML">5</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part6/" data-toggle="tooltip" title="" data-original-title="Part 6: Statistics Chart">6</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part7/" data-toggle="tooltip" title="" data-original-title="Part 7: Deployment">7</a>
+      </li>
+    
+      </ul>
+    </div>
+  </nav>
+
+        </div>
+      </article>
+      
+      
+      <section class="row">
+        <div class="col-md-offset-3 col-md-9">
+          <h2>Comments</h2>
+          <div id="disqus_thread"><iframe id="dsq-app1383" name="dsq-app1383" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./JavaFX 8 Tutorial - Part 2_ Model and TableView _ code.makery.ch_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 10734px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+        </div>
+      </section>
+      
+    </div>
+        
+    <footer class="site-footer container-fluid">
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+      <p>
+        <a class="btn btn-sm btn-social-icon btn-twitter" href="https://twitter.com/codemakery" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow me on Twitter">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-googleplus" href="https://plus.google.com/+MarcoJakob7" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow me on Google+">
+          <i class="fa fa-google-plus"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-rss" href="http://code.makery.ch/rss" data-toggle="tooltip" data-placement="top" title="" data-original-title="Subscribe to RSS Feed">
+          <i class="fa fa-rss"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-mail" href="https://tinyletter.com/codemakery" data-toggle="tooltip" data-placement="top" title="" data-original-title="Receive Email Updates">
+          <i class="fa fa-envelope" style="margin-top: -1px;"></i>
+        </a>
+      </p>
+      <p>
+        Subscribe to receive updates by <a href="https://tinyletter.com/codemakery">Email</a>.
+      </p>
+      
+      <form class="form-inline" action="https://tinyletter.com/codemakery" method="post" target="popupwindow" onsubmit="window.open(&#39;https://tinyletter.com/codemakery&#39;, &#39;popupwindow&#39;, &#39;scrollbars=yes,width=800,height=600&#39;);return true">
+        <div class="form-group">
+          <input type="text" class="form-control" name="email" id="tlemail" placeholder="Enter email">
+          <input type="hidden" value="1" name="embed">
+          <input type="submit" class="form-control btn-primary" value="Get updates">
+        </div>
+      </form>
+      
+      <p>
+        <small>
+          Created by <a href="http://code.makery.ch/about">Marco Jakob</a> • Licensed under <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
+        </small>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    
+    
+    
+  <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 2_ Model and TableView _ code.makery.ch_files/prettify.min.js.Download"></script>
+
+                                    
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'codemakery'; // Required - the forum shortname
+    var disqus_identifier = '/java/javafx-8-tutorial-part2/';
+    var disqus_url = 'http://code.makery.ch/library/javafx-8-tutorial/part2/';
+    var disqus_title = 'JavaFX 8 Tutorial - Part 2: Model and TableView';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+    
+
+    
+      <script src="./JavaFX 8 Tutorial - Part 2_ Model and TableView _ code.makery.ch_files/jquery.min.js.Download"></script>
+      <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 2_ Model and TableView _ code.makery.ch_files/bootstrap.min.js.Download"></script>
+      <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 2_ Model and TableView _ code.makery.ch_files/bootstrap-init-tooltips.min.js.Download"></script>
+    
+  
+<iframe style="display: none;" src="./JavaFX 8 Tutorial - Part 2_ Model and TableView _ code.makery.ch_files/saved_resource(1).html"></iframe></body></html>

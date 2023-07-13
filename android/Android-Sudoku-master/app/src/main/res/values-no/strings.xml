@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Android-Sudoku</string>
+    <string name="sudoku">Sudoku</string>
+    <string name="norwegian_description">Et bilde av et norskt flagg</string>
+    <string name="british_description">Et bilde av et britisk flagg</string>
+
+    <string name="new_game">Start nytt spill</string>
+    <string name="add_new_board">Legg til nytt brett</string>
+    <string name="continue_new_board">Fortsett</string>
+    <string name="successful_new_board">Nytt brett lagret</string>
+    <string name="fail_new_board">Feilet med å lagre brett</string>
+    <string name="show_instructions">Vis bruksanvisning</string>
+    <string name="choose_language">Velg språk:</string>
+
+    <string name="instructions">Bruksanvisning</string>
+    <string name="instructions_1">1. I Sudoku er det meningen å plassere alle de resterende tallene i brettet. Tallene går fra 1 til 9 (i 9x9 Sudoku).</string>
+    <string name="instructions_2">2. Brettet er delt inn i flere kvadrat, og inne i de ulike kvadratene er det bare lov å legge et tall en gang.</string>
+    <string name="instructions_3">3. Det er bare lov å legge et av hvert tall på hver rekke, både horisontalt og vertikalt.</string>
+    <string name="go_back_button">Gå tilbake</string>
+
+    <string name="choose_difficulty">Velg vanskelighetsgrad:</string>
+    <string name="difficulty_easy">Lett</string>
+    <string name="difficulty_normal">Middels</string>
+    <string name="difficulty_hard">Vanskelig</string>
+    <string name="start_game">Start spill</string>
+    <string name="choose_number">Velg tall</string>
+    <string name="choose_a_number">Velg et tall å plassere:</string>
+    <string name="place_number">Plasser tall</string>
+    <string name="piece_unsure">Marker brikke som usikker</string>
+    <string name="remove_piece">Fjern tall</string>
+    <string name="start_piece_error">Kan ikke endre start verdier</string>
+    <string name="check_board">Sjekk brett</string>
+    <string name="board_correct">Brettet er riktig fylt ut</string>
+    <string name="board_incorrect">Brettet er ikke riktig fylt ut</string>
+</resources>

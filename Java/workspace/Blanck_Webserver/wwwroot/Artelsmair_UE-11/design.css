@@ -1,0 +1,154 @@
+body
+{
+    background-color: black;
+    color: white;
+}
+
+h1
+{
+    text-align: center;
+}
+
+p
+{
+    font-family: serif;
+    text-align: justify;
+}
+
+.hauptnavi
+{
+    font-family: monospace ;
+    color: orange;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.hauptnavi ul li
+{
+    margin: 20px;
+    list-style-type: none;
+    display: inline;
+}
+
+.hauptnavi a:link
+{
+    color: orange; 
+    text-decoration: none; 
+}
+
+.hauptnavi a:visited
+{
+    color: orange; 
+    text-decoration: none; 
+}
+
+.hauptnavi a:hover
+{
+    color: black; 
+    text-decoration: none; 
+    background-color: orange;
+}
+
+.hauptnavi a:active
+{
+    color: orange; 
+    text-decoration: none; 
+}
+
+nav > ul li
+{
+    list-style-type: none;
+    display: inline;
+}
+
+nav > ul a:link
+{
+    color: yellow; 
+    text-decoration: none; 
+}
+
+nav > ul a:hover
+{
+    color: black; 
+    text-decoration: none; 
+    background-color: yellow
+}
+
+nav > ul a:visited
+{
+    color: yellow; 
+    text-decoration: none; 
+}
+
+nav > ul a:active
+{
+    color: yellow; 
+    text-decoration: none; 
+}
+
+.linktable
+{
+    border: none;
+    text-align: left;
+}
+
+.linktable a:link
+{
+    color: yellow;
+}
+
+.linktable a:hover
+{
+    color: yellow;
+}
+
+.linktable a:visited
+{
+    color: yellow;
+}
+
+.linktable a:active
+{
+    color: yellow;
+}
+
+footer
+{
+    border-top: 1px;
+    font-size: small;
+    font-style: italic;
+    border-width: 10px
+}
+
+li
+{
+    list-style-type: square;
+}
+
+table
+{
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+
+th
+{
+    color: black;
+    background-color: white;
+}
+
+td
+{
+    border: 1px solid white;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 10px;
+}
+
+.center
+{
+    text-align: center;
+}
+
+
+

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://code.makery.ch/library/javafx-8-tutorial/part4/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JavaFX 8 Tutorial - Part 4: CSS Styling | code.makery.ch</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+    /**
+     * @license
+     * MyFonts Webfont Build ID 2872352, 2014-08-27T06:57:40-0400
+     * 
+     * The fonts listed in this notice are subject to the End User License
+     * Agreement(s) entered into by the website owner. All other parties are 
+     * explicitly restricted from using the Licensed Webfonts(s).
+     * 
+     * You may obtain a valid license at the URLs below.
+     * 
+     * Webfont: Museo Slab 700 by exljbris
+     * URL: http://www.myfonts.com/fonts/exljbris/museo-slab/700/
+     * Copyright: Copyright (c) 2009 by Jos Buivenga. All rights reserved.
+     * Licensed pageviews: 500,000
+     * 
+     * License: http://www.myfonts.com/viewlicense?type=web&buildid=2872352
+     * 
+     * © 2014 MyFonts Inc
+    */
+    -->
+    <link href="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/style.min.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="canonical" href="http://code.makery.ch/library/javafx-8-tutorial/part4/">
+  
+    <!-- Alternate Languages -->
+    <link rel="alternate" hreflang="en" href="http://code.makery.ch/library/javafx-8-tutorial/part4/">
+    <link rel="alternate" hreflang="es" href="http://code.makery.ch/library/javafx-8-tutorial/es/part4/">
+    <link rel="alternate" hreflang="fa" href="http://code.makery.ch/library/javafx-8-tutorial/fa/part4/">
+    <link rel="alternate" hreflang="fr" href="http://code.makery.ch/library/javafx-8-tutorial/fr/part4/">
+    <link rel="alternate" hreflang="id" href="http://code.makery.ch/library/javafx-8-tutorial/id/part4/">
+    <link rel="alternate" hreflang="it" href="http://code.makery.ch/library/javafx-8-tutorial/it/part4/">
+    <link rel="alternate" hreflang="kr" href="http://code.makery.ch/library/javafx-8-tutorial/kr/part4/">
+    <link rel="alternate" hreflang="pt" href="http://code.makery.ch/library/javafx-8-tutorial/pt/part4/">
+    <link rel="alternate" hreflang="ru" href="http://code.makery.ch/library/javafx-8-tutorial/ru/part4/">
+    <link rel="alternate" hreflang="tr" href="http://code.makery.ch/library/javafx-8-tutorial/tr/part4/">
+    <link rel="alternate" hreflang="uk" href="http://code.makery.ch/library/javafx-8-tutorial/uk/part4/">
+    <link rel="alternate" hreflang="zh-cn" href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part4/">
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="http://code.makery.ch/rss" title="code.makery.ch - RSS Feed">
+
+    <meta name="description" content="In JavaFX you can style your user interface using CSS. We&#39;ll also add an application icon in this tutorial part.">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="JavaFX 8 Tutorial - Part 4: CSS Styling | code.makery.ch">
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="In JavaFX you can style your user interface using CSS. We&#39;ll also add an application icon in this tutorial part.">
+    <meta property="og:url" content="http://code.makery.ch/library/javafx-8-tutorial/part4/">
+    <meta property="og:image" content="http://code.makery.ch/assets/library/javafx-8-tutorial/part4/addressapp-part4.png">
+    
+    <link rel="author" href="https://plus.google.com/+MarcoJakob7">
+    
+    <link href="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/prettify.min.css" rel="stylesheet" type="text/css" media="all">
+
+    
+    <script async="" src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/analytics.js.Download"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-34917397-3', 'makery.ch');
+  ga('send', 'pageview');
+</script>
+  <script type="text/javascript" async="" src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/embed.js.Download"></script><link rel="preload" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.188f59a1df04c219bf32da7f76545092.css"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.037f55c32651d22255e90738c195e946.js"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.2fd6d206c06cd51584499fe8219aa635.js"><link rel="preload" as="script" href="https://disqus.com/next/config.js"></head>
+  <body onload="prettyPrint()">
+    <header class="site-header container">
+  <h1 class="site-title">
+    <a href="http://code.makery.ch/"><span class="main-text">code</span>.makery</a>
+  </h1>
+  <div class="site-intro">
+    <p>Learning how to code.</p>
+  </div>
+  
+  <div class="ribbon">
+    <a href="https://tinyletter.com/codemakery" title="Get Updates">Subscribe to <i class="fa fa-envelope-o"></i> Updates </a>
+  </div>
+</header>
+    
+    <div class="container article-container">
+      
+<nav class="site-navigation">
+  <ul>
+    <li><a class="black-link" href="http://code.makery.ch/">Home</a></li>
+    <li><a class="main-link" href="http://code.makery.ch/library/">Library</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/paths/">Paths</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/blog/">Blog</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/about/">About</a></li>
+  </ul>
+</nav>
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="github-edit">
+            <a href="https://github.com/marcojakob/code.makery.ch/edit/master/collections/library/javafx-8-tutorial-en-part4.md">Edit on GitHub</a>
+          </div>
+        </div>
+      </div>
+      
+      <article class="row">
+        <aside class="col-md-3">
+          <div class="visible-md-block visible-lg-block">
+          <div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Articles in this Series</h4>  
+  </div>
+
+  <div class="list-group">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/" class="list-group-item">
+        Introduction</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part1/" class="list-group-item">
+        Part 1: Scene Builder</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part2/" class="list-group-item">
+        Part 2: Model and TableView</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part3/" class="list-group-item">
+        Part 3: Interacting with the User</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part4/" class="list-group-item active">
+        Part 4: CSS Styling</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part5/" class="list-group-item">
+        Part 5: Storing Data as XML</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part6/" class="list-group-item">
+        Part 6: Statistics Chart</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part7/" class="list-group-item">
+        Part 7: Deployment</a>
+  </div>
+</div>
+<div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Download Sources</h4>  
+  </div>
+
+  <div class="list-group">
+      <a href="https://github.com/marcojakob/tutorial-javafx-8/releases/download/v1.1/addressapp-jfx8u40-part-4.zip" class="list-group-item">
+<i class="fa fa-fw fa-download"></i>        Part 4 as Eclipse Project <em>(requires at least JDK 8u40)</em></a>
+  </div>
+</div>
+
+          <div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Languages</h4>  
+  </div>
+  <div class="list-group">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part4/" class="list-group-item active">
+        <i class="fa fa-fw fa-globe"></i> English
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/es/part4/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Español
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/fa/part4/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> فارسی
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/fr/part4/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Français
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/id/part4/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Bahasa Indonesia
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/it/part4/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Italiano
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/kr/part4/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> 한국어
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/pt/part4/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Português
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/ru/part4/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Русский
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/tr/part4/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Türkçe
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/uk/part4/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Українська
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part4/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> 中文（简体）
+      </a>
+  </div>
+</div>
+
+          </div>
+        </aside>
+        <div class="col-md-9">
+          <header class="article-header">
+            <h1 class="article-title">JavaFX 8 Tutorial - Part 4: CSS Styling</h1>
+            <div class="article-date">
+  Apr 25, 2014
+  • Updated Aug 27, 2014
+
+</div>
+          </header>
+          
+          <aside class="visible-xs-block visible-sm-block">
+            <div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Articles in this Series <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/">
+        Introduction</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part1/">
+        Part 1: Scene Builder</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part2/">
+        Part 2: Model and TableView</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part3/">
+        Part 3: Interacting with the User</a></li>
+      <li class=" active"><a href="http://code.makery.ch/library/javafx-8-tutorial/part4/">
+        Part 4: CSS Styling</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part5/">
+        Part 5: Storing Data as XML</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part6/">
+        Part 6: Statistics Chart</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part7/">
+        Part 7: Deployment</a></li>
+  </ul>
+</div>
+<div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Download Sources <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=""><a href="https://github.com/marcojakob/tutorial-javafx-8/releases/download/v1.1/addressapp-jfx8u40-part-4.zip">
+<i class="fa fa-fw fa-download"></i>        Part 4 as Eclipse Project <em>(requires at least JDK 8u40)</em></a></li>
+  </ul>
+</div>
+
+            <div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=" active">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/part4/"><i class="fa fa-fw fa-globe"></i> English</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/es/part4/"><i class="fa fa-fw fa-globe"></i> Español</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/fa/part4/"><i class="fa fa-fw fa-globe"></i> فارسی</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/fr/part4/"><i class="fa fa-fw fa-globe"></i> Français</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/id/part4/"><i class="fa fa-fw fa-globe"></i> Bahasa Indonesia</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/it/part4/"><i class="fa fa-fw fa-globe"></i> Italiano</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/kr/part4/"><i class="fa fa-fw fa-globe"></i> 한국어</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/pt/part4/"><i class="fa fa-fw fa-globe"></i> Português</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/ru/part4/"><i class="fa fa-fw fa-globe"></i> Русский</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/tr/part4/"><i class="fa fa-fw fa-globe"></i> Türkçe</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/uk/part4/"><i class="fa fa-fw fa-globe"></i> Українська</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part4/"><i class="fa fa-fw fa-globe"></i> 中文（简体）</a>
+    </li>
+  </ul>
+</div>
+
+          </aside>
+          
+          <div class="article-content">
+            <p><img src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/addressapp-part4.png" alt="Screenshot AddressApp Part 4"></p>
+<h2 id="topics-in-part-4">Topics in Part 4</h2>
+<ul>
+<li><strong>CSS Styling</strong></li>
+<li>Adding an <strong>Application Icon</strong></li>
+</ul>
+<hr>
+<h2 id="css-styling">CSS Styling</h2>
+<p>In JavaFX you can style your user interface using Cascading Style Sheets (CSS). This is great! It's never been as easy to customize the appearance of a Java application.</p>
+<p>In this tutorial we will create a <em>DarkTheme</em> inspired by the Windows 8 Metro design. The css for the buttons is based on the blog post <a href="http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/">JMetro - Windows 8 Metro controls on Java</a> by Pedro Duque Vieira.</p>
+<h3 id="getting-familiar-with-css">Getting Familiar with CSS</h3>
+<p>If you want to style your JavaFX application you should have a basic understanding of CSS in general. A good place to start is this <a href="http://www.csstutorial.net/">CSS tutorial</a>.</p>
+<p>For more JavaFX specific information about CSS:</p>
+<ul>
+<li><a href="http://docs.oracle.com/javase/8/javafx/user-interface-tutorial/css_tutorial.htm">Skinning JavaFX Applications with CSS</a> - Tutorial by Oracle</li>
+<li><a href="http://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html">JavaFX CSS Reference</a> - Official Reference</li>
+</ul>
+<h3 id="default-javafx-css">Default JavaFX CSS</h3>
+<p>The default source for CSS styles in JavaFX 8 is a file called <strong><code>modena.css</code></strong>. This css file can be found in the Java FX jar file <code>jfxrt.jar</code> located in your Java folder under <code>/jdk1.8.x/jre/lib/ext/jfxrt.jar</code>.</p>
+<p>Unzip the <code>jfxrt.jar</code>. You should find the <code>modena.css</code> under <code>com/sun/javafx/scene/control/skin/modena/</code></p>
+<p>This default style sheet is always applied to a JavaFX application. By adding a custom style sheet we can override the default styles of the <code>modena.css</code>.   </p>
+<div class="alert alert-info">
+<strong>Hint:</strong> It helps to look at the default CSS file to see which styles you might need to override.
+</div>
+
+
+<h3 id="attaching-css-style-sheets">Attaching CSS Style Sheets</h3>
+<p>Add the following CSS file called <code>DarkTheme.css</code> to the <em>view</em> package.</p>
+<h5 id="darktheme-css">DarkTheme.css</h5>
+<pre class="prettyprint lang-css pre-scrollable prettyprinted" style=""><span class="pun">.</span><span class="pln">background </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#1d1d1d</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">label </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-font-size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">11pt</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-font-family</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Segoe UI Semibold"</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-text-fill</span><span class="pun">:</span><span class="pln"> white</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-opacity</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0.6</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">label-bright </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-font-size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">11pt</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-font-family</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Segoe UI Semibold"</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-text-fill</span><span class="pun">:</span><span class="pln"> white</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-opacity</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">label-header </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-font-size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">32pt</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-font-family</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Segoe UI Light"</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-text-fill</span><span class="pun">:</span><span class="pln"> white</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-opacity</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">table-view </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-base</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#1d1d1d</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-control-inner-background</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#1d1d1d</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#1d1d1d</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-table-cell-border-color</span><span class="pun">:</span><span class="pln"> transparent</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-table-header-border-color</span><span class="pun">:</span><span class="pln"> transparent</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">5</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">table-view </span><span class="pun">.</span><span class="pln">column-header-background </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> transparent</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">table-view </span><span class="pun">.</span><span class="pln">column-header</span><span class="pun">,</span><span class="pln"> </span><span class="pun">.</span><span class="pln">table-view </span><span class="pun">.</span><span class="pln">filler </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">35</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-border-width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> transparent</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-border-color</span><span class="pun">:</span><span class="pln"> 
+        transparent
+        transparent
+        derive</span><span class="pun">(-</span><span class="pln">fx-base</span><span class="pun">,</span><span class="pln"> </span><span class="lit">80%</span><span class="pun">)</span><span class="pln"> 
+        transparent</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-border-insets</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">10</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">table-view </span><span class="pun">.</span><span class="pln">column-header </span><span class="pun">.</span><span class="pln">label </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-font-size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20pt</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-font-family</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Segoe UI Light"</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-text-fill</span><span class="pun">:</span><span class="pln"> white</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-alignment</span><span class="pun">:</span><span class="pln"> center-left</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-opacity</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="kwd">table-view</span><span class="pun">:</span><span class="pln">focused </span><span class="pun">.</span><span class="kwd">table-row-cell</span><span class="pun">:</span><span class="kwd">filled</span><span class="pun">:</span><span class="kwd">focused</span><span class="pun">:</span><span class="pln">selected </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> -fx-focus-color</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="kwd">split-pane</span><span class="pun">:</span><span class="pln">horizontal </span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">.</span><span class="pln">split-pane-divider </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-border-color</span><span class="pun">:</span><span class="pln"> transparent </span><span class="lit">#1d1d1d</span><span class="pln"> transparent </span><span class="lit">#1d1d1d</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> transparent</span><span class="pun">,</span><span class="pln"> derive</span><span class="pun">(#</span><span class="lit">1d1d1d</span><span class="pun">,</span><span class="lit">20%</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">split-pane </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">menu-bar </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> derive</span><span class="pun">(#</span><span class="lit">1d1d1d</span><span class="pun">,</span><span class="lit">20%</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">context-menu </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> derive</span><span class="pun">(#</span><span class="lit">1d1d1d</span><span class="pun">,</span><span class="lit">50%</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">menu-bar </span><span class="pun">.</span><span class="pln">label </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-font-size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">14pt</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-font-family</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Segoe UI Light"</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-text-fill</span><span class="pun">:</span><span class="pln"> white</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-opacity</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0.9</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">menu </span><span class="pun">.</span><span class="pln">left-container </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> black</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">text-field </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-font-size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">12pt</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-font-family</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Segoe UI Semibold"</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="com">/* 
+ * Metro style Push Button
+ * Author: Pedro Duque Vieira
+ * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
+ */</span><span class="pln">
+</span><span class="pun">.</span><span class="pln">button </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">5</span><span class="pln"> </span><span class="lit">22</span><span class="pln"> </span><span class="lit">5</span><span class="pln"> </span><span class="lit">22</span><span class="pun">;</span><span class="pln">   
+    </span><span class="kwd">-fx-border-color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#e2e2e2</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-border-width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-background-radius</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#1d1d1d</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-font-family</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Segoe UI"</span><span class="pun">,</span><span class="pln"> Helvetica</span><span class="pun">,</span><span class="pln"> Arial</span><span class="pun">,</span><span class="pln"> sans-serif</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-font-size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">11pt</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-text-fill</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#d8d8d8</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-background-insets</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="kwd">button</span><span class="pun">:</span><span class="pln">hover </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#3a3a3a</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="kwd">button</span><span class="pun">:</span><span class="pln">pressed</span><span class="pun">,</span><span class="pln"> </span><span class="pun">.</span><span class="kwd">button</span><span class="pun">:</span><span class="kwd">default</span><span class="pun">:</span><span class="kwd">hover</span><span class="pun">:</span><span class="pln">pressed </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> white</span><span class="pun">;</span><span class="pln">
+  </span><span class="kwd">-fx-text-fill</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#1d1d1d</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="kwd">button</span><span class="pun">:</span><span class="pln">focused </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-border-color</span><span class="pun">:</span><span class="pln"> white</span><span class="pun">,</span><span class="pln"> white</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-border-width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-border-style</span><span class="pun">:</span><span class="pln"> solid</span><span class="pun">,</span><span class="pln"> segments</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">-fx-border-radius</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-border-insets</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="kwd">button</span><span class="pun">:</span><span class="pln">disabled</span><span class="pun">,</span><span class="pln"> </span><span class="pun">.</span><span class="kwd">button</span><span class="pun">:</span><span class="kwd">default</span><span class="pun">:</span><span class="pln">disabled </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-opacity</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0.4</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#1d1d1d</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-text-fill</span><span class="pun">:</span><span class="pln"> white</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="kwd">button</span><span class="pun">:</span><span class="pln">default </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> -fx-focus-color</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">-fx-text-fill</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#ffffff</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="kwd">button</span><span class="pun">:</span><span class="kwd">default</span><span class="pun">:</span><span class="pln">hover </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">-fx-background-color</span><span class="pun">:</span><span class="pln"> derive</span><span class="pun">(-</span><span class="pln">fx-focus-color</span><span class="pun">,</span><span class="lit">30%</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<p>We now need to attach the CSS to our Scene. We could do this programmatically in Java code, but we'll use the Scene Builder to add it to our fxml files: </p>
+<h4 id="attach-css-to-rootlayout-fxml">Attach CSS to RootLayout.fxml</h4>
+<ol>
+<li><p>Open the file <code>RootLayout.fxml</code> in Scene Builder. </p>
+</li>
+<li><p>Select the root <code>BorderPane</code> in the Hierarchy view. Under <em>Properties</em> group add the <code>DarkTheme.css</code> file as stylesheet.<br><img src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/darktheme-rootlayout.png" alt="DarkTheme for RootLayout"></p>
+</li>
+</ol>
+<h4 id="attach-css-to-personeditdialog-fxml">Attach CSS to PersonEditDialog.fxml</h4>
+<ol>
+<li><p>Open the file <code>PersonEditDialog.fxml</code> in Scene Builder. Select the root <code>AnchorPane</code> and choose <code>DarkTheme.css</code> in the <em>Properties</em> group as stylesheet.</p>
+</li>
+<li><p>The background is still white, so add the Style Class <code>background</code> to the root <code>AnchorPane</code>.<br><img src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/darktheme-personeditdialog.png" alt="Add Style Class"></p>
+</li>
+<li><p>Select the OK button and choose <em>Default Button</em> in the Properties View. This will change its color and make this the default button when the <em>enter</em> key is pressed by the user.</p>
+</li>
+</ol>
+<h4 id="attach-css-to-personoverview-fxml">Attach CSS to PersonOverview.fxml</h4>
+<ol>
+<li><p>Open the file <code>PersonOverview.fxml</code> in Scene Builder. Select the root <code>AnchorPane</code> in the <em>Hierarchy</em> group. Under properties add the <code>DarkTheme.css</code> file as stylesheet.</p>
+</li>
+<li><p>You should already see some changes now: The table and the buttons are black. All class styles <code>.table-view</code> and <code>.button</code> from <code>modena.css</code> apply to the table and buttons. Since we've redefined (and thus overridden) some of those styles in our custom CSS, the new styles are applied automatically.</p>
+</li>
+<li><p>You might need to adjust the size of the buttons so that all text is displayed.</p>
+</li>
+<li><p>Select the right <code>AnchorPane</code> that is inside the <code>SplitPane</code>.<br><img src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/background-style-select.png" alt="Background Style Select">   </p>
+</li>
+<li><p>Go to the <em>Properties</em> group and select <code>background</code> as style class. The background should now turn black.<br><img src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/background-style.png" alt="Background Style"></p>
+</li>
+</ol>
+<h4 id="labels-with-different-style">Labels with Different Style</h4>
+<p>Right now, all the labels on the right side have the same size. There are already some styles defined in the css file called <code>.label-header</code> and <code>.label-bright</code> that we'll use to further style the labels.</p>
+<ol>
+<li><p>Select the <em>Person Details</em> label and add <code>label-header</code> as a Style Class.<br><img src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/label-header-style.png" alt="Label Header Style"></p>
+</li>
+<li><p>To each label in the right column (where the actual person details are displayed), add the css Style Class <code>label-bright</code>.<br><img src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/label-bright-style.png" alt="Label Bright Style"></p>
+</li>
+</ol>
+<hr>
+<h2 id="adding-an-application-icon">Adding an Application Icon</h2>
+<p>Right now our application just has the default icon in the title bar and taks bar:</p>
+<p><img src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/default-app-icon.png" alt="Default Icon"></p>
+<p>It looks much nicer with a custom icon:</p>
+<p><img src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/custom-app-icon.png" alt="Custom Icon"></p>
+<h3 id="the-icon-file">The Icon File</h3>
+<p>A possible place to get free icons is <a href="http://www.iconfinder.com/">Icon Finder</a>. I downloaded a little <a href="https://www.iconfinder.com/icons/86957/address_book_icon#size=32">address book icon</a>.</p>
+<p>Create a (normal) folder inside your AddressApp project called <strong>resources</strong> and a subfolder called <strong>images</strong> in it. Put the icon of your choice inside the images folder. Your folder structure should look something like this now:</p>
+<p><img src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/custom-icon-file.png" alt="Custom Icon File"></p>
+<h3 id="set-icon-to-scene">Set Icon to Scene</h3>
+<p>To set the icon for our scene add the following line to the <code>start(...)</code> method in <code>MainApp.java</code></p>
+<h5 id="mainapp-java">MainApp.java</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">this</span><span class="pun">.</span><span class="pln">primaryStage</span><span class="pun">.</span><span class="pln">getIcons</span><span class="pun">().</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Image</span><span class="pun">(</span><span class="str">"file:resources/images/address_book_32.png"</span><span class="pun">));</span></pre>
+
+<p>The whole <code>start(...)</code> method should look something like this now:</p>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> start</span><span class="pun">(</span><span class="typ">Stage</span><span class="pln"> primaryStage</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">primaryStage </span><span class="pun">=</span><span class="pln"> primaryStage</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">primaryStage</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"AddressApp"</span><span class="pun">);</span><span class="pln">
+
+    </span><span class="com">// Set the application icon.</span><span class="pln">
+    </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">primaryStage</span><span class="pun">.</span><span class="pln">getIcons</span><span class="pun">().</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Image</span><span class="pun">(</span><span class="str">"file:resources/images/address_book_32.png"</span><span class="pun">));</span><span class="pln">
+
+    initRootLayout</span><span class="pun">();</span><span class="pln">
+
+    showPersonOverview</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<p>You can also add an icon to the stage of the person edit dialog, of course.</p>
+<h3 id="what-s-next-">What's Next?</h3>
+<p>In <a href="http://code.makery.ch/library/javafx-8-tutorial/part5/">Tutorial Part 5</a> we will add XML storage for our data.</p>
+<h5 id="some-other-articles-you-might-find-interesting">Some other articles you might find interesting</h5>
+<ul>
+<li><a href="http://code.makery.ch/blog/javafx-dialogs-official/">JavaFX Dialogs (official)</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-date-picker/">JavaFX Date Picker</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-event-handling-examples/">JavaFX Event Handling Examples</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/">JavaFX TableView Sorting and Filtering</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-tableview-cell-renderer/">JavaFX TableView Cell Renderer</a></li>
+</ul>
+
+
+          </div>
+          
+          <hr>
+          
+  <nav>
+    <div class="article-paging">
+      <ul class="pagination">
+              <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/" data-toggle="tooltip" title="" data-original-title="Introduction">Intro</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part1/" data-toggle="tooltip" title="" data-original-title="Part 1: Scene Builder">1</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part2/" data-toggle="tooltip" title="" data-original-title="Part 2: Model and TableView">2</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part3/" data-toggle="tooltip" title="" data-original-title="Part 3: Interacting with the User">3</a>
+      </li>
+        <li class="active">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part4/" data-toggle="tooltip" title="" data-original-title="Part 4: CSS Styling">4</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part5/" data-toggle="tooltip" title="" data-original-title="Part 5: Storing Data as XML">5</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part6/" data-toggle="tooltip" title="" data-original-title="Part 6: Statistics Chart">6</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part7/" data-toggle="tooltip" title="" data-original-title="Part 7: Deployment">7</a>
+      </li>
+    
+      </ul>
+    </div>
+  </nav>
+
+        </div>
+      </article>
+      
+      
+      <section class="row">
+        <div class="col-md-offset-3 col-md-9">
+          <h2>Comments</h2>
+          <div id="disqus_thread"><iframe id="dsq-app3755" name="dsq-app3755" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 4406px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+        </div>
+      </section>
+      
+    </div>
+        
+    <footer class="site-footer container-fluid">
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+      <p>
+        <a class="btn btn-sm btn-social-icon btn-twitter" href="https://twitter.com/codemakery" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow me on Twitter">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-googleplus" href="https://plus.google.com/+MarcoJakob7" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow me on Google+">
+          <i class="fa fa-google-plus"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-rss" href="http://code.makery.ch/rss" data-toggle="tooltip" data-placement="top" title="" data-original-title="Subscribe to RSS Feed">
+          <i class="fa fa-rss"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-mail" href="https://tinyletter.com/codemakery" data-toggle="tooltip" data-placement="top" title="" data-original-title="Receive Email Updates">
+          <i class="fa fa-envelope" style="margin-top: -1px;"></i>
+        </a>
+      </p>
+      <p>
+        Subscribe to receive updates by <a href="https://tinyletter.com/codemakery">Email</a>.
+      </p>
+      
+      <form class="form-inline" action="https://tinyletter.com/codemakery" method="post" target="popupwindow" onsubmit="window.open(&#39;https://tinyletter.com/codemakery&#39;, &#39;popupwindow&#39;, &#39;scrollbars=yes,width=800,height=600&#39;);return true">
+        <div class="form-group">
+          <input type="text" class="form-control" name="email" id="tlemail" placeholder="Enter email">
+          <input type="hidden" value="1" name="embed">
+          <input type="submit" class="form-control btn-primary" value="Get updates">
+        </div>
+      </form>
+      
+      <p>
+        <small>
+          Created by <a href="http://code.makery.ch/about">Marco Jakob</a> • Licensed under <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
+        </small>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    
+    
+    
+  <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/prettify.min.js.Download"></script>
+
+                                    
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'codemakery'; // Required - the forum shortname
+    var disqus_identifier = '/java/javafx-8-tutorial-part4/';
+    var disqus_url = 'http://code.makery.ch/library/javafx-8-tutorial/part4/';
+    var disqus_title = 'JavaFX 8 Tutorial - Part 4: CSS Styling';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+    
+
+    
+      <script src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/jquery.min.js.Download"></script>
+      <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/bootstrap.min.js.Download"></script>
+      <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/bootstrap-init-tooltips.min.js.Download"></script>
+    
+  
+<iframe style="display: none;" src="./JavaFX 8 Tutorial - Part 4_ CSS Styling _ code.makery.ch_files/saved_resource(1).html"></iframe></body></html>

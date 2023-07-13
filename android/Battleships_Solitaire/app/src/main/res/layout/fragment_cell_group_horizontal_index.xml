@@ -1,0 +1,44 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="156dp"
+    android:layout_height="25dp"
+    android:background="@drawable/table_border_group"
+    tools:context="com.example.battleships_solitaire.Model.CellGroupFragmentHorizontalIndex">
+
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="52dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/table_border_cell"
+            android:tag="0"
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="52dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/table_border_cell"
+            android:tag="1"
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintStart_toEndOf="@+id/textView1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="52dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/table_border_cell"
+            android:tag="2"
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

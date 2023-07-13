@@ -1,0 +1,14 @@
+table, th,td {
+  border: 1px solid blue;
+  border-collapse: separate;
+
+}
+
+td
+{
+    border-spacing: 4px;
+}
+
+th{
+    font-style: oblique;
+}

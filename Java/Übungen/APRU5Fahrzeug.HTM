@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0038)http://www.htl-wels.ac.at/rf/main.html -->
+<HTML xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40"><HEAD><TITLE>Main</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<LINK 
+href="../../sander-Dateien/stylesheet.css" type=text/css rel=stylesheet>
+<META content="Microsoft FrontPage 5.0" name=GENERATOR>
+<style>
+<!--
+ p.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+p.MsoBodyTextIndent3
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:56.25pt;
+	margin-bottom:.0001pt;
+	font-size:14.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY background=background/synapse_background.gif>
+<h1>Übung 5</h1>
+<p> Aufgabe Fahrzeug</p>
+<p>Teil1</p>
+<p>Gegeben sind folgende Klassen.</p>
+<p><br>
+  Fahrzeug als Superklasse, Motorrad und PKW als Subklassen von Fahrzeug.</p>
+<p>Die Klasse Fahrzeug:</p>
+<p>.....</p>
+<p>-typ:String</p>
+<p>-anzahlRaeder:int</p>
+<p>&nbsp;</p>
+<p>+Fahrzeug(anzahlRaeder:int)</p>
+<p>+Fahrzeug(typ:String, anzahlRaeder:int)</p>
+<p>+getTyp( ):String</p>
+<p>+getAnzahlRaeder( ):int</p>
+<p>&nbsp;</p>
+<p>Die Klasse Motorrad:</p>
+<p>+Motorrad( )</p>
+<p>Die Klasse PKW:</p>
+<p>-anzahlTueren:int</p>
+<p>+PKW(anzahlRaeder:int, anzahlTueren:int)</p>
+<p>+getAnzahlTueren( ):int</p>
+<p>Implementieren Sie die Klassen so, dass das folgende Programm korrekt abl&auml;uft:</p>
+<p>&nbsp;</p>
+<p>fahrzeug fz = new Fahrzeug(16);<br>System.out.println(&quot;Das Fahrzeug ist ein 
+  &quot;+fz.getTyp()+&quot; mit &quot;+<br>
+  fz.getAnzahlRaeder()+&quot; Raedern.&quot;);<br>
+  <br>
+  PKW pkw = new PKW(4,5);<br>
+  System.out.println(&quot;Das Fahrzeug ist ein &quot;+pkw.getTyp()+&quot; mit 
+  &quot;+<br>
+  pkw.getAnzahlRaeder() +&quot; Raedern und &quot;+pkw.getAnzahlTueren()+&quot; 
+  Tueren.&quot;);<br>
+  <br>
+  Motorrad mo = new Motorrad();<br>
+  System.out.println(&quot;Das Fahrzeug ist ein &quot;+mo.getTyp()+&quot; mit 
+  &quot;+<br>
+  mo.getAnzahlRaeder() +&quot; Raedern.&quot;);</p>
+<p>Das Programm soll auf dem Bildschirm diese Ausgabe erzeugen:</p>
+<p>Das Fahrzeug ist ein allgemeines Fahrzeug mit 16 R&auml;dern.<br>
+  Das Fahrzeug ist ein PKW mit 4 Rädern und 5 Türen.<br>
+  Das Fahrzeug ist ein Motorrad mit 2 Rädern.</p>
+<p>Schreiben Sie eine ausf&uuml;hrbare Klasse die den Namen FahrzeugTest hat.</p>
+<p>Teil2 </p>
+<p>a.)</p>
+<p>F&uuml;gen Sie der Klasse Fahrzeug die Methode </p>
+<p>String gibAlsString( ) hinzu. Sie liefert eine String Repr&auml;sentation des 
+  aktuellen Objekts.</p>
+<p>Diese Methode wird in der Klasse PKW &uuml;berschreiben, aber so, dass sie 
+  das Ergebnis der Methode der Oberklasse nutzt und entsprechend erg&auml;nzt. 
+  Die Klasse Motorrad &uuml;berschreibt die Methode nicht, sie kommt mit der Implementierung 
+  in der Oberklasse aus.</p>
+<p>&Auml;ndern Sie das Programm folgenderma&szlig;en ab:</p>
+<p>Fahrzeug[] fahrzeuge = new Fahrzeug[] {new Fahrzeug(16),<br>
+  new PKW(4,5),<br>
+  new Motorrad()};<br>
+  for (int i=0;i&lt;fahrzeuge.length;i++)<br>
+  {<br>
+  System.out.println(&quot;Das Fahrzeug ist ein &quot;+fahrzeuge[i].gibAlsString());<br>
+  }</p>
+<p>b.)</p>
+<p>Jede Klasse erbt von der Klasse Object die Methode</p>
+<p>String toString( )</p>
+<p>Sie ist daf&uuml;r gedacht, dem Aufrufer eine String Repr&auml;sentation des 
+  betreffenden Objekts zu liefern. Die Mehtode toString( ) wird dann implizit 
+  aufgerufen, wenn ein Objekt im Kontext von Strings genutzt wird. Die Standardimplementation 
+  von toString( ) ist allerdings nicht zufriedenstellend, so dass in jeder Klasse, 
+  die eine String Repr&auml;sentation f&uuml;r ihre Objekte ben&ouml;tigt, die 
+  Mehtode toString( ) &uuml;berschreiben muss.</p>
+<p>F&uuml;hren Sie in den Klassen, die eine Methode gibAlsString( ) haben, die 
+  Methode toString( ) ein, indem Sie die Methode gibAlsString( ) umbenennen in 
+  toString( ).</p>
+<p>Bei der Methode toString( ) kommt einerseits der Polymorphismus zu Tragen, 
+  auf der anderen Seite aber auch die Sonderrolle dieser Methode im Zusammenhang 
+  mit der String-Aufbereitung.</p>
+<p>Fahrzeug[] fahrzeuge = new Fahrzeug[] {new Fahrzeug(16),<br>
+  new PKW(4,5),<br>
+  new Motorrad()};</p>
+<p>System.out.println(&quot;(1)&quot;); <br>
+  for (int i=0;i&lt;fahrzeuge.length;i++)<br>
+  {<br>
+  String s1 = &quot;Das Fahrzeug ist ein &quot;;<br>
+  String s2 = fahrzeuge[i].toString();<br>
+  System.out.println(s1 + s2);<br>
+  }<br>
+  System.out.println(&quot;(2)&quot;); <br>
+  for (int i=0;i&lt;fahrzeuge.length;i++)<br>
+  {<br>
+  String s = &quot;Das Fahrzeug ist ein &quot;+fahrzeuge[i]; <br>
+  System.out.println(s);<br>
+  }</p>
+<p>c.)</p>
+<p>Bislang haben wir den Polymorphismus auf der Ebene Fahrzeug ausprobiert. Da 
+  alle Klassen als oberste Superklasse die Klasse Object haben, spielt der Polymorphismus 
+  auf der Ebene Object eine gro&szlig;e Rolle.</p>
+<p>&Auml;ndern Sie das Programm folgenderma&szlig;en ab:</p>
+<p> Object[] fahrzeuge = new Object[] {new Fahrzeug(16),<br>
+  new PKW(4,5),<br>
+  new Motorrad()};<br>
+  for (int i=0;i&lt;fahrzeuge.length;i++)<br>
+  {<br>
+  String s = &quot;Das Fahrzeug ist ein &quot;+fahrzeuge[i]; <br>
+  System.out.println(s);<br>
+  }</p>
+</BODY></HTML>

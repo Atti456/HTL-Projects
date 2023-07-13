@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0038)http://www.htl-wels.ac.at/rf/main.html -->
+<HTML xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40"><HEAD><TITLE>Main</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<LINK 
+href="../../sander-Dateien/stylesheet.css" type=text/css rel=stylesheet>
+<META content="Microsoft FrontPage 5.0" name=GENERATOR>
+<style>
+<!--
+ p.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+p.MsoBodyTextIndent3
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:56.25pt;
+	margin-bottom:.0001pt;
+	font-size:14.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY background=background/synapse_background.gif>
+<h1>Übung 9</h1>
+<p> Aufgabe Exceptions</p>
+<p>Ausgangspunkt dieser Aufgabe ist die L&ouml;sung der &Uuml;bung 2.</p>
+<p>Entwickeln Sie die Klasse KurzeitweckerException.</p>
+<p>Eine KurzzeitweckerException wird geworfen, wenn Parameterwerte bei den beiden 
+  stelle-Methoden sich als falsch erweisen. Im einen Fall kann das eine falsche 
+  Zahl sein, im anderen Fall eine falsche Zeichenfolge im String.</p>
+<p>Wenn ein Exception-Objekt dieses Typs erzeugt wird, wird ein Grund angegeben. 
+  Die m&ouml;glichen Gr&uuml;nde sind als Konstanten in der Klasse definiert.</p>
+<p>Bei der Erzeugung eines Objects der Klasse sollen auch die fehlerhaften Parameterwerte 
+  mit aufgenommen werden. Die Klasse hat dazu die entsprechenden Konstruktoren.</p>
+<p>Das Ger&uuml;st der Klasse soll folgenderma&szlig;en aussehen:</p>
+<p>class KurzzeitweckerException extends Exception</p>
+<p>{</p>
+<p>public static final int FALSCHE_ZAHL = 1;</p>
+<p>public static final int FALSCHE_ZEICHENFOLGE = 2;</p>
+<p>private int grund;</p>
+<p>private String zeitangabe;</p>
+<p>public KurzzeitweckerException(int grund, int min, int sek, int zehntelsek)</p>
+<p>{</p>
+<p> //min, sek und zehntelsek int einen String der Form mm:ss:z umwandeln und 
+  dann den anderen Konstruktor aufrufen.</p>
+<p>}</p>
+<p>public KurzzeitweckerException(int grund, String zeit)</p>
+<p>{</p>
+<p>// Parameter grund an Attribut grund und Parameter zeit an Attribut zeitangabe 
+  zuweisen.</p>
+<p>}</p>
+<p>public String toString( )</p>
+<p>{</p>
+<p>// Einen String aufbauen, der den Grund und die Zeitangabe enth&auml;lt, und 
+  diesen String zur&uuml;ckgeben.</p>
+<p>}</p>
+<p>}</p>
+<p>Erg&auml;nzen Sie die Klasse Kurzeitwecker in den betreffenden Methoden durch 
+  ein Exception Handling. &Uuml;berall dort in den Methoden stelle( ), wo bei 
+  der &Uuml;berpr&uuml;fung der Parameter im Fehlerfall die Ausf&uuml;hrung einfach 
+  ohne eine Mitteilung beendet wird, soll eine entsprechende Exception geworfen 
+  und an geeigneter Stelle aufgefangen werden.</p>
+<p>Dazu m&uuml;ssen die &Uuml;bung 2 mit folgender Mehtode erg&auml;nzen:</p>
+<p>public void stelle(String zeitStr),</p>
+<p> welche einen String &uuml;bernimmt und aus diesem String min, sek und zehntelsek 
+  extrahiert. </p>
+<p>Die Methode k&ouml;nnte folgendes machen:</p>
+<p>public void stelle(String zeitStr)</p>
+<p>{</p>
+<p> // zeitStr hat die Form &quot;mm:ss,zz&quot;</p>
+<p>// String zerlegen und pr&uuml;fen</p>
+<p>......</p>
+<p>// Die Minuten.</p>
+<p>int m = 0; //Wird im folgenden ermittelt</p>
+<p>// Die Sekunden.</p>
+<p>int s = 0; // Wird im folgenden ermittelt</p>
+<p>.....</p>
+<p>// Die Zehntelsekunden.</p>
+<p>int zs = 0; // Wird im folgenden ermittelt</p>
+<p>......</p>
+<p>// Zeit &uuml;bernehmen</p>
+<p>stelle(m,s,zs);</p>
+<p>}</p>
+<p>mm sind die Minuten. Die Angabe ist ein- oder zweistellig. Eine f&uuml;hrende 
+  Null ist erlaubt. So k&ouml;nnen z.B 2 Minuten als 2 oder 02 angegeben werden. 
+  20 Minuten werden in der Form 20 angegeben.</p>
+<p>ss sind die Sekunden. Die Angabe ist ein- oder zweistellig. Eine f&uuml;hrende 
+  Null ist erlaubt. So k&ouml;nnen z. B. 9 Sekunden als 9 oder 09 angegeben werden. 
+  40 Sekunden werden in der Form 40 angegeben.</p>
+<p>z sind die Zehntelsekunden. Sie werden als Nachkommastellen angegeben.</p>
+<p>Hinweise:</p>
+<p>Ein String kann mit der Mehtode substring( ) in drei Strings zerlegt werden. 
+  Die Methode substring( ) gibt es mit einem Argument oder mit zwei Argumenten:</p>
+<p>substring(int vonIndex) (bis ans Ende)</p>
+<p>substring(int vonIndex, int bisIndexExklusiv)</p>
+<p>Die Stelle im String, wo das ':' steht, k&ouml;nnen Sie mit</p>
+<p>indexOf(&quot;:&quot;)</p>
+<p>ermitteln. Die Stelle von ',' ermittelt man analog dazu.</p>
+<p>&Uuml;berpr&uuml;fen Sie, ob die drei Srings in ihrer L&auml;nge stimmen.</p>
+<p>Wandeln Sie die gewonnen Strings in Zahlen um. Dazu gibt es ein Hilfsmittel. 
+  Die Klassenmethode parseInt( ) der Klasse Integer wandelt einen g&uuml;ltigen 
+  String in einen int Wert um. Bei einem ung&uuml;ltigen String wirft sie eine 
+  Exception.</p>
+<p>try</p>
+<p>{</p>
+<p>int m = Integer.parseInt(stringFuerMin);</p>
+<p>// m weiter verarbeiten</p>
+<p>}</p>
+<p>catch (NumberFormatException nfe)</p>
+<p>{</p>
+<p>.....</p>
+<p>}</p>
+<p>&nbsp;</p>
+</BODY></HTML>

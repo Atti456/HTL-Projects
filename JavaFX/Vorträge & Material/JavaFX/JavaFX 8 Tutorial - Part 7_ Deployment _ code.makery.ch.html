@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://code.makery.ch/library/javafx-8-tutorial/part7/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JavaFX 8 Tutorial - Part 7: Deployment | code.makery.ch</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+    /**
+     * @license
+     * MyFonts Webfont Build ID 2872352, 2014-08-27T06:57:40-0400
+     * 
+     * The fonts listed in this notice are subject to the End User License
+     * Agreement(s) entered into by the website owner. All other parties are 
+     * explicitly restricted from using the Licensed Webfonts(s).
+     * 
+     * You may obtain a valid license at the URLs below.
+     * 
+     * Webfont: Museo Slab 700 by exljbris
+     * URL: http://www.myfonts.com/fonts/exljbris/museo-slab/700/
+     * Copyright: Copyright (c) 2009 by Jos Buivenga. All rights reserved.
+     * Licensed pageviews: 500,000
+     * 
+     * License: http://www.myfonts.com/viewlicense?type=web&buildid=2872352
+     * 
+     * © 2014 MyFonts Inc
+    */
+    -->
+    <link href="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/style.min.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="canonical" href="http://code.makery.ch/library/javafx-8-tutorial/part7/">
+  
+    <!-- Alternate Languages -->
+    <link rel="alternate" hreflang="en" href="http://code.makery.ch/library/javafx-8-tutorial/part7/">
+    <link rel="alternate" hreflang="es" href="http://code.makery.ch/library/javafx-8-tutorial/es/part7/">
+    <link rel="alternate" hreflang="fa" href="http://code.makery.ch/library/javafx-8-tutorial/fa/part7/">
+    <link rel="alternate" hreflang="fr" href="http://code.makery.ch/library/javafx-8-tutorial/fr/part7/">
+    <link rel="alternate" hreflang="id" href="http://code.makery.ch/library/javafx-8-tutorial/id/part7/">
+    <link rel="alternate" hreflang="it" href="http://code.makery.ch/library/javafx-8-tutorial/it/part7/">
+    <link rel="alternate" hreflang="kr" href="http://code.makery.ch/library/javafx-8-tutorial/kr/part7/">
+    <link rel="alternate" hreflang="pt" href="http://code.makery.ch/library/javafx-8-tutorial/pt/part7/">
+    <link rel="alternate" hreflang="ru" href="http://code.makery.ch/library/javafx-8-tutorial/ru/part7/">
+    <link rel="alternate" hreflang="tr" href="http://code.makery.ch/library/javafx-8-tutorial/tr/part7/">
+    <link rel="alternate" hreflang="uk" href="http://code.makery.ch/library/javafx-8-tutorial/uk/part7/">
+    <link rel="alternate" hreflang="zh-cn" href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part7/">
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="http://code.makery.ch/rss" title="code.makery.ch - RSS Feed">
+
+    <meta name="description" content="How to deploy a JavaFX application as native package. Create an installer for Windows, MacOS, or Linux.">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="JavaFX 8 Tutorial - Part 7: Deployment | code.makery.ch">
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="How to deploy a JavaFX application as native package. Create an installer for Windows, MacOS, or Linux.">
+    <meta property="og:url" content="http://code.makery.ch/library/javafx-8-tutorial/part7/">
+    <meta property="og:image" content="http://code.makery.ch/assets/library/javafx-8-tutorial/part7/addressapp-macos.png">
+    
+    <link rel="author" href="https://plus.google.com/+MarcoJakob7">
+    
+    <link href="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/prettify.min.css" rel="stylesheet" type="text/css" media="all">
+
+    
+    <script async="" src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/analytics.js.Download"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-34917397-3', 'makery.ch');
+  ga('send', 'pageview');
+</script>
+  <script type="text/javascript" async="" src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/embed.js.Download"></script><link rel="preload" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.188f59a1df04c219bf32da7f76545092.css"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.037f55c32651d22255e90738c195e946.js"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.2fd6d206c06cd51584499fe8219aa635.js"><link rel="preload" as="script" href="https://disqus.com/next/config.js"></head>
+  <body onload="prettyPrint()">
+    <header class="site-header container">
+  <h1 class="site-title">
+    <a href="http://code.makery.ch/"><span class="main-text">code</span>.makery</a>
+  </h1>
+  <div class="site-intro">
+    <p>Learning how to code.</p>
+  </div>
+  
+  <div class="ribbon">
+    <a href="https://tinyletter.com/codemakery" title="Get Updates">Subscribe to <i class="fa fa-envelope-o"></i> Updates </a>
+  </div>
+</header>
+    
+    <div class="container article-container">
+      
+<nav class="site-navigation">
+  <ul>
+    <li><a class="black-link" href="http://code.makery.ch/">Home</a></li>
+    <li><a class="main-link" href="http://code.makery.ch/library/">Library</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/paths/">Paths</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/blog/">Blog</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/about/">About</a></li>
+  </ul>
+</nav>
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="github-edit">
+            <a href="https://github.com/marcojakob/code.makery.ch/edit/master/collections/library/javafx-8-tutorial-en-part7.md">Edit on GitHub</a>
+          </div>
+        </div>
+      </div>
+      
+      <article class="row">
+        <aside class="col-md-3">
+          <div class="visible-md-block visible-lg-block">
+          <div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Articles in this Series</h4>  
+  </div>
+
+  <div class="list-group">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/" class="list-group-item">
+        Introduction</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part1/" class="list-group-item">
+        Part 1: Scene Builder</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part2/" class="list-group-item">
+        Part 2: Model and TableView</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part3/" class="list-group-item">
+        Part 3: Interacting with the User</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part4/" class="list-group-item">
+        Part 4: CSS Styling</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part5/" class="list-group-item">
+        Part 5: Storing Data as XML</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part6/" class="list-group-item">
+        Part 6: Statistics Chart</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part7/" class="list-group-item active">
+        Part 7: Deployment</a>
+  </div>
+</div>
+<div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Download Sources</h4>  
+  </div>
+
+  <div class="list-group">
+      <a href="https://github.com/marcojakob/tutorial-javafx-8/releases/download/v1.1/addressapp-jfx8u40-part-7.zip" class="list-group-item">
+<i class="fa fa-fw fa-download"></i>        Part 7 as Eclipse Project <em>(requires at least JDK 8u40)</em></a>
+  </div>
+</div>
+
+          <div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Languages</h4>  
+  </div>
+  <div class="list-group">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part7/" class="list-group-item active">
+        <i class="fa fa-fw fa-globe"></i> English
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/es/part7/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Español
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/fa/part7/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> فارسی
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/fr/part7/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Français
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/id/part7/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Bahasa Indonesia
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/it/part7/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Italiano
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/kr/part7/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> 한국어
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/pt/part7/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Português
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/ru/part7/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Русский
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/tr/part7/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Türkçe
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/uk/part7/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Українська
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part7/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> 中文（简体）
+      </a>
+  </div>
+</div>
+
+          </div>
+        </aside>
+        <div class="col-md-9">
+          <header class="article-header">
+            <h1 class="article-title">JavaFX 8 Tutorial - Part 7: Deployment</h1>
+            <div class="article-date">
+  May 10, 2014
+  • Updated Mar 12, 2015
+
+</div>
+          </header>
+          
+          <aside class="visible-xs-block visible-sm-block">
+            <div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Articles in this Series <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/">
+        Introduction</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part1/">
+        Part 1: Scene Builder</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part2/">
+        Part 2: Model and TableView</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part3/">
+        Part 3: Interacting with the User</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part4/">
+        Part 4: CSS Styling</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part5/">
+        Part 5: Storing Data as XML</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part6/">
+        Part 6: Statistics Chart</a></li>
+      <li class=" active"><a href="http://code.makery.ch/library/javafx-8-tutorial/part7/">
+        Part 7: Deployment</a></li>
+  </ul>
+</div>
+<div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Download Sources <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=""><a href="https://github.com/marcojakob/tutorial-javafx-8/releases/download/v1.1/addressapp-jfx8u40-part-7.zip">
+<i class="fa fa-fw fa-download"></i>        Part 7 as Eclipse Project <em>(requires at least JDK 8u40)</em></a></li>
+  </ul>
+</div>
+
+            <div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=" active">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/part7/"><i class="fa fa-fw fa-globe"></i> English</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/es/part7/"><i class="fa fa-fw fa-globe"></i> Español</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/fa/part7/"><i class="fa fa-fw fa-globe"></i> فارسی</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/fr/part7/"><i class="fa fa-fw fa-globe"></i> Français</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/id/part7/"><i class="fa fa-fw fa-globe"></i> Bahasa Indonesia</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/it/part7/"><i class="fa fa-fw fa-globe"></i> Italiano</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/kr/part7/"><i class="fa fa-fw fa-globe"></i> 한국어</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/pt/part7/"><i class="fa fa-fw fa-globe"></i> Português</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/ru/part7/"><i class="fa fa-fw fa-globe"></i> Русский</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/tr/part7/"><i class="fa fa-fw fa-globe"></i> Türkçe</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/uk/part7/"><i class="fa fa-fw fa-globe"></i> Українська</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part7/"><i class="fa fa-fw fa-globe"></i> 中文（简体）</a>
+    </li>
+  </ul>
+</div>
+
+          </aside>
+          
+          <div class="article-content">
+            <p><img src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/addressapp-part7.png" alt="Screenshot AddressApp Part 7"></p>
+<p>I thought I'd write one last part of this tutorial series to show how to deploy (that means package and publish) the AddressApp.</p>
+<hr>
+<h2 id="topics-in-part-7">Topics in Part 7</h2>
+<ul>
+<li>Deploying our JavaFX application as <strong>Native Package</strong> with e(fx)clipse</li>
+</ul>
+<hr>
+<h2 id="what-is-deployment">What is Deployment</h2>
+<p>Deplyoment is the process of packaging and delivering software to the user. This is a crucial part of software development since it's the first contact a user has with our software.</p>
+<p>Java advertises with the slogan <strong>Write Once, Run Anywhere</strong> to illustrate the <em>cross-platform</em> benefits of the Java language. Ideally, this means that our Java application can be run on any device equipped with a Java virtual machine (JVM).</p>
+<p>In the past, the user experience for installing a Java application hasn't always been smooth. If the user didn't have the required Java version on his system, he had to be directed to install it first. This lead to some difficulties, e.g. need for admin rights, compatibility issues between Java versions, etc.</p>
+<p>Fortunately, JavaFX provides a new deployment option called <strong>Native Packaging</strong> (also called Self-Contained Application Package). A native package is a bundle containing both your application code and the (platform-specific) Java Runtime. </p>
+<p>The official JavaFX documentation by Oracle contains an extensive guide for all possible <a href="http://docs.oracle.com/javafx/2/deployment/jfxpub-deployment.htm">JavaFX deployment options</a>. </p>
+<p>In this post I will show how to create a <strong>Native Package</strong> with Eclipse and the <a href="http://www.eclipse.org/efxclipse/"><strong>e(fx)clipse plugin</strong></a>.</p>
+<hr>
+<h2 id="create-a-native-package">Create a Native Package</h2>
+<p>The goal is to create a self-contained application in a single folder on the user's computer. Here is how it will look like for our AddressApp (on Windows):</p>
+<p><img src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/native-package.png" alt="AddressApp Native Package"></p>
+<p>The <code>app</code> folder contains our application data and the <code>runtime</code> folder contains the platform-specific Java runtime.</p>
+<p>To make it even more comfortable for the user, we'll provide an installer:</p>
+<ul>
+<li>A <code>exe</code> file installer on windows</li>
+<li>A <code>dmg</code> (drag and drop) installer for MacOS.</li>
+</ul>
+<p>The e(fx)clipse plugin will help us generate the native package and installer.</p>
+<h3 id="step-1-edit-build-fxbuild">Step 1 - Edit build.fxbuild</h3>
+<p>The file <code>build.fxbuild</code> is used by e(fx)clipse to generate a file that will be used by the Ant build tool. (If you don't have a <code>build.fxbuild</code> file, create a new <em>Java FX Project</em> in Eclipse and copy the generated file.)</p>
+<ol>
+<li><p>Open <code>build.fxbuild</code> from your project root.</p>
+</li>
+<li><p>Fill out all the fields containing a star. <em>For MacOS: Do not use spaces in Application title as this seems to cause a problem.</em><br><img src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/fxbuild-settings.png" alt="fxbuild settings"></p>
+</li>
+<li><p>As <strong>Packaging Format</strong> choose <code>exe</code> for Windows, <code>dmg</code> for MacOS, or <code>rpm</code> for Linux.</p>
+</li>
+<li><p>Click on the link <code>Generate ant build.xml only</code> (found on the right side).<br><img src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/generate-ant-build.png" alt="generate ant build"></p>
+</li>
+<li><p>Verify that a new <code>build</code> folder and a file <code>build.xml</code> is created.</p>
+</li>
+</ol>
+<h3 id="step-2-add-installer-icons">Step 2 - Add Installer Icons</h3>
+<p>We would like to have some nice icons for our installer:</p>
+<ul>
+<li><a href="http://code.makery.ch/assets/library/javafx-8-tutorial/part7/AddressApp.ico">AddressApp.ico</a> for the installer file icon</li>
+<li><a href="http://code.makery.ch/assets/library/javafx-8-tutorial/part7/AddressApp-setup-icon.bmp">AddressApp-setup-icon.bmp</a> for the installer splash screen icon</li>
+<li><a href="http://code.makery.ch/assets/library/javafx-8-tutorial/part7/AddressApp.icns">AddressApp.icns</a> for the mac installer icon</li>
+<li><a href="http://code.makery.ch/assets/library/javafx-8-tutorial/part7/AddressApp-volume.icns">AddressApp-volume.icns</a> for the mac desktop icon</li>
+</ul>
+<ol>
+<li>Create the following subfolders in the <code>build</code> folder:<ul>
+<li><code>build/package/windows</code> (only used for windows)</li>
+<li><code>build/package/macosx</code> (only used for macos)</li>
+</ul>
+</li>
+<li>Copy the corresponding icons from above into those subfolders. It should look something like this now:<br><img src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/installer-icons.png" alt="Installer Icons"></li>
+<li><strong>Important</strong>: The name of the icons must exactly match the <strong>Application title</strong> you specified in <code>build.fxbuild</code>:<ul>
+<li><code>YourAppTitle.ico</code></li>
+<li><code>YourAppTitle-setup-icon.bmp</code></li>
+<li><code>YourAppTitle.icns</code></li>
+<li><code>YourAppTitle-volume.icns</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="step-3-add-resources">Step 3 - Add Resources</h3>
+<p>Our <code>resources</code> folder isn't copied automatically. We must manually add it to the build directory:</p>
+<ol>
+<li>Create the following subfolder in the <code>build</code> folder:<ul>
+<li><code>build/dist</code>   </li>
+</ul>
+</li>
+<li>Copy the <code>resources</code> folder (containing our application images) into <code>build/dist</code>.<br><img src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/build-resources.png" alt="Build Resources"></li>
+</ol>
+<h3 id="step-4-edit-build-xml-to-include-icons">Step 4 - Edit build.xml to include icons</h3>
+<p>E(fx)clipse has generated a file <code>build/build.xml</code> which is ready to be executed by <strong>Ant</strong>. Our installer icons and resource images just won't work. </p>
+<p>As e(fx)clipse can't be told (yet?) to include additional resources like our <code>resources</code> folder and the few installer icons we've added above, we have to manually edit the <code>build.xml</code>:</p>
+<p>Open <code>build.xml</code> and find the path <code>fxant</code>. Add one line for the <code>${basedir}</code> (will make our installer icons available):</p>
+<h5 id="build-xml-add-basedir-">build.xml - add "basedir"</h5>
+<pre class="prettyprint lang-xml prettyprinted" style=""><span class="tag">&lt;path</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"fxant"</span><span class="tag">&gt;</span><span class="pln">
+  </span><span class="tag">&lt;filelist&gt;</span><span class="pln">
+    </span><span class="tag">&lt;file</span><span class="pln"> </span><span class="atn">name</span><span class="pun">=</span><span class="atv">"${java.home}\..\lib\ant-javafx.jar"</span><span class="tag">/&gt;</span><span class="pln">
+    </span><span class="tag">&lt;file</span><span class="pln"> </span><span class="atn">name</span><span class="pun">=</span><span class="atv">"${java.home}\lib\jfxrt.jar"</span><span class="tag">/&gt;</span><span class="pln">
+    </span><mark><span class="tag">&lt;file</span><span class="pln"> </span><span class="atn">name</span><span class="pun">=</span><span class="atv">"${basedir}"</span><span class="tag">/&gt;</span></mark><span class="pln">
+  </span><span class="tag">&lt;/filelist&gt;</span><span class="pln">
+</span><span class="tag">&lt;/path&gt;</span></pre>    
+
+
+<p>Find the block <code>fx:resources id="appRes"</code> further down in the file. Add one line for our <code>resources</code>:</p>
+<h5 id="build-xml-add-resources-">build.xml - add "resources"</h5>
+<pre class="prettyprint lang-xml prettyprinted" style=""><span class="tag">&lt;fx:resources</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"appRes"</span><span class="tag">&gt;</span><span class="pln">
+    </span><span class="tag">&lt;fx:fileset</span><span class="pln"> </span><span class="atn">dir</span><span class="pun">=</span><span class="atv">"dist"</span><span class="pln"> </span><span class="atn">includes</span><span class="pun">=</span><span class="atv">"AddressApp.jar"</span><span class="tag">/&gt;</span><span class="pln">
+    </span><span class="tag">&lt;fx:fileset</span><span class="pln"> </span><span class="atn">dir</span><span class="pun">=</span><span class="atv">"dist"</span><span class="pln"> </span><span class="atn">includes</span><span class="pun">=</span><span class="atv">"libs/*"</span><span class="tag">/&gt;</span><span class="pln">
+    </span><mark><span class="tag">&lt;fx:fileset</span><span class="pln"> </span><span class="atn">dir</span><span class="pun">=</span><span class="atv">"dist"</span><span class="pln"> </span><span class="atn">includes</span><span class="pun">=</span><span class="atv">"resources/**"</span><span class="tag">/&gt;</span></mark><span class="pln">
+</span><span class="tag">&lt;/fx:resources&gt;</span><span class="pln"> </span></pre>
+
+
+<p>Somehow, the version number doesn't get added in the <code>fx:application</code> which makes the installer always default to version <code>1.0</code> (as pointed out by a few people in the comments). To fix this, manually add the version number (thanks Marc for <a href="http://code.makery.ch/library/javafx-8-tutorial/part7/#comment-1566725959">finding out</a>):</p>
+<h5 id="build-xml-add-version-">build.xml - add "version"</h5>
+<pre class="prettyprint lang-xml prettyprinted" style=""><span class="tag">&lt;fx:application</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"fxApplication"</span><span class="pln">
+    </span><span class="atn">name</span><span class="pun">=</span><span class="atv">"AddressApp"</span><span class="pln">
+    </span><span class="atn">mainClass</span><span class="pun">=</span><span class="atv">"ch.makery.address.MainApp"</span><span class="pln">
+    </span><mark><span class="atn">version</span><span class="pun">=</span><span class="atv">"1.0"</span></mark><span class="pln">
+</span><span class="tag">/&gt;</span></pre>
+
+<p>We could already run the <code>build.xml</code> as an Ant build at this point. This would generate a runnable jar file of the project. But we want to go a step further and create a nice installer.</p>
+<h3 id="step-5-windows-windows-exe-installer">Step 5 (WINDOWS) - Windows exe Installer</h3>
+<p><img src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/addressapp-windows.png" alt="AddressApp on Windows"></p>
+<p>With <strong>Inno Setup</strong> we can create a Windows Installer of our application as a single <code>.exe</code> file. The resulting <code>.exe</code> will perform a user level installation (no admin permissions required). Also a shortcut will be created (menu or desktop).</p>
+<ol>
+<li><p>Download <a href="http://www.jrsoftware.org/isdl.php">Inno Setup 5 or later</a>. Install Inno Setup on your computer. Our Ant script will use it to automatically generate the installer.</p>
+</li>
+<li><p>Tell Windows about the installation path to Inno Setup (e.g. <code>C:\Program Files (x86)\Inno Setup 5</code>). To do this add Inno Setup to the <code>Path</code> variable in your windows environment variables. If you don't know where to find it, read <a href="http://www.computerhope.com/issues/ch000549.htm">How to set the path and environment variables in Windows</a>.</p>
+</li>
+<li><p>Restart Eclipse and continue with Step 6.</p>
+</li>
+</ol>
+<h3 id="step-5-mac-macos-dmg-installer">Step 5 (MAC) - MacOS dmg Installer</h3>
+<p><img src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/addressapp-macos.png" alt="AddressApp on Mac"></p>
+<p>To create a Mac OS <code>dmg</code> drag-and-drop installer, no additional tool is required.</p>
+<p>Note: For the installer image to work it must have exactly the same name as the application.</p>
+<h3 id="step-5-linux-etc-linux-rpm-installer">Step 5 (LINUX etc.) - Linux rpm Installer</h3>
+<p>For other packaging options (<code>msi</code> for windows, <code>rpm</code> for Linux) see this native packaging <a href="https://blogs.oracle.com/talkingjavadeployment/entry/native_packaging_for_javafx">blog post</a> or this <a href="http://docs.oracle.com/javafx/2/deployment/self-contained-packaging.htm#A1324980">oracle documentation</a>.</p>
+<h3 id="step-6-run-build-xml">Step 6 - Run build.xml</h3>
+<p>As a final step, we run the <code>build.xml</code> with Ant: <em>Right-click</em> on the <code>build.xml</code> file | <em>Run As</em> | <em>Ant Build</em>.</p>
+<p><img src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/run-ant-build.png" alt="Run Ant Build"></p>
+<p>The building <strong>will take a while</strong> (about 1 minute on my computer).</p>
+<p>If everything was successful, you should find the native bundle in the folder <code>build/deploy/bundles</code>. This is how the windows version looks like:</p>
+<p><img src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/deployed-file.png" alt="Deployed File"></p>
+<p>The file <code>AddressApp-1.0.exe</code> can be used as a single file to install the application. This installer will copy the bundle to <code>C:/Users/[yourname]/AppData/Local/AddressApp</code>.</p>
+<h3 id="what-s-next-">What's Next?</h3>
+<p>I hope this tutorial was a help for you to get started with JavaFX and you'll be able to write your own JavaFX project from here.</p>
+<p>I appreciate any feedback. Feel free to write comments if you have any suggestions or if something was unclear.</p>
+<h5 id="some-other-articles-you-might-find-interesting">Some other articles you might find interesting</h5>
+<ul>
+<li><a href="http://code.makery.ch/blog/javafx-dialogs-official/">JavaFX Dialogs (official)</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-date-picker/">JavaFX Date Picker</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-event-handling-examples/">JavaFX Event Handling Examples</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/">JavaFX TableView Sorting and Filtering</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-tableview-cell-renderer/">JavaFX TableView Cell Renderer</a></li>
+</ul>
+
+
+          </div>
+          
+          <hr>
+          
+  <nav>
+    <div class="article-paging">
+      <ul class="pagination">
+              <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/" data-toggle="tooltip" title="" data-original-title="Introduction">Intro</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part1/" data-toggle="tooltip" title="" data-original-title="Part 1: Scene Builder">1</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part2/" data-toggle="tooltip" title="" data-original-title="Part 2: Model and TableView">2</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part3/" data-toggle="tooltip" title="" data-original-title="Part 3: Interacting with the User">3</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part4/" data-toggle="tooltip" title="" data-original-title="Part 4: CSS Styling">4</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part5/" data-toggle="tooltip" title="" data-original-title="Part 5: Storing Data as XML">5</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part6/" data-toggle="tooltip" title="" data-original-title="Part 6: Statistics Chart">6</a>
+      </li>
+        <li class="active">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part7/" data-toggle="tooltip" title="" data-original-title="Part 7: Deployment">7</a>
+      </li>
+    
+      </ul>
+    </div>
+  </nav>
+
+        </div>
+      </article>
+      
+      
+      <section class="row">
+        <div class="col-md-offset-3 col-md-9">
+          <h2>Comments</h2>
+          <div id="disqus_thread"><iframe id="dsq-app9031" name="dsq-app9031" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 9738px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+        </div>
+      </section>
+      
+    </div>
+        
+    <footer class="site-footer container-fluid">
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+      <p>
+        <a class="btn btn-sm btn-social-icon btn-twitter" href="https://twitter.com/codemakery" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow me on Twitter">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-googleplus" href="https://plus.google.com/+MarcoJakob7" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow me on Google+">
+          <i class="fa fa-google-plus"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-rss" href="http://code.makery.ch/rss" data-toggle="tooltip" data-placement="top" title="" data-original-title="Subscribe to RSS Feed">
+          <i class="fa fa-rss"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-mail" href="https://tinyletter.com/codemakery" data-toggle="tooltip" data-placement="top" title="" data-original-title="Receive Email Updates">
+          <i class="fa fa-envelope" style="margin-top: -1px;"></i>
+        </a>
+      </p>
+      <p>
+        Subscribe to receive updates by <a href="https://tinyletter.com/codemakery">Email</a>.
+      </p>
+      
+      <form class="form-inline" action="https://tinyletter.com/codemakery" method="post" target="popupwindow" onsubmit="window.open(&#39;https://tinyletter.com/codemakery&#39;, &#39;popupwindow&#39;, &#39;scrollbars=yes,width=800,height=600&#39;);return true">
+        <div class="form-group">
+          <input type="text" class="form-control" name="email" id="tlemail" placeholder="Enter email">
+          <input type="hidden" value="1" name="embed">
+          <input type="submit" class="form-control btn-primary" value="Get updates">
+        </div>
+      </form>
+      
+      <p>
+        <small>
+          Created by <a href="http://code.makery.ch/about">Marco Jakob</a> • Licensed under <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
+        </small>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    
+    
+    
+  <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/prettify.min.js.Download"></script>
+
+                                    
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'codemakery'; // Required - the forum shortname
+    var disqus_identifier = '/java/javafx-8-tutorial-part7/';
+    var disqus_url = 'http://code.makery.ch/library/javafx-8-tutorial/part7/';
+    var disqus_title = 'JavaFX 8 Tutorial - Part 7: Deployment';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+    
+
+    
+      <script src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/jquery.min.js.Download"></script>
+      <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/bootstrap.min.js.Download"></script>
+      <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/bootstrap-init-tooltips.min.js.Download"></script>
+    
+  
+<iframe style="display: none;" src="./JavaFX 8 Tutorial - Part 7_ Deployment _ code.makery.ch_files/saved_resource(1).html"></iframe></body></html>

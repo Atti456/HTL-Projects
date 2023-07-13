@@ -1,0 +1,11 @@
+#main {
+  width: 600px;
+  margin: 0 auto; 
+}
+#main2 {
+  max-width: 600px;
+  margin: 0 auto; 
+}
+.elem {
+	border: 3px solid rgb(106, 197, 172); border-image: none; position: relative;
+}

@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.10)
+project(UE_2_4_Eingabe___Berechnung_des_Bezugspreises_einer_Ware C)
+
+set(CMAKE_C_STANDARD 99)
+
+add_executable(UE_2_4_Eingabe___Berechnung_des_Bezugspreises_einer_Ware main.c)

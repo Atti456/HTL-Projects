@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0038)http://www.htl-wels.ac.at/rf/main.html -->
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 10">
+<meta name=Originator content="Microsoft Word 10">
+<link rel=File-List
+href="APRU4BestellungmitKundeundKundenrabatt-Dateien/filelist.xml">
+<title>Main</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Harald Sander</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>Harald Sander</o:LastAuthor>
+  <o:Revision>3</o:Revision>
+  <o:Created>2009-03-28T05:41:00Z</o:Created>
+  <o:LastSaved>2009-03-30T10:13:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>426</o:Words>
+  <o:Characters>2690</o:Characters>
+  <o:Company>HTL Wels</o:Company>
+  <o:Lines>22</o:Lines>
+  <o:Paragraphs>6</o:Paragraphs>
+  <o:CharactersWithSpaces>3110</o:CharactersWithSpaces>
+  <o:Version>10.2625</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>110</w:Zoom>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:HyphenationZone>21</w:HyphenationZone>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]-->
+<link rel=Stylesheet type="text/css" media=all
+href="../../sander-Dateien/stylesheet.css">
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoBodyTextIndent3, li.MsoBodyTextIndent3, div.MsoBodyTextIndent3
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:56.25pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:14.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0pt;
+	mso-margin-bottom-alt:auto;
+	margin-left:0pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 56.7pt 70.85pt;
+	mso-header-margin:35.4pt;
+	mso-footer-margin:35.4pt;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Normale Tabelle";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0pt 5.4pt 0pt 5.4pt;
+	mso-para-margin:0pt;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="3074"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=white background="background/synapse_background.gif" lang=DE-AT
+style='tab-interval:35.4pt'>
+
+<div class=Section1>
+
+<h1><span lang=DE style='mso-ansi-language:DE'>Übung4<o:p></o:p></span></h1>
+
+<p><span lang=DE style='mso-ansi-language:DE'><br>
+Ausgangspunkt dieser Aufgabe ist die Lösung der Übung3.<br>
+<br>
+In dieser Aufgabe werden die neuen Klassen Kunde, Kundenrabatt, Adresse und
+Lieferant eingeführt.<br>
+Dabei soll eine Bestellung von einem Kunden ausgeführt werden. Der Kunde hat
+natürlich eine bestimmte Adresse. Diese Adresse wird mit einer eigenen Klasse
+repräsentiert. Außerdem wird jede Ware durch einen Lieferanten geliefert,
+repräsentiert durch die Klasse Lieferant. Natürlich hat auch ein Lieferant eine
+Adresse.<o:p></o:p></span></p>
+
+<p><span lang=DE style='mso-ansi-language:DE'>Den Zusammenhang der Klassen gibt
+folgendes verbales Klassendiagramm.<br>
+<br>
+(Folgende Beziehungen zwischen Objekten werden unterschieden: Vererbung (IST),
+Assoziation (KENNT)<br>
+<span class=SpellE>Aggregation</span> und Komposition (HAT. Teil - Ganze Beziehung. Existiert unabhängig bzw. nicht unabhängig vom Ganzen). <o:p></o:p></span></p>
+
+<p><span lang=DE style='mso-ansi-language:DE'>Es gibt die Klasse Ware, Kunde,
+Adresse, Lieferant und Kundenrabatt als Grundklassen.<br>
+Die Klasse Bestellposition kennt eine Ware. Jede Ware kennt viele Lieferanten.<br>
+Die Klasse Bestellung hat existenzabhängig viele Bestellpositionen und kennt
+einen Kunden. Jeder Kunde und Lieferant hat existenzabhängig eine Adresse.<br>
+Sowohl die Kunden- als auch die Lieferadressen werden durch eine Klasse
+repräsentiert.<br>
+Die bestehende Klasse Bestellung erhält ein neues Attribut, das die Beziehung
+zu einem Kunde-Objekt darstellt. Die Beziehung wird im <span class=SpellE>Konstruktor</span>
+aufgebaut. Die Klasse Ware erhält ein neues Attribut, welches die Beziehung zu
+einem Lieferanten darstellt. Die Beziehung wird über die Methode <span
+class=SpellE>getLieferant</span>() hergestellt. Wie man die Beziehung zwischen
+Kunden und Lieferanten und der Adresse herstellt bleibt ihnen überlassen!<o:p></o:p></span></p>
+
+<p><span lang=DE style='mso-ansi-language:DE'>Wie groß ihre Arrays sind bleibt
+ihnen überlassen.<o:p></o:p></span></p>
+
+<p><span lang=DE style='mso-ansi-language:DE'>!!Bevor sie beginnen erstellen
+sie sich ein Klassendiagramm!!<o:p></o:p></span></p>
+
+<p><span lang=DE style='mso-ansi-language:DE'>Die Klasse Bestellung:<br>
+<br>
+private: <o:p></o:p></span></p>
+
+<p><span lang=DE style='mso-ansi-language:DE'>......<br>
+<span class=SpellE>-kunde:Kunde</span> <br>
+<br>
+<span class=SpellE>public</span>: +Bestellung(<span class=SpellE>kunde:Kunde</span>)<br>
+......<br>
+<br>
+<br>
+Die Klasse Kunde sieht <span class=SpellE>folgendermassen</span> aus:<br>
+<br>
+<br>
+<br>
+Die Klasse Kunde:<br>
+<br>
+private: <o:p></o:p></span></p>
+
+<p><span class=SpellE><span lang=DE style='mso-ansi-language:DE'>-vorname:String</span></span><span
+lang=DE style='mso-ansi-language:DE'><br>
+<span class=SpellE>-nachname:Sring</span><br>
+<span class=SpellE>-nummer:String</span><br>
+<span class=SpellE>-bekommtRabatt:boolean</span> = <span class=SpellE>false</span><br>
+<br>
+<span class=SpellE>public</span>: <o:p></o:p></span></p>
+
+<p><span lang=DE style='mso-ansi-language:DE'>+Kunde(<span class=SpellE>vorname:String,nachname:string,nummer:String</span>)<br>
++Kunde()<br>
++<span class=SpellE>getName</span>():String<br>
++<span class=SpellE>getNummer</span>():String<br>
++<span class=SpellE>putBekommtRabatt</span>(<span class=SpellE>bekommtRabatt:boolean</span>)<br>
++<span class=SpellE>getBekommtRabatt</span>():<span class=SpellE>boolean</span><br
+style='mso-special-character:line-break'>
+<![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+<![endif]><o:p></o:p></span></p>
+
+<p><span lang=DE style='mso-ansi-language:DE'>Wie die Klassen Lieferant und
+Adresse aufgebaut sind überlegen sie sich selber!<o:p></o:p></span></p>
+
+<p><span lang=DE style='mso-ansi-language:DE'><br>
+Ob ein Kunde Rabatt bekommt oder nicht, wird im Instanz-Attribut <span
+class=SpellE>bekommtRabatt</span> festgehalten.<br>
+Um das Attribut zu setzen und abzufragen, gibt es die <span class=SpellE>Mehtoden</span>
+<span class=SpellE>putBekommtRabatt</span>() und <br>
+<span class=SpellE>getBekommtRabatt</span>().<br>
+<br>
+Die Klasse Kundenrabatt:<br>
+<br>
+private: <o:p></o:p></span></p>
+
+<p><span class=SpellE><span lang=DE style='mso-ansi-language:DE'>-rabattsatz:double</span></span><span
+lang=DE style='mso-ansi-language:DE'> = 0.5<br>
+<br>
+<span class=SpellE>public</span>: +Kundenrabatt()<br>
++<span class=SpellE>setzeRabattsatz</span>(<span class=SpellE>rabattsatz:double</span>)<br>
++<span class=SpellE>gibRabattsatz</span>():double<br>
++<span class=SpellE>berechneRabattpreis</span>(<span class=SpellE>preis:double</span>):double<br>
+<br>
+Die Klassenattribute und Klassenmethoden regeln das Rabattsystem. Alle Kunden
+bekommen<br>
+den selbem Rabatt, der in der Klasse festgelegt wird (!!Klassenattribut, <span
+class=SpellE>static</span>!!). Er kann<br>
+mit den zugehörigen Klassenmethoden gesetzt und abgefragt werden. Die Methode <span
+class=SpellE>berechneRabattpreis</span>()<br>
+liefert den Kundenpreis auf der Basis des spezifizierten Listenpreises.<br>
+<br>
+In der Klasse Bestellung muss die Methode <span class=SpellE>zeigeAn</span>()
+angepasst werden. Es soll der Rabattsatz<span class=GramE>,</span><br>
+der Listenpreis, der Kundenpreis, der Lieferant, <br>
+die Ware und die Menge für jeden Kunden (Name, Adresse und Kundennummer)
+angezeigt werden.<o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,274 @@
+* {
+				box-sizing: border-box;
+}
+
+body {
+				margin: 0;background-color: #FFFFFF;
+				
+				
+}
+
+body,
+textarea,
+.senden {
+				font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+				font-size: calc(1rem/16*14);
+}
+.kontaktformular .row input,
+.kontaktformular .row textarea,
+.kontaktformular .row select {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+}
+input[type="file"] {
+				max-width: 100%;
+}
+
+.kontaktformular {
+				width: 715px;
+				max-width: 100%;
+				padding: calc(1rem/16*20) calc(1rem/16*10);
+}
+
+.kontaktformular .row {
+				display: flex;
+				align-items: flex-end;
+				margin-bottom: 1rem;
+				width: 100%;
+}
+
+.kontaktformular .row .field {
+				display: block;
+				height: calc(1rem/16*34);
+				font-size: calc(1rem/16*14);
+				width: 100%;
+				padding: .375rem .75rem;
+				color: #555;
+				border: 1px solid #ccc;
+				border-radius: .25rem;
+				box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+				transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.kontaktformular .row .field:focus,
+.kontaktformular .row input[type="checkbox"]:focus {
+				border-color: #66afe9 !important;
+				outline: 0 !important;
+				box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0.5rem rgba(102, 175, 233, 0.6);
+}
+
+.kontaktformular .row .col-sm-2,
+.kontaktformular .row .col-sm-3,
+.kontaktformular .row .col-sm-4 {
+				width: 31%;
+}
+
+.kontaktformular .row .col-sm-8 {
+				width: 81%;
+}
+
+.kontaktformular .row .control-label {
+				display: inline-block;
+				text-align: right;
+				line-height: 2rem;
+				width: 19%;
+				font-weight: bold;
+				padding-right: 1rem;
+}
+
+.row label + div + label {
+    width: 19% !important;
+}
+
+
+.kontaktformular .row textarea {
+				height: calc(1rem/16*114);
+}
+
+.kontaktformular .upload-row {
+				flex-wrap: wrap;
+}
+
+.kontaktformular .upload-row .col-sm-8:not(:nth-child(2)) input {
+				margin-top: .25rem;
+				margin-left: 23.52%;
+}
+
+.kontaktformular .row input[type="checkbox"] {
+				height: calc(0.6rem/16*34);
+				width: calc(0.6rem/16*34);
+				border: 1px solid #ccc;
+				border-radius: .25rem;
+				box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+				transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;	
+				display: block;
+				float: left;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				cursor: pointer;
+				margin-left: 0px;
+}
+.kontaktformular .row input:checked {
+				background: url(check-solid.svg) no-repeat center center;
+				background-size: 75%;
+}
+
+.kontaktformular .row#privacy-security {
+				align-items: center;
+}
+
+.kontaktformular .row#privacy-security .control-label {
+				align-self: flex-end;
+				line-height: 1.5rem;
+}
+
+.kontaktformular .row#privacy-security .checkbox-inline a:hover,
+.kontaktformular .row#privacy-security .checkbox-inline a:focus {
+				color: #23527c;
+				text-decoration: underline;
+}
+
+.kontaktformular .row#privacy-security .checkbox-inline a {
+				color: #337ab7;
+				text-decoration: none;
+				margin: 7px 0px 0px 32px;
+				display: block;
+}
+
+
+.kontaktformular .row#mail-copy {
+				align-items: center;
+}
+
+.kontaktformular .row#mail-copy .control-label {
+				align-self: flex-end;
+				line-height: 1.5rem;
+}
+
+.kontaktformular .row#mail-copy .checkbox-inline a:hover,
+.kontaktformular .row#mail-copy .checkbox-inline a:focus {
+				color: #23527c;
+				text-decoration: underline;
+}
+
+.kontaktformular .row#mail-copy .checkbox-inline a {
+				color: #337ab7;
+				text-decoration: none;
+				margin: 7px 0px 0px 32px;
+				display: block;
+}
+
+
+.kontaktformular .row#mail-copy .checkbox-inline span {
+				color: #337ab7;
+				text-decoration: none;
+				margin: 7px 0px 0px 32px;
+				display: block;
+				color: #000000;
+}
+
+
+
+
+
+
+.kontaktformular .row#answer .field:focus {
+				border-color: #66afe9;
+}
+
+.kontaktformular .row#answer .control-label {
+				align-self: flex-start;
+}
+
+.kontaktformular .row#answer .errordesignfields {
+				border-color: #db0007;
+}
+
+.kontaktformular .row#send {
+				padding-left: 19%;
+}
+
+.kontaktformular .row#send .col-sm-4 {
+				width: 100%;
+}
+
+.kontaktformular .row .senden {
+				width: 100%;
+				font-size: 16px;
+				font-weight: bold;
+				height: 2.5rem;
+				margin-top: calc(1rem/16*5);
+				padding: .5rem .75rem;
+				color: white;
+				background-color: #337ab7;
+				border: 1px solid transparent;
+				border-color: #2e6da4;
+				border-radius: 4px;
+}
+
+.kontaktformular .row .senden:hover {
+				background-color: #286090;
+				border-color: #204d74;
+				cursor: pointer;
+}
+
+.kontaktformular .row .errormsg + input,.kontaktformular .row .errormsg + br + input[type="checkbox"],
+.kontaktformular .row .errormsg + select,
+.kontaktformular .row .errormsg + textarea {
+				border-color: #db0007;
+}
+
+@media (max-width: 660px) {
+				.kontaktformular {
+								padding: 0 1rem;
+				}
+				.kontaktformular .row {
+								display: initial;
+				}
+				.kontaktformular .row .control-label {
+								margin-top: .5rem;
+								text-align: left;
+				}
+				.kontaktformular .row .col-sm-2,
+				.kontaktformular .row .col-sm-3,
+				.kontaktformular .row .col-sm-4,
+				.kontaktformular .row .col-sm-8 {
+								width: 100% !important;
+				}
+				.kontaktformular .upload-row {
+								flex-wrap: wrap;
+				}
+				.kontaktformular .upload-row .col-sm-8:not(:nth-child(2)) input {
+								margin-top: .25rem;
+								margin-left: 0;
+				}
+				.kontaktformular .row .senden {
+								margin-bottom: calc(1rem/16*20);
+				}
+}
+.copyright {
+	 color: #000000;
+	 font-size: 13px;
+}
+.kontaktformular .row select{
+				background: url(chevron-down-solid.svg) no-repeat;
+				background-position: right 3px center;
+				background-size: 15px 10px;
+				cursor: pointer;
+}
+.kontaktformular .row ::placeholder,
+.kontaktformular .row select.unselected{
+				color: grey;
+				opacity: 0.7;
+}
+.kontaktformular .row select.field option[value=""][disabled] {
+				display: none;
+}
+.kontaktformular .row select.field option {
+				color: #555;
+}
+.kontaktformular .row select.field option[value=""] {
+				color: rgba(0,0,0,0.4);
+}

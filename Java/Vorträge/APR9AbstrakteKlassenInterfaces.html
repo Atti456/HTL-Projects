@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0038)http://www.htl-wels.ac.at/rf/main.html -->
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 10">
+<meta name=Originator content="Microsoft Word 10">
+<link rel=File-List href="APR9AbstrakteKlassenInterfaces-Dateien/filelist.xml">
+<title>Main</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Harald Sander</o:Author>
+  <o:LastAuthor>Harald Sander</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:Created>2009-05-13T14:23:00Z</o:Created>
+  <o:LastSaved>2009-05-13T14:26:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>342</o:Words>
+  <o:Characters>2156</o:Characters>
+  <o:Company>HTL Wels</o:Company>
+  <o:Lines>17</o:Lines>
+  <o:Paragraphs>4</o:Paragraphs>
+  <o:CharactersWithSpaces>2494</o:CharactersWithSpaces>
+  <o:Version>10.2625</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:HyphenationZone>21</w:HyphenationZone>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]-->
+<link rel=Stylesheet type="text/css" media=all
+href="../../sander-Dateien/stylesheet.css">
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoBodyTextIndent3, li.MsoBodyTextIndent3, div.MsoBodyTextIndent3
+	{margin-top:0pt;
+	margin-right:0pt;
+	margin-bottom:0pt;
+	margin-left:56.25pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:14.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p
+	{font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 56.7pt 70.85pt;
+	mso-header-margin:35.4pt;
+	mso-footer-margin:35.4pt;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Normale Tabelle";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0pt 5.4pt 0pt 5.4pt;
+	mso-para-margin:0pt;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=white background="background/synapse_background.gif" lang=DE-AT
+style='tab-interval:35.4pt'>
+
+<div class=Section1>
+
+<h1>Abstrakte Klassen und Interfaces</h1>
+
+<h2>Klassen ohne Objekte die nur Superklasse sein wollen</h2>
+
+<p>In vielen Fällen sind Klassen notwendig, von denen keine Objekte erzeugt
+werden sollen. <span class=GramE>Solche</span> Klassen erklärt man zu abstrakte
+Klassen. Eine abstrakte Klasse hat i. A. den Zweck, als Superklasse eine
+grundlegende Funktionalität für Subklassen anzubieten.</p>
+
+<p>Zusätzlich kann eine abstrakte Klasse Methoden deklarieren, die keine
+Implementierung haben. Solche Methoden nennt man abstrakte Methoden. Subklassen
+einer abstrakten Klasse bieten eine konkrete Implementierung der in der
+Superklasse abstrakt deklarierten Methoden an.</p>
+
+<p>Eine nicht abstrakte Subklasse einer abstrakten Klasse muss die in der
+Superklasse als abstrakt deklarierten Methoden implementieren. Die Subklasse
+muss das nicht wenn sie selbst abstrakt ist.</p>
+
+<h2>Abstrakte Klassen und abstrakte Methoden</h2>
+
+<p>Eine Klasse wird als abstrakte Klasse deklariert, indem man ihr den <span
+class=SpellE>Modifizierer</span> <span class=SpellE>abstract</span> gibt.</p>
+
+<p><span class=SpellE>public</span> <span class=SpellE>abstract</span> <span
+class=SpellE>class</span> <span class=SpellE>GeomObjekt</span></p>
+
+<p>{...}</p>
+
+<p>Von einer abstrakten Klasse können keine Objekte erzeugt werden.</p>
+
+<p>Eine Methode einer abstrakten Klasse, deren Implementierung einer Subklasse
+überlassen wird, hat den <span class=SpellE>Modifizeierer</span> <span
+class=SpellE>abstract</span>.</p>
+
+<p><span class=SpellE>public</span> <span class=SpellE>abstract</span> <span
+class=SpellE>void</span> transformiere(...)</p>
+
+<p>{...}</p>
+
+<h2>Referenz Variablen vom Typ einer abstrakten Klasse</h2>
+
+<p>Auch wenn von einer abstrakten Klasse keine Objekte erzeugt werden können,
+kann man doch Referenz-Variablen vom Typ der Klasse deklarieren.</p>
+
+<p><span class=SpellE>GeomObjekt</span> <span class=SpellE>go</span> = null;</p>
+
+<p>Eine <span class=SpellE>Refernz-Variable</span> vom Typ einer abstrakten
+Klasse kann nur Referenzen auf Instanzen von Subklassen der abstrakten Klasse
+aufnehmen.</p>
+
+<p><span class=SpellE>go</span> = <span class=SpellE>new</span> Kreis ( ...);</p>
+
+<h2>Notation in der UML</h2>
+
+<p>Abstrakte Klassen und Methoden werden in der UML rekursiv geschrieben.</p>
+
+<h2>Interfaces</h2>
+
+<p>Ein Interface ist mit einer abstrakten Klasse vergleichbar, die
+ausschließlich <span class=SpellE>public</span> und <span class=SpellE>abstract</span>
+Methoden enthält.</p>
+
+<p><span class=SpellE>public</span> <span class=SpellE>interface</span>
+Druckbar</p>
+
+<p>{</p>
+
+<p>Drucksatz <span class=SpellE>gibDruckAufbereitet</span>( );</p>
+
+<p>}</p>
+
+<p>Interface Methoden sind immer implizit <span class=SpellE>public</span> und <span
+class=SpellE>abstract</span>.</p>
+
+<p>Von einem Interface können keine Objekte erzeugt werden.</p>
+
+<p>Interfaces werden von Klassen implementiert.</p>
+
+<p><span class=SpellE>public</span> <span class=SpellE>class</span> Dokument <span
+class=SpellE>implements</span> Druckbar</p>
+
+<p>{</p>
+
+<p>.....</p>
+
+<p>}</p>
+
+<h2>Referenz-Variablen vom Typ eines Interfaces</h2>
+
+<p>Auch wenn von einem Interface keine Objekte erzeugt werden können, kann man
+doch Referenz-Variablen vom Typ des Interfaces deklarieren.</p>
+
+<p>Druckbar <span class=SpellE>druckbareSache</span> = null;</p>
+
+<p>Eine Referenz-Variable vom Typ eines Interfaces kann eine Referenz auf ein
+Objekt aufnehmen, dessen Klasse das Interface implementiert.</p>
+
+<p>Dokument <span class=SpellE>dokum</span> = <span class=SpellE>new</span>
+Dokument ( );</p>
+
+<p>.....</p>
+
+<p><span class=SpellE>druckbareSache</span> = <span class=SpellE>dokum</span>;</p>
+
+</div>
+
+</body>
+
+</html>

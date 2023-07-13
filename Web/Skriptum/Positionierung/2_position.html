@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+	<meta charset="UTF-8">
+		<title>
+		Positionierung Margin auto
+		</title>
+        <link href="2_position.css" type="text/css" rel="stylesheet">
+	</head>
+	<body>
+        <p>
+            Um komplexere Layouts zu erstellen, müssen wir über die <b>position</b>-Eigenschaft reden. 
+        </p>
+		<br>        
+		<div class = "static elem"><b>static</b> ist der Standardwert. Ein Element mit position: static; 
+            wird auf keine besondere Art positioniert. Ein Element mit diesem Wert wird als nicht positioniert 
+            bezeichnet und ein Elemement mit jedem anderen Wert für die Position als positioniert
+		</div>
+
+		<br>
+		<div class = "relative1 elem"><b>relative</b> verhält sich genau wie static außer es werden weitere Eigenschaften gesetzt. 
+		</div>
+        <div class ="relative2 elem2">Setzt man die Eigenschaften top, right, bottom, and left eines relativ positionten 
+            Elementes passt sich dessen Position relativ zu seiner normalen Position an. Der restliche Inhalt wird nicht 
+            angepasst um die Lücke, die das Element hinterlassen hat, zu füllen. 
+        </div>
+          <br>
+        <p>
+            <b>fixed</b> Ein fixiertes Element wird relativ zum Viewport platziert. Das heißt, das Element bleibt an der selben Stelle, 
+            auch wenn die Seite gescrollt wird. Wie bei relative werden die Eigenschaften top, right, bottom und left benutzt.
+        </p>
+ 
+		<div class = "fixed elem">Sicher hast du das fixierte Element in der unteren rechten Ecke dieser Seite bemerkt. 
+		</div>
+        <p>
+            <b>absolute</b> ist der kniffeligste position-Wert. absolute verhält sich wie fixed aber relativ zum nächsten 
+            positionierten Ancestor statt relativ zum Viewport. Hat ein absolut positioniertes Element keinen 
+            positionierten Ancestor, benutzt es den document body und bewegt sich auch mit der gescrollten Seite. 
+            Zur Erinnerung: Ein "positioniertes" Element ist eines das als Position irgendeinen Wert außer static hat. 
+        </p>
+        <div class = "relative elem">
+            Dieses Element ist relativ positioniert. Wäre es position: static; würde sein absolut positionieres child ausbrechen und am document body ausgerichtet.
+	        <div class ="absolute elem2">
+                Dieses Element ist absolut positioniert. Es wird relativ zum Elternelement positioniert. 
+            </div>
+        </div>
+
+	</body>
+</html>

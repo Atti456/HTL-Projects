@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <Label layoutX="231.0" layoutY="22.0" prefHeight="18.0" prefWidth="138.0" text="File Copy">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <TextField fx:id="copyFrom" layoutX="151.0" layoutY="98.0" prefHeight="26.0" prefWidth="257.0" />
+      <TextField fx:id="copyTo" layoutX="151.0" layoutY="138.0" prefHeight="26.0" prefWidth="258.0" />
+      <Label layoutX="80.0" layoutY="102.0" text="Copy from:" />
+      <Label layoutX="87.0" layoutY="142.0" text="Copy to:" />
+      <Button fx:id="copyFromSelect" layoutX="444.0" layoutY="99.0" mnemonicParsing="false" onAction="#onActionCopyFromSelect" text="Select" />
+      <Button fx:id="copyToSelect" layoutX="444.0" layoutY="138.0" mnemonicParsing="false" onAction="#onActionCopyToSelect" text="Select" />
+      <ProgressBar fx:id="progressbar" layoutX="180.0" layoutY="223.0" prefWidth="200.0" progress="0.0" />
+      <Button fx:id="copybutton" disable="true" layoutX="401.0" layoutY="220.0" mnemonicParsing="false" onAction="#onActionCopyButton" text="copy" />
+      <Label layoutX="125.0" layoutY="224.0" text="Progress:" />
+   </children>
+</AnchorPane>

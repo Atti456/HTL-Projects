@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            Schach
+        </title>
+        <link href="design.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1>SCHACH - Gangart</h1>
+            <nav class="hauptnavi">
+                <ul>
+                    <li><a href=Schachregeln.html>Schachgrundregeln</a></li>
+                    <li><a href=figurenwert.html>Wert der Figuren</a></li>
+                    <li><a href=gangart.html>Gangart der Figuren</a></li>
+                    <li><a href=schachlinks.html>Schachlinks</a></li>
+                </ul>
+            </nav>
+            <nav>
+                <ul>
+                    <li>Bewegungsregeln: </li>
+                    <li><a href=#L>Läufer</a> - </li>
+                    <li><a href=#T>Turm</a> - </li>
+                    <li><a href=#S>Springer</a> - </li>
+                    <li><a href=#B>Bauer</a> - </li>
+                    <li><a href=#D>Dame</a> - </li>
+                    <li><a href=#K>König</a></li>
+                </ul>
+            </nav>
+        </header>
+        <article>
+            <h2 id="L">Läufer</h2>
+            <p>Der Läufer bewegt sich diagonal und kann auf einem leeren Brett mit nur einem Zug 
+mehrere Felder entlang einer Diagonalen weiterbewegt werden. Eine Diagonale ist eine 
+schräge Anordnung vom gleichfarbigen Feldern, die von einem zum anderen Brettrand reicht. 
+</p>
+            <img src="pics/ga_laeufer.jpg" alt="gangart des Läufers">
+        </article>
+        <article>
+            <h2 id="T">Turm</h2>
+            <p>Der Turm bewegt sich geradlinig (senkrecht oder waagrecht) entlang von Reihen und Linien.
+Der Turm ist mächtiger als ein Läufer, weil er alle Felder eines Schachbrettes erreichen kann, 
+während der Läufer auf den schwarzen oder weißen Feldern gebunden ist und somit nur die 
+Hälfte aller Felder erreichen kann.</p>
+            <img src="pics/ga_turm.jpg" alt="gangart des Turms">
+        </article>
+        <article>
+            <h2 id = "S">Springer</h2>
+            <p>Der Springer besitzt eine eigenartige Gangart, den sogenannten Rösselsprung. Als Merkregel für 
+den Rösselsprung kann man "Eins gerade, eins schräg" oder "Zwei geradeaus, eins zur Seite" benutzen. 
+Der Springer kann als einzige Figur über andere hinwegspringen.</p>
+            <img src="pics/ga_springer.jpg" alt="gangart des Springers">
+        </article>
+        <article>
+            <h2 id = "B">Bauer</h2>
+            <p>
+
+Der Bauer zieht immer nur ein Feld vorwärts. Vorwärts heißt in der Grundstellung in Richtung 
+der gegnerischen Figuren. Falls der Bauer noch nicht gezogen hat, darf er zwei Felder auf einmal ziehen, 
+d.h. einen Doppelschritt ausführen. Der Bauer kann nur Figuren schlagen, die sich ein Feld diagonal vor 
+ihm befinden. Der Bauer ist somit die einzige Figur, die auf unterschiedliche Arten schlägt und zieht.</p>
+            <img src="pics/ga_bauer.jpg" alt="gangart des Bauerns">
+        </article>
+        <article>
+            <h2 id="D">Dame</h2>
+            <p>
+
+Die Dame ist die stärkste Figur im Spiel. Sie vereinigt die Gangarten von Turm und Läufer 
+und kann sowohl geradeaus oder diagonal ziehen.</p>
+            <img src="pics/ga_dame.jpg" alt="gangart der Dame">
+        </article>
+        <article>
+            <h2 id="K">König</h2>
+            <p>König
+
+Der König kann wie die Dame in jede Richtung ziehen, allerdings nur ein Feld weit.
+Einzige Ausnahme ist die Rochade.</p>
+            <img src="pics/ga_koenig.jpg" alt="gangart des Königs">
+        </article>
+        <footer>
+            (c) 2017 by Artelsmair.Alexander
+        </footer>
+        
+        
+    </body>
+</html>

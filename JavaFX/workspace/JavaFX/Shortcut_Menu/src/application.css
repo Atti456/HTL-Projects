@@ -1,0 +1,49 @@
+
+.root
+{
+    -fx-background-color: transparent;
+}
+
+.button{
+    -fx-background-color: transparent;
+}
+
+
+.button1 {
+    -fx-background-image: url("./images/YouTube-icon.png");
+    -fx-background-size: 64 64;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+
+}
+.button2 {
+    -fx-background-image: url("./images/gmail_logo.png");
+    -fx-background-size: 64 64;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+
+}
+.button3 {
+    -fx-background-image: url("./images/Lichess_Logo.png");
+    -fx-background-size: 64 64;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+
+}
+.button4 {
+    -fx-background-image: url("./images/reddit-logo.png");
+    -fx-background-size: 64 64;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+
+}
+.button5 {
+     -fx-background-image: url("./images/exit.png");
+     -fx-background-size: 64 64;
+     -fx-background-repeat: no-repeat;
+     -fx-background-position: center;
+
+ }
+
+
+

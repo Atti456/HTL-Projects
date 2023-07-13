@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0038)http://www.htl-wels.ac.at/rf/main.html -->
+<HTML xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40"><HEAD><TITLE>Main</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<LINK 
+href="../../sander-Dateien/stylesheet.css" type=text/css rel=stylesheet>
+<META content="Microsoft FrontPage 5.0" name=GENERATOR>
+<style>
+<!--
+ p.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+p.MsoBodyTextIndent3
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:56.25pt;
+	margin-bottom:.0001pt;
+	font-size:14.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY background=background/synapse_background.gif>
+<h1>Übung 10</h1>
+<p> Aufgabe Arrays</p>
+<p>Ausgangspunkt dieser Aufgabe ist die L&ouml;sung der &Uuml;bung 7</p>
+<p>Ein Fahrzeughalter kann bisher nur ein Fahrzeug halten. &Auml;ndern Sie die 
+  Klasse so ab, dass ein Fahrzeug beliebig viele Fahrzeuge halten kann. Anstelle 
+  der 1 : 1 Beziehung zwischen der Klasse Fahrzeug und Fahrzeughlater tritt jetzt 
+  eine 1 : * Beziehung.</p>
+<p>Verwenden sie ein Array, um die Fahrzeuge zu speichern. Das Array enth&auml;lt 
+  keine Leerestellen. Immer wenn ein Fahrzeug hinzukommt, wird ein neues Array 
+  angelegt, dam um eine Komponente gr&ouml;&szlig;er ist als das alte, und der 
+  Inhalt des alten Arrays wird in das neue Array &uuml;bernommen.</p>
+<p>Das Hauptprogramm sieht dann z.B. so aus:</p>
+<p> Fahrzeughalter berty = new Fahrzeughalter(&quot;Berty&quot;,&quot;Vogts&quot;);<br>
+  Fahrzeughalter uwe = new Fahrzeughalter(&quot;Uwe&quot;,&quot;Seeler&quot;);<br>
+  <br>
+  new PKW(berty,4,5);<br>
+  new Motorrad(berty);<br>
+  new PKW(uwe,4,7);<br>
+  new Motorrad(berty);<br>
+  new Motorrad(berty);<br>
+  <br>
+  <br>
+  System.out.println(&quot;Die Fahrzeuge von &quot;+berty+&quot;:&quot;);<br>
+  Fahrzeug[] fzgeBerty = berty.getFahrzeug();<br>
+  for(int i=0;i&lt;fzgeBerty.length;i++)<br>
+  {<br>
+  System.out.println(fzgeBerty[i]);<br>
+  }<br>
+  System.out.println(&quot;Die Fahrzeuge von &quot;+uwe+&quot;:&quot;);<br>
+  Fahrzeug[] fzgeUwe = uwe.getFahrzeug();<br>
+  for(int i=0;i&lt;fzgeUwe.length;i++)<br>
+  {<br>
+  System.out.println(fzgeUwe[i]);<br>
+  }</p>
+<p>mit dieser Ausgabe:</p>
+<p>Die Fahrzeuge von Berty Vogts:</p>
+<p>Das Fahrzeug 1 geh&ouml;rt Berty Vogts. Es ist ein PKW mit 4 R&auml;dern und 
+  5 T&uuml;ren.</p>
+<p>Das Fahrzeug 4 geh&ouml;rt Berty Vogts. Es ist ein Motorrad mit 2 R&auml;dern.</p>
+<p>Das Fahrzeug 5 geh&ouml;rt Berty Vogts. Es ist ein Motorrad mit 2 R&auml;dern.</p>
+<p>Die Fahrzeuge von Uwe Seelers:</p>
+<p>Das Fahrzeug 2 geh&ouml;rt Uwe Seeler. Es ist ein Motorrad mit 2 R&auml;dern.</p>
+<p>Das Fahrzeug 3 geh&ouml;rt Uwe Seeler. Es ist ein PKW mit 4 R&auml;dern und 
+  7 T&uuml;ren.</p>
+</BODY></HTML>

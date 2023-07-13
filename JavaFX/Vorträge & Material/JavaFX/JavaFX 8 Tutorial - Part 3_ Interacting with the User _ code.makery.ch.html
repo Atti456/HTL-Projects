@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://code.makery.ch/library/javafx-8-tutorial/part3/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JavaFX 8 Tutorial - Part 3: Interacting with the User | code.makery.ch</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+    /**
+     * @license
+     * MyFonts Webfont Build ID 2872352, 2014-08-27T06:57:40-0400
+     * 
+     * The fonts listed in this notice are subject to the End User License
+     * Agreement(s) entered into by the website owner. All other parties are 
+     * explicitly restricted from using the Licensed Webfonts(s).
+     * 
+     * You may obtain a valid license at the URLs below.
+     * 
+     * Webfont: Museo Slab 700 by exljbris
+     * URL: http://www.myfonts.com/fonts/exljbris/museo-slab/700/
+     * Copyright: Copyright (c) 2009 by Jos Buivenga. All rights reserved.
+     * Licensed pageviews: 500,000
+     * 
+     * License: http://www.myfonts.com/viewlicense?type=web&buildid=2872352
+     * 
+     * © 2014 MyFonts Inc
+    */
+    -->
+    <link href="./JavaFX 8 Tutorial - Part 3_ Interacting with the User _ code.makery.ch_files/style.min.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="canonical" href="http://code.makery.ch/library/javafx-8-tutorial/part3/">
+  
+    <!-- Alternate Languages -->
+    <link rel="alternate" hreflang="en" href="http://code.makery.ch/library/javafx-8-tutorial/part3/">
+    <link rel="alternate" hreflang="es" href="http://code.makery.ch/library/javafx-8-tutorial/es/part3/">
+    <link rel="alternate" hreflang="fa" href="http://code.makery.ch/library/javafx-8-tutorial/fa/part3/">
+    <link rel="alternate" hreflang="fr" href="http://code.makery.ch/library/javafx-8-tutorial/fr/part3/">
+    <link rel="alternate" hreflang="id" href="http://code.makery.ch/library/javafx-8-tutorial/id/part3/">
+    <link rel="alternate" hreflang="it" href="http://code.makery.ch/library/javafx-8-tutorial/it/part3/">
+    <link rel="alternate" hreflang="kr" href="http://code.makery.ch/library/javafx-8-tutorial/kr/part3/">
+    <link rel="alternate" hreflang="pt" href="http://code.makery.ch/library/javafx-8-tutorial/pt/part3/">
+    <link rel="alternate" hreflang="ru" href="http://code.makery.ch/library/javafx-8-tutorial/ru/part3/">
+    <link rel="alternate" hreflang="tr" href="http://code.makery.ch/library/javafx-8-tutorial/tr/part3/">
+    <link rel="alternate" hreflang="uk" href="http://code.makery.ch/library/javafx-8-tutorial/uk/part3/">
+    <link rel="alternate" hreflang="zh-cn" href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part3/">
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" href="http://code.makery.ch/rss" title="code.makery.ch - RSS Feed">
+
+    <meta name="description" content="React to selection changes in the JavaFX TableView. Add, edit and remove items from the table and validate user input.">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="JavaFX 8 Tutorial - Part 3: Interacting with the User | code.makery.ch">
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="React to selection changes in the JavaFX TableView. Add, edit and remove items from the table and validate user input.">
+    <meta property="og:url" content="http://code.makery.ch/library/javafx-8-tutorial/part3/">
+    <meta property="og:image" content="http://code.makery.ch/assets/library/javafx-8-tutorial/part3/addressapp-part3.png">
+    
+    <link rel="author" href="https://plus.google.com/+MarcoJakob7">
+    
+    <link href="./JavaFX 8 Tutorial - Part 3_ Interacting with the User _ code.makery.ch_files/prettify.min.css" rel="stylesheet" type="text/css" media="all">
+
+    
+    <script async="" src="./JavaFX 8 Tutorial - Part 3_ Interacting with the User _ code.makery.ch_files/analytics.js.Download"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-34917397-3', 'makery.ch');
+  ga('send', 'pageview');
+</script>
+  <script type="text/javascript" async="" src="./JavaFX 8 Tutorial - Part 3_ Interacting with the User _ code.makery.ch_files/embed.js.Download"></script><link rel="preload" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.188f59a1df04c219bf32da7f76545092.css"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.037f55c32651d22255e90738c195e946.js"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.2fd6d206c06cd51584499fe8219aa635.js"><link rel="preload" as="script" href="https://disqus.com/next/config.js"></head>
+  <body onload="prettyPrint()">
+    <header class="site-header container">
+  <h1 class="site-title">
+    <a href="http://code.makery.ch/"><span class="main-text">code</span>.makery</a>
+  </h1>
+  <div class="site-intro">
+    <p>Learning how to code.</p>
+  </div>
+  
+  <div class="ribbon">
+    <a href="https://tinyletter.com/codemakery" title="Get Updates">Subscribe to <i class="fa fa-envelope-o"></i> Updates </a>
+  </div>
+</header>
+    
+    <div class="container article-container">
+      
+<nav class="site-navigation">
+  <ul>
+    <li><a class="black-link" href="http://code.makery.ch/">Home</a></li>
+    <li><a class="main-link" href="http://code.makery.ch/library/">Library</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/paths/">Paths</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/blog/">Blog</a></li>
+    <li><a class="black-link" href="http://code.makery.ch/about/">About</a></li>
+  </ul>
+</nav>
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="github-edit">
+            <a href="https://github.com/marcojakob/code.makery.ch/edit/master/collections/library/javafx-8-tutorial-en-part3.md">Edit on GitHub</a>
+          </div>
+        </div>
+      </div>
+      
+      <article class="row">
+        <aside class="col-md-3">
+          <div class="visible-md-block visible-lg-block">
+          <div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Articles in this Series</h4>  
+  </div>
+
+  <div class="list-group">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/" class="list-group-item">
+        Introduction</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part1/" class="list-group-item">
+        Part 1: Scene Builder</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part2/" class="list-group-item">
+        Part 2: Model and TableView</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part3/" class="list-group-item active">
+        Part 3: Interacting with the User</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part4/" class="list-group-item">
+        Part 4: CSS Styling</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part5/" class="list-group-item">
+        Part 5: Storing Data as XML</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part6/" class="list-group-item">
+        Part 6: Statistics Chart</a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part7/" class="list-group-item">
+        Part 7: Deployment</a>
+  </div>
+</div>
+<div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Download Sources</h4>  
+  </div>
+
+  <div class="list-group">
+      <a href="https://github.com/marcojakob/tutorial-javafx-8/releases/download/v1.1/addressapp-jfx8u40-part-3.zip" class="list-group-item">
+<i class="fa fa-fw fa-download"></i>        Part 3 as Eclipse Project <em>(requires at least JDK 8u40)</em></a>
+  </div>
+</div>
+
+          <div class="panel panel-default sidebar">
+  <div class="panel-heading">
+    <h4 class="panel-title">Languages</h4>  
+  </div>
+  <div class="list-group">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part3/" class="list-group-item active">
+        <i class="fa fa-fw fa-globe"></i> English
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/es/part3/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Español
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/fa/part3/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> فارسی
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/fr/part3/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Français
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/id/part3/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Bahasa Indonesia
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/it/part3/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Italiano
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/kr/part3/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> 한국어
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/pt/part3/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Português
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/ru/part3/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Русский
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/tr/part3/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Türkçe
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/uk/part3/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> Українська
+      </a>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part3/" class="list-group-item">
+        <i class="fa fa-fw fa-globe"></i> 中文（简体）
+      </a>
+  </div>
+</div>
+
+          </div>
+        </aside>
+        <div class="col-md-9">
+          <header class="article-header">
+            <h1 class="article-title">JavaFX 8 Tutorial - Part 3: Interacting with the User</h1>
+            <div class="article-date">
+  Apr 24, 2014
+  • Updated Mar 12, 2015
+
+</div>
+          </header>
+          
+          <aside class="visible-xs-block visible-sm-block">
+            <div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Articles in this Series <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/">
+        Introduction</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part1/">
+        Part 1: Scene Builder</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part2/">
+        Part 2: Model and TableView</a></li>
+      <li class=" active"><a href="http://code.makery.ch/library/javafx-8-tutorial/part3/">
+        Part 3: Interacting with the User</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part4/">
+        Part 4: CSS Styling</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part5/">
+        Part 5: Storing Data as XML</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part6/">
+        Part 6: Statistics Chart</a></li>
+      <li class=""><a href="http://code.makery.ch/library/javafx-8-tutorial/part7/">
+        Part 7: Deployment</a></li>
+  </ul>
+</div>
+<div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Download Sources <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=""><a href="https://github.com/marcojakob/tutorial-javafx-8/releases/download/v1.1/addressapp-jfx8u40-part-3.zip">
+<i class="fa fa-fw fa-download"></i>        Part 3 as Eclipse Project <em>(requires at least JDK 8u40)</em></a></li>
+  </ul>
+</div>
+
+            <div class="btn-group sidebar-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li class=" active">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/part3/"><i class="fa fa-fw fa-globe"></i> English</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/es/part3/"><i class="fa fa-fw fa-globe"></i> Español</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/fa/part3/"><i class="fa fa-fw fa-globe"></i> فارسی</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/fr/part3/"><i class="fa fa-fw fa-globe"></i> Français</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/id/part3/"><i class="fa fa-fw fa-globe"></i> Bahasa Indonesia</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/it/part3/"><i class="fa fa-fw fa-globe"></i> Italiano</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/kr/part3/"><i class="fa fa-fw fa-globe"></i> 한국어</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/pt/part3/"><i class="fa fa-fw fa-globe"></i> Português</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/ru/part3/"><i class="fa fa-fw fa-globe"></i> Русский</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/tr/part3/"><i class="fa fa-fw fa-globe"></i> Türkçe</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/uk/part3/"><i class="fa fa-fw fa-globe"></i> Українська</a>
+    </li>
+      <li class="">
+        <a href="http://code.makery.ch/library/javafx-8-tutorial/zh-cn/part3/"><i class="fa fa-fw fa-globe"></i> 中文（简体）</a>
+    </li>
+  </ul>
+</div>
+
+          </aside>
+          
+          <div class="article-content">
+            <p><img src="./JavaFX 8 Tutorial - Part 3_ Interacting with the User _ code.makery.ch_files/addressapp-part3.png" alt="Screenshot AddressApp Part 3"></p>
+<h2 id="topics-in-part-3">Topics in Part 3</h2>
+<ul>
+<li><strong>React to selection changes</strong> in the table.</li>
+<li>Add functionality to the <strong>add</strong>, <strong>edit</strong>, and <strong>remove</strong> buttons.</li>
+<li>Create a custom <strong>popup dialog</strong> to edit a person.</li>
+<li><strong>Validate user input</strong>.</li>
+</ul>
+<hr>
+<h2 id="react-to-table-selections">React to Table Selections</h2>
+<p>Obviously, we haven't used the right side of our application, yet. The idea is to display the details about a person on the right side when the user selects a person in the table.</p>
+<p>First, let's add a new method inside <code>PersonOverviewController</code> that helps us fill the labels with the data from a single <code>Person</code>.</p>
+<p>Create a method called <code>showPersonDetails(Person person)</code>. Go trough all the labels and set the text using <code>setText(...)</code> with details from the person. If <code>null</code> is passed as parameter, all labels should be cleared.</p>
+<h5 id="personoverviewcontroller-java">PersonOverviewController.java</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="com">/**
+ * Fills all text fields to show details about the person.
+ * If the specified person is null, all text fields are cleared.
+ * 
+ * @param person the person or null
+ */</span><span class="pln">
+</span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> showPersonDetails</span><span class="pun">(</span><span class="typ">Person</span><span class="pln"> person</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">person </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// Fill the labels with info from the person object.</span><span class="pln">
+        firstNameLabel</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="pln">person</span><span class="pun">.</span><span class="pln">getFirstName</span><span class="pun">());</span><span class="pln">
+        lastNameLabel</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="pln">person</span><span class="pun">.</span><span class="pln">getLastName</span><span class="pun">());</span><span class="pln">
+        streetLabel</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="pln">person</span><span class="pun">.</span><span class="pln">getStreet</span><span class="pun">());</span><span class="pln">
+        postalCodeLabel</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="typ">Integer</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">(</span><span class="pln">person</span><span class="pun">.</span><span class="pln">getPostalCode</span><span class="pun">()));</span><span class="pln">
+        cityLabel</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="pln">person</span><span class="pun">.</span><span class="pln">getCity</span><span class="pun">());</span><span class="pln">
+
+        </span><span class="com">// TODO: We need a way to convert the birthday into a String! </span><span class="pln">
+        </span><span class="com">// birthdayLabel.setText(...);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// Person is null, remove all the text.</span><span class="pln">
+        firstNameLabel</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="str">""</span><span class="pun">);</span><span class="pln">
+        lastNameLabel</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="str">""</span><span class="pun">);</span><span class="pln">
+        streetLabel</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="str">""</span><span class="pun">);</span><span class="pln">
+        postalCodeLabel</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="str">""</span><span class="pun">);</span><span class="pln">
+        cityLabel</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="str">""</span><span class="pun">);</span><span class="pln">
+        birthdayLabel</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="str">""</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+
+<h3 id="convert-the-birthday-date-to-a-string">Convert the Birthday Date to a String</h3>
+<p>You will notice that we couldn't set the <code>birthday</code> into the <code>Label</code> because it is of type <code>LocalDate</code> and not a <code>String</code>. We need to format the date first.</p>
+<p>We will use the conversion from <code>LocalDate</code> and <code>String</code> and vice versa in several places. It's good practice to create a helper class with <code>static</code> methods for this. We'll call it <code>DateUtil</code> and place it in a seperate package called <code>ch.makery.address.util</code>:</p>
+<h5 id="dateutil-java">DateUtil.java</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">package</span><span class="pln"> ch</span><span class="pun">.</span><span class="pln">makery</span><span class="pun">.</span><span class="pln">address</span><span class="pun">.</span><span class="pln">util</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">time</span><span class="pun">.</span><span class="typ">LocalDate</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">time</span><span class="pun">.</span><span class="pln">format</span><span class="pun">.</span><span class="typ">DateTimeFormatter</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">time</span><span class="pun">.</span><span class="pln">format</span><span class="pun">.</span><span class="typ">DateTimeParseException</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">/**
+ * Helper functions for handling dates.
+ * 
+ * @author Marco Jakob
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">DateUtil</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="com">/** The date pattern that is used for conversion. Change as you wish. */</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> DATE_PATTERN </span><span class="pun">=</span><span class="pln"> </span><span class="str">"dd.MM.yyyy"</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="com">/** The date formatter. */</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">DateTimeFormatter</span><span class="pln"> DATE_FORMATTER </span><span class="pun">=</span><span class="pln"> 
+            </span><span class="typ">DateTimeFormatter</span><span class="pun">.</span><span class="pln">ofPattern</span><span class="pun">(</span><span class="pln">DATE_PATTERN</span><span class="pun">);</span><span class="pln">
+
+    </span><span class="com">/**
+     * Returns the given date as a well formatted String. The above defined 
+     * {@link DateUtil#DATE_PATTERN} is used.
+     * 
+     * @param date the date to be returned as a string
+     * @return formatted string
+     */</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> format</span><span class="pun">(</span><span class="typ">LocalDate</span><span class="pln"> date</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">date </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> DATE_FORMATTER</span><span class="pun">.</span><span class="pln">format</span><span class="pun">(</span><span class="pln">date</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Converts a String in the format of the defined {@link DateUtil#DATE_PATTERN} 
+     * to a {@link LocalDate} object.
+     * 
+     * Returns null if the String could not be converted.
+     * 
+     * @param dateString the date as String
+     * @return the date object or null if it could not be converted
+     */</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">LocalDate</span><span class="pln"> parse</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> dateString</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> DATE_FORMATTER</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="pln">dateString</span><span class="pun">,</span><span class="pln"> </span><span class="typ">LocalDate</span><span class="pun">::</span><span class="pln">from</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">DateTimeParseException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Checks the String whether it is a valid date.
+     * 
+     * @param dateString
+     * @return true if the String is a valid date
+     */</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> validDate</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> dateString</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// Try to parse the String.</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">DateUtil</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="pln">dateString</span><span class="pun">)</span><span class="pln"> </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<div class="alert alert-info">
+<strong>Hint:</strong> You can change the format of the date by changing the
+<code>DATE_PATTERN</code>. For all possible formats see <a class="alert-link" href="http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html">DateTimeFormatter</a>.
+</div>
+
+
+<h4 id="use-the-dateutil">Use the DateUtil</h4>
+<p>Now we need to use our new <code>DateUtil</code> in the <code>showPersonDetails</code> method of <code>PersonOverviewController</code>. Replace the <em>TODO</em> we added with the following line:</p>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="pln">birthdayLabel</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="typ">DateUtil</span><span class="pun">.</span><span class="pln">format</span><span class="pun">(</span><span class="pln">person</span><span class="pun">.</span><span class="pln">getBirthday</span><span class="pun">()));</span></pre>
+
+
+<h3 id="listen-for-table-selection-changes">Listen for Table Selection Changes</h3>
+<p>To get informed when the user selects a person in the person table, we need to <em>listen for changes</em>.</p>
+<p>There is an interface in JavaFX called <a href="http://docs.oracle.com/javase/8/javafx/api/"><code>ChangeListener</code></a> with one method called <code>changed(...)</code>. The method has three parameters: <code>observable</code>, <code>oldValue</code>, and <code>newValue</code>.</p>
+<p>We will create such a <code>ChangeListener</code> using a Java 8 <em>lambda expression</em>. Let's add a few lines to the <code>initialize()</code> method in <code>PersonOverviewController</code>. Now it looks like this:</p>
+<h5 id="personoverviewcontroller-java">PersonOverviewController.java</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="lit">@FXML</span><span class="pln">
+</span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> initialize</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="com">// Initialize the person table with the two columns.</span><span class="pln">
+    firstNameColumn</span><span class="pun">.</span><span class="pln">setCellValueFactory</span><span class="pun">(</span><span class="pln">
+            cellData </span><span class="pun">-&gt;</span><span class="pln"> cellData</span><span class="pun">.</span><span class="pln">getValue</span><span class="pun">().</span><span class="pln">firstNameProperty</span><span class="pun">());</span><span class="pln">
+    lastNameColumn</span><span class="pun">.</span><span class="pln">setCellValueFactory</span><span class="pun">(</span><span class="pln">
+            cellData </span><span class="pun">-&gt;</span><span class="pln"> cellData</span><span class="pun">.</span><span class="pln">getValue</span><span class="pun">().</span><span class="pln">lastNameProperty</span><span class="pun">());</span><span class="pln">
+
+    </span><span class="com">// Clear person details.</span><span class="pln">
+    showPersonDetails</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">);</span><span class="pln">
+
+    </span><span class="com">// Listen for selection changes and show the person details when changed.</span><span class="pln">
+    personTable</span><span class="pun">.</span><span class="pln">getSelectionModel</span><span class="pun">().</span><span class="pln">selectedItemProperty</span><span class="pun">().</span><span class="pln">addListener</span><span class="pun">(</span><span class="pln">
+            </span><span class="pun">(</span><span class="pln">observable</span><span class="pun">,</span><span class="pln"> oldValue</span><span class="pun">,</span><span class="pln"> newValue</span><span class="pun">)</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> showPersonDetails</span><span class="pun">(</span><span class="pln">newValue</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<p>With <code>showPersonDetails(null);</code> we reset the person details. </p>
+<p>With <code>personTable.getSelectionModel...</code> we get the <em>selectedItemProperty</em> of the person table and add a listener to it. Whenever the user selects a person in the table, our <em>lambda expression</em> is executed. We take the newly selected person and pass it to the <code>showPersonDetails(...)</code> method.</p>
+<p>Try to <strong>run your application</strong> at this point. Verify that when you select a person in the table, details about that person are displayed on the right.</p>
+<p>If something doesn't work, you can compare your <code>PersonOverviewController</code> class with <a href="http://code.makery.ch/assets/library/javafx-8-tutorial/part3/PersonOverviewController.java">PersonOverviewController.java</a>.</p>
+<hr>
+<h2 id="the-delete-button">The Delete Button</h2>
+<p>Our user interface already contains a delete button but without any functionality. We can select the action for a button inside the <em>Scene Builder</em>. Any method inside our controller that is annotated with <code>@FXML</code> (or is public) is accessible by the <em>Scene Builder</em>. Thus, let's first add a delete method at the end of our <code>PersonOverviewController</code> class:</p>
+<h5 id="personoverviewcontroller-java">PersonOverviewController.java</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="com">/**
+ * Called when the user clicks on the delete button.
+ */</span><span class="pln">
+</span><span class="lit">@FXML</span><span class="pln">
+</span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> handleDeletePerson</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">int</span><span class="pln"> selectedIndex </span><span class="pun">=</span><span class="pln"> personTable</span><span class="pun">.</span><span class="pln">getSelectionModel</span><span class="pun">().</span><span class="pln">getSelectedIndex</span><span class="pun">();</span><span class="pln">
+    personTable</span><span class="pun">.</span><span class="pln">getItems</span><span class="pun">().</span><span class="pln">remove</span><span class="pun">(</span><span class="pln">selectedIndex</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<p>Now, open the <code>PersonOverview.fxml</code> file in <em>SceneBuilder</em>. Select the <em>Delete</em> button, open the <em>Code</em> group and choose <code>handleDeletePerson</code> in the dropdown of <strong>On Action</strong>.</p>
+<p><img src="./JavaFX 8 Tutorial - Part 3_ Interacting with the User _ code.makery.ch_files/handle-delete.png" alt="On Action"></p>
+<div class="alert alert-info">
+<strong>Remember:</strong> After making changes to an FXML file in Scene Builder you might need to refresh the project in Eclipse for the changes to be applied.
+</div>
+
+
+
+<h3 id="error-handling">Error Handling</h3>
+<p>If you run the application at this point you should be able to delete selected persons from the table. But what happenes if you <strong>click the delete button while no person is selected</strong> in the table? </p>
+<p>There will be an <code>ArrayIndexOutOfBoundsException</code> because it could not remove a person item at index <code>-1</code>. The index <code>-1</code> was returned by <code>getSelectedIndex()</code> - which means that there was no selection.</p>
+<p>To ignore such an error is not very nice, of course. We should let the user know that he/she must select a person before deleting. (Even better would be if we disabled the button so that the user doesn't even have the chance to do something wrong.)</p>
+<p>With some changes made to the <code>handleDeletePerson()</code> method, we can show a simple popup dialog whenever the user pushes the delete button while no person is selected in the table:</p>
+<h5 id="personoverviewcontroller-java">PersonOverviewController.java</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="com">/**
+ * Called when the user clicks on the delete button.
+ */</span><span class="pln">
+</span><span class="lit">@FXML</span><span class="pln">
+</span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> handleDeletePerson</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">int</span><span class="pln"> selectedIndex </span><span class="pun">=</span><span class="pln"> personTable</span><span class="pun">.</span><span class="pln">getSelectionModel</span><span class="pun">().</span><span class="pln">getSelectedIndex</span><span class="pun">();</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">selectedIndex </span><span class="pun">&gt;=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        personTable</span><span class="pun">.</span><span class="pln">getItems</span><span class="pun">().</span><span class="pln">remove</span><span class="pun">(</span><span class="pln">selectedIndex</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// Nothing selected.</span><span class="pln">
+        </span><span class="typ">Alert</span><span class="pln"> alert </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Alert</span><span class="pun">(</span><span class="typ">AlertType</span><span class="pun">.</span><span class="pln">WARNING</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">initOwner</span><span class="pun">(</span><span class="pln">mainApp</span><span class="pun">.</span><span class="pln">getPrimaryStage</span><span class="pun">());</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"No Selection"</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setHeaderText</span><span class="pun">(</span><span class="str">"No Person Selected"</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setContentText</span><span class="pun">(</span><span class="str">"Please select a person in the table."</span><span class="pun">);</span><span class="pln">
+
+        alert</span><span class="pun">.</span><span class="pln">showAndWait</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<div class="alert alert-info">
+For more examples on how to use Dialogs read my blog post about <a class="alert-link" href="http://code.makery.ch/blog/javafx-dialogs-official/">JavaFX Dialogs</a>.
+</div>
+
+
+<hr>
+<h2 id="the-new-and-edit-dialogs">The New and Edit Dialogs</h2>
+<p>The new and edit actions are a bit more work: We'll need a custom dialog (that means a new stage) with a form to ask the user for details about the person.</p>
+<h3 id="design-the-dialog">Design the Dialog</h3>
+<ol>
+<li><p>Create a new fxml file called <code>PersonEditDialog.fxml</code> inside the <em>view</em> package.<br><img src="./JavaFX 8 Tutorial - Part 3_ Interacting with the User _ code.makery.ch_files/person-edit-dialog1.png" alt="Create Edit Dialog"></p>
+</li>
+<li><p>Use a <code>GridPane</code>, <code>Label</code>s, <code>TextField</code>s and <code>Button</code>s to create a Dialog like the following:<br><img src="./JavaFX 8 Tutorial - Part 3_ Interacting with the User _ code.makery.ch_files/person-edit-dialog2.png" alt="Edit Dialog">   </p>
+</li>
+</ol>
+<h3 id="create-the-controller">Create the Controller</h3>
+<p>Create the controller for the Dialog as <code>PersonEditDialogController.java</code>:</p>
+<h5 id="personeditdialogcontroller-java">PersonEditDialogController.java</h5>
+<pre class="prettyprint lang-java pre-scrollable prettyprinted" style=""><span class="kwd">package</span><span class="pln"> ch</span><span class="pun">.</span><span class="pln">makery</span><span class="pun">.</span><span class="pln">address</span><span class="pun">.</span><span class="pln">view</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">fxml</span><span class="pun">.</span><span class="pln">FXML</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">scene</span><span class="pun">.</span><span class="pln">control</span><span class="pun">.</span><span class="typ">Alert</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">scene</span><span class="pun">.</span><span class="pln">control</span><span class="pun">.</span><span class="typ">Alert</span><span class="pun">.</span><span class="typ">AlertType</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">scene</span><span class="pun">.</span><span class="pln">control</span><span class="pun">.</span><span class="typ">TextField</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javafx</span><span class="pun">.</span><span class="pln">stage</span><span class="pun">.</span><span class="typ">Stage</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> ch</span><span class="pun">.</span><span class="pln">makery</span><span class="pun">.</span><span class="pln">address</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">Person</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> ch</span><span class="pun">.</span><span class="pln">makery</span><span class="pun">.</span><span class="pln">address</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="typ">DateUtil</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">/**
+ * Dialog to edit details of a person.
+ * 
+ * @author Marco Jakob
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">PersonEditDialogController</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">TextField</span><span class="pln"> firstNameField</span><span class="pun">;</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">TextField</span><span class="pln"> lastNameField</span><span class="pun">;</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">TextField</span><span class="pln"> streetField</span><span class="pun">;</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">TextField</span><span class="pln"> postalCodeField</span><span class="pun">;</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">TextField</span><span class="pln"> cityField</span><span class="pun">;</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">TextField</span><span class="pln"> birthdayField</span><span class="pun">;</span><span class="pln">
+
+
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">Stage</span><span class="pln"> dialogStage</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">Person</span><span class="pln"> person</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> okClicked </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="com">/**
+     * Initializes the controller class. This method is automatically called
+     * after the fxml file has been loaded.
+     */</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> initialize</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Sets the stage of this dialog.
+     * 
+     * @param dialogStage
+     */</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setDialogStage</span><span class="pun">(</span><span class="typ">Stage</span><span class="pln"> dialogStage</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">dialogStage </span><span class="pun">=</span><span class="pln"> dialogStage</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Sets the person to be edited in the dialog.
+     * 
+     * @param person
+     */</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setPerson</span><span class="pun">(</span><span class="typ">Person</span><span class="pln"> person</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">person </span><span class="pun">=</span><span class="pln"> person</span><span class="pun">;</span><span class="pln">
+
+        firstNameField</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="pln">person</span><span class="pun">.</span><span class="pln">getFirstName</span><span class="pun">());</span><span class="pln">
+        lastNameField</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="pln">person</span><span class="pun">.</span><span class="pln">getLastName</span><span class="pun">());</span><span class="pln">
+        streetField</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="pln">person</span><span class="pun">.</span><span class="pln">getStreet</span><span class="pun">());</span><span class="pln">
+        postalCodeField</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="typ">Integer</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">(</span><span class="pln">person</span><span class="pun">.</span><span class="pln">getPostalCode</span><span class="pun">()));</span><span class="pln">
+        cityField</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="pln">person</span><span class="pun">.</span><span class="pln">getCity</span><span class="pun">());</span><span class="pln">
+        birthdayField</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="typ">DateUtil</span><span class="pun">.</span><span class="pln">format</span><span class="pun">(</span><span class="pln">person</span><span class="pun">.</span><span class="pln">getBirthday</span><span class="pun">()));</span><span class="pln">
+        birthdayField</span><span class="pun">.</span><span class="pln">setPromptText</span><span class="pun">(</span><span class="str">"dd.mm.yyyy"</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Returns true if the user clicked OK, false otherwise.
+     * 
+     * @return
+     */</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> isOkClicked</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> okClicked</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Called when the user clicks ok.
+     */</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> handleOk</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">isInputValid</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            person</span><span class="pun">.</span><span class="pln">setFirstName</span><span class="pun">(</span><span class="pln">firstNameField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">());</span><span class="pln">
+            person</span><span class="pun">.</span><span class="pln">setLastName</span><span class="pun">(</span><span class="pln">lastNameField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">());</span><span class="pln">
+            person</span><span class="pun">.</span><span class="pln">setStreet</span><span class="pun">(</span><span class="pln">streetField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">());</span><span class="pln">
+            person</span><span class="pun">.</span><span class="pln">setPostalCode</span><span class="pun">(</span><span class="typ">Integer</span><span class="pun">.</span><span class="pln">parseInt</span><span class="pun">(</span><span class="pln">postalCodeField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">()));</span><span class="pln">
+            person</span><span class="pun">.</span><span class="pln">setCity</span><span class="pun">(</span><span class="pln">cityField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">());</span><span class="pln">
+            person</span><span class="pun">.</span><span class="pln">setBirthday</span><span class="pun">(</span><span class="typ">DateUtil</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="pln">birthdayField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">()));</span><span class="pln">
+
+            okClicked </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+            dialogStage</span><span class="pun">.</span><span class="pln">close</span><span class="pun">();</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Called when the user clicks cancel.
+     */</span><span class="pln">
+    </span><span class="lit">@FXML</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> handleCancel</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        dialogStage</span><span class="pun">.</span><span class="pln">close</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">/**
+     * Validates the user input in the text fields.
+     * 
+     * @return true if the input is valid
+     */</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> isInputValid</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">String</span><span class="pln"> errorMessage </span><span class="pun">=</span><span class="pln"> </span><span class="str">""</span><span class="pun">;</span><span class="pln">
+
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">firstNameField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="pun">||</span><span class="pln"> firstNameField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">().</span><span class="pln">length</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            errorMessage </span><span class="pun">+=</span><span class="pln"> </span><span class="str">"No valid first name!\n"</span><span class="pun">;</span><span class="pln"> 
+        </span><span class="pun">}</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">lastNameField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="pun">||</span><span class="pln"> lastNameField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">().</span><span class="pln">length</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            errorMessage </span><span class="pun">+=</span><span class="pln"> </span><span class="str">"No valid last name!\n"</span><span class="pun">;</span><span class="pln"> 
+        </span><span class="pun">}</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">streetField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="pun">||</span><span class="pln"> streetField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">().</span><span class="pln">length</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            errorMessage </span><span class="pun">+=</span><span class="pln"> </span><span class="str">"No valid street!\n"</span><span class="pun">;</span><span class="pln"> 
+        </span><span class="pun">}</span><span class="pln">
+
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">postalCodeField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="pun">||</span><span class="pln"> postalCodeField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">().</span><span class="pln">length</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            errorMessage </span><span class="pun">+=</span><span class="pln"> </span><span class="str">"No valid postal code!\n"</span><span class="pun">;</span><span class="pln"> 
+        </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="com">// try to parse the postal code into an int.</span><span class="pln">
+            </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                </span><span class="typ">Integer</span><span class="pun">.</span><span class="pln">parseInt</span><span class="pun">(</span><span class="pln">postalCodeField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">());</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">NumberFormatException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                errorMessage </span><span class="pun">+=</span><span class="pln"> </span><span class="str">"No valid postal code (must be an integer)!\n"</span><span class="pun">;</span><span class="pln"> 
+            </span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">cityField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="pun">||</span><span class="pln"> cityField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">().</span><span class="pln">length</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            errorMessage </span><span class="pun">+=</span><span class="pln"> </span><span class="str">"No valid city!\n"</span><span class="pun">;</span><span class="pln"> 
+        </span><span class="pun">}</span><span class="pln">
+
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">birthdayField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="pun">||</span><span class="pln"> birthdayField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">().</span><span class="pln">length</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            errorMessage </span><span class="pun">+=</span><span class="pln"> </span><span class="str">"No valid birthday!\n"</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="typ">DateUtil</span><span class="pun">.</span><span class="pln">validDate</span><span class="pun">(</span><span class="pln">birthdayField</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">()))</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                errorMessage </span><span class="pun">+=</span><span class="pln"> </span><span class="str">"No valid birthday. Use the format dd.mm.yyyy!\n"</span><span class="pun">;</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">errorMessage</span><span class="pun">.</span><span class="pln">length</span><span class="pun">()</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="com">// Show the error message.</span><span class="pln">
+            </span><span class="typ">Alert</span><span class="pln"> alert </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Alert</span><span class="pun">(</span><span class="typ">AlertType</span><span class="pun">.</span><span class="pln">ERROR</span><span class="pun">);</span><span class="pln">
+            alert</span><span class="pun">.</span><span class="pln">initOwner</span><span class="pun">(</span><span class="pln">dialogStage</span><span class="pun">);</span><span class="pln">
+            alert</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"Invalid Fields"</span><span class="pun">);</span><span class="pln">
+            alert</span><span class="pun">.</span><span class="pln">setHeaderText</span><span class="pun">(</span><span class="str">"Please correct invalid fields"</span><span class="pun">);</span><span class="pln">
+            alert</span><span class="pun">.</span><span class="pln">setContentText</span><span class="pun">(</span><span class="pln">errorMessage</span><span class="pun">);</span><span class="pln">
+
+            alert</span><span class="pun">.</span><span class="pln">showAndWait</span><span class="pun">();</span><span class="pln">
+
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<p>A few things to note about this controller:</p>
+<ul>
+<li>The <code>setPerson(...)</code> method can be called from another class to set the person that is to be edited.</li>
+<li>When the user clicks the OK butten, the <code>handleOk()</code> method is called. First, some validation is done by calling the <code>isInputValid()</code> method. Only if validation was successful, the person object is filled with the data that the user entered. Those changes will directly be applied to the person object that was passed to <code>setPerson(...)</code>!</li>
+<li>The boolean <code>okClicked</code> is used so that the caller can determine whether the user clicked the OK or Cancel button.</li>
+</ul>
+<h3 id="link-view-and-controller">Link View and Controller</h3>
+<p>With the View (FXML) and the controller created we need to link them together:</p>
+<ol>
+<li>Open the <code>PersonEditDialog.fxml</code>.</li>
+<li>In the <em>Controller</em> group on the left side select the <code>PersonEditDialogController</code> as controller class.</li>
+<li>Set the <strong>fx:id</strong> of all <code>TextField</code>s to the corresponding field of the controller.</li>
+<li>Set the <strong>onAction</strong> of the two buttons to the corresponding handler method.</li>
+</ol>
+<h3 id="opening-the-dialog">Opening the Dialog</h3>
+<p>Add a method to load and display the edit person dialog inside our <code>MainApp</code>:   </p>
+<h5 id="mainapp-java">MainApp.java</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="com">/**
+ * Opens a dialog to edit details for the specified person. If the user
+ * clicks OK, the changes are saved into the provided person object and true
+ * is returned.
+ * 
+ * @param person the person object to be edited
+ * @return true if the user clicked OK, false otherwise.
+ */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> showPersonEditDialog</span><span class="pun">(</span><span class="typ">Person</span><span class="pln"> person</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// Load the fxml file and create a new stage for the popup dialog.</span><span class="pln">
+        </span><span class="typ">FXMLLoader</span><span class="pln"> loader </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FXMLLoader</span><span class="pun">();</span><span class="pln">
+        loader</span><span class="pun">.</span><span class="pln">setLocation</span><span class="pun">(</span><span class="typ">MainApp</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">.</span><span class="pln">getResource</span><span class="pun">(</span><span class="str">"view/PersonEditDialog.fxml"</span><span class="pun">));</span><span class="pln">
+        </span><span class="typ">AnchorPane</span><span class="pln"> page </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">AnchorPane</span><span class="pun">)</span><span class="pln"> loader</span><span class="pun">.</span><span class="pln">load</span><span class="pun">();</span><span class="pln">
+
+        </span><span class="com">// Create the dialog Stage.</span><span class="pln">
+        </span><span class="typ">Stage</span><span class="pln"> dialogStage </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Stage</span><span class="pun">();</span><span class="pln">
+        dialogStage</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"Edit Person"</span><span class="pun">);</span><span class="pln">
+        dialogStage</span><span class="pun">.</span><span class="pln">initModality</span><span class="pun">(</span><span class="typ">Modality</span><span class="pun">.</span><span class="pln">WINDOW_MODAL</span><span class="pun">);</span><span class="pln">
+        dialogStage</span><span class="pun">.</span><span class="pln">initOwner</span><span class="pun">(</span><span class="pln">primaryStage</span><span class="pun">);</span><span class="pln">
+        </span><span class="typ">Scene</span><span class="pln"> scene </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Scene</span><span class="pun">(</span><span class="pln">page</span><span class="pun">);</span><span class="pln">
+        dialogStage</span><span class="pun">.</span><span class="pln">setScene</span><span class="pun">(</span><span class="pln">scene</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="com">// Set the person into the controller.</span><span class="pln">
+        </span><span class="typ">PersonEditDialogController</span><span class="pln"> controller </span><span class="pun">=</span><span class="pln"> loader</span><span class="pun">.</span><span class="pln">getController</span><span class="pun">();</span><span class="pln">
+        controller</span><span class="pun">.</span><span class="pln">setDialogStage</span><span class="pun">(</span><span class="pln">dialogStage</span><span class="pun">);</span><span class="pln">
+        controller</span><span class="pun">.</span><span class="pln">setPerson</span><span class="pun">(</span><span class="pln">person</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="com">// Show the dialog and wait until the user closes it</span><span class="pln">
+        dialogStage</span><span class="pun">.</span><span class="pln">showAndWait</span><span class="pun">();</span><span class="pln">
+
+        </span><span class="kwd">return</span><span class="pln"> controller</span><span class="pun">.</span><span class="pln">isOkClicked</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">IOException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<p>Add the following methods to the <code>PersonOverviewController</code>. Those methods will call the <code>showPersonEditDialog(...)</code> from the <code>MainApp</code> when the user clicks the <em>new</em> or <em>edit</em> button.   </p>
+<h5 id="personoverviewcontroller-java">PersonOverviewController.java</h5>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="com">/**
+ * Called when the user clicks the new button. Opens a dialog to edit
+ * details for a new person.
+ */</span><span class="pln">
+</span><span class="lit">@FXML</span><span class="pln">
+</span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> handleNewPerson</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Person</span><span class="pln"> tempPerson </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Person</span><span class="pun">();</span><span class="pln">
+    </span><span class="kwd">boolean</span><span class="pln"> okClicked </span><span class="pun">=</span><span class="pln"> mainApp</span><span class="pun">.</span><span class="pln">showPersonEditDialog</span><span class="pun">(</span><span class="pln">tempPerson</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">okClicked</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        mainApp</span><span class="pun">.</span><span class="pln">getPersonData</span><span class="pun">().</span><span class="pln">add</span><span class="pun">(</span><span class="pln">tempPerson</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="com">/**
+ * Called when the user clicks the edit button. Opens a dialog to edit
+ * details for the selected person.
+ */</span><span class="pln">
+</span><span class="lit">@FXML</span><span class="pln">
+</span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> handleEditPerson</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Person</span><span class="pln"> selectedPerson </span><span class="pun">=</span><span class="pln"> personTable</span><span class="pun">.</span><span class="pln">getSelectionModel</span><span class="pun">().</span><span class="pln">getSelectedItem</span><span class="pun">();</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">selectedPerson </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">boolean</span><span class="pln"> okClicked </span><span class="pun">=</span><span class="pln"> mainApp</span><span class="pun">.</span><span class="pln">showPersonEditDialog</span><span class="pun">(</span><span class="pln">selectedPerson</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">okClicked</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            showPersonDetails</span><span class="pun">(</span><span class="pln">selectedPerson</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// Nothing selected.</span><span class="pln">
+        </span><span class="typ">Alert</span><span class="pln"> alert </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Alert</span><span class="pun">(</span><span class="typ">AlertType</span><span class="pun">.</span><span class="pln">WARNING</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">initOwner</span><span class="pun">(</span><span class="pln">mainApp</span><span class="pun">.</span><span class="pln">getPrimaryStage</span><span class="pun">());</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"No Selection"</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setHeaderText</span><span class="pun">(</span><span class="str">"No Person Selected"</span><span class="pun">);</span><span class="pln">
+        alert</span><span class="pun">.</span><span class="pln">setContentText</span><span class="pun">(</span><span class="str">"Please select a person in the table."</span><span class="pun">);</span><span class="pln">
+
+        alert</span><span class="pun">.</span><span class="pln">showAndWait</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<p>Open the <code>PersonOverview.fxml</code> file in Scene Builder. Choose the corresponding methods in <em>On Action</em> for the new and edit buttons.</p>
+<hr>
+<h2 id="done-">Done!</h2>
+<p>You should have a working <em>Address Application</em> by now. The application is able to add, edit, and delete persons. There is even some validation for the text fields to avoid bad user entries.</p>
+<p>I hope the concepts and structure of this application will get you started with writing your own JavaFX application! Have fun.</p>
+<h3 id="what-s-next-">What's Next?</h3>
+<p>In <a href="http://code.makery.ch/library/javafx-8-tutorial/part4/">Tutorial Part 4</a> we will add some CSS styling.</p>
+<h5 id="some-other-articles-you-might-find-interesting">Some other articles you might find interesting</h5>
+<ul>
+<li><a href="http://code.makery.ch/blog/javafx-dialogs-official/">JavaFX Dialogs (official)</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-date-picker/">JavaFX Date Picker</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-event-handling-examples/">JavaFX Event Handling Examples</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/">JavaFX TableView Sorting and Filtering</a></li>
+<li><a href="http://code.makery.ch/blog/javafx-8-tableview-cell-renderer/">JavaFX TableView Cell Renderer</a></li>
+</ul>
+
+
+          </div>
+          
+          <hr>
+          
+  <nav>
+    <div class="article-paging">
+      <ul class="pagination">
+              <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/" data-toggle="tooltip" title="" data-original-title="Introduction">Intro</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part1/" data-toggle="tooltip" title="" data-original-title="Part 1: Scene Builder">1</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part2/" data-toggle="tooltip" title="" data-original-title="Part 2: Model and TableView">2</a>
+      </li>
+        <li class="active">
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part3/" data-toggle="tooltip" title="" data-original-title="Part 3: Interacting with the User">3</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part4/" data-toggle="tooltip" title="" data-original-title="Part 4: CSS Styling">4</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part5/" data-toggle="tooltip" title="" data-original-title="Part 5: Storing Data as XML">5</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part6/" data-toggle="tooltip" title="" data-original-title="Part 6: Statistics Chart">6</a>
+      </li>
+        <li>
+      <a href="http://code.makery.ch/library/javafx-8-tutorial/part7/" data-toggle="tooltip" title="" data-original-title="Part 7: Deployment">7</a>
+      </li>
+    
+      </ul>
+    </div>
+  </nav>
+
+        </div>
+      </article>
+      
+      
+      <section class="row">
+        <div class="col-md-offset-3 col-md-9">
+          <h2>Comments</h2>
+          <div id="disqus_thread"><iframe id="dsq-app7119" name="dsq-app7119" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./JavaFX 8 Tutorial - Part 3_ Interacting with the User _ code.makery.ch_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 7670px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+        </div>
+      </section>
+      
+    </div>
+        
+    <footer class="site-footer container-fluid">
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+      <p>
+        <a class="btn btn-sm btn-social-icon btn-twitter" href="https://twitter.com/codemakery" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow me on Twitter">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-googleplus" href="https://plus.google.com/+MarcoJakob7" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow me on Google+">
+          <i class="fa fa-google-plus"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-rss" href="http://code.makery.ch/rss" data-toggle="tooltip" data-placement="top" title="" data-original-title="Subscribe to RSS Feed">
+          <i class="fa fa-rss"></i>
+        </a>
+        <a class="btn btn-sm btn-social-icon btn-mail" href="https://tinyletter.com/codemakery" data-toggle="tooltip" data-placement="top" title="" data-original-title="Receive Email Updates">
+          <i class="fa fa-envelope" style="margin-top: -1px;"></i>
+        </a>
+      </p>
+      <p>
+        Subscribe to receive updates by <a href="https://tinyletter.com/codemakery">Email</a>.
+      </p>
+      
+      <form class="form-inline" action="https://tinyletter.com/codemakery" method="post" target="popupwindow" onsubmit="window.open(&#39;https://tinyletter.com/codemakery&#39;, &#39;popupwindow&#39;, &#39;scrollbars=yes,width=800,height=600&#39;);return true">
+        <div class="form-group">
+          <input type="text" class="form-control" name="email" id="tlemail" placeholder="Enter email">
+          <input type="hidden" value="1" name="embed">
+          <input type="submit" class="form-control btn-primary" value="Get updates">
+        </div>
+      </form>
+      
+      <p>
+        <small>
+          Created by <a href="http://code.makery.ch/about">Marco Jakob</a> • Licensed under <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
+        </small>
+      </p>
+    </div>
+  </div>
+</footer>
+
+    
+    
+    
+  <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 3_ Interacting with the User _ code.makery.ch_files/prettify.min.js.Download"></script>
+
+                                    
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'codemakery'; // Required - the forum shortname
+    var disqus_identifier = '/java/javafx-8-tutorial-part3/';
+    var disqus_url = 'http://code.makery.ch/library/javafx-8-tutorial/part3/';
+    var disqus_title = 'JavaFX 8 Tutorial - Part 3: Interacting with the User';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+    
+
+    
+      <script src="./JavaFX 8 Tutorial - Part 3_ Interacting with the User _ code.makery.ch_files/jquery.min.js.Download"></script>
+      <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 3_ Interacting with the User _ code.makery.ch_files/bootstrap.min.js.Download"></script>
+      <script type="text/javascript" src="./JavaFX 8 Tutorial - Part 3_ Interacting with the User _ code.makery.ch_files/bootstrap-init-tooltips.min.js.Download"></script>
+    
+  
+<iframe style="display: none;" src="./JavaFX 8 Tutorial - Part 3_ Interacting with the User _ code.makery.ch_files/saved_resource(1).html"></iframe></body></html>

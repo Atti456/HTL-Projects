@@ -1,0 +1,45 @@
+
+.left {
+	
+	float:left;
+	
+	position:relative;
+	
+	width:10em;
+
+}
+
+
+ul {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	
+	font-size:x-small;
+	
+	list-style:none;
+	
+	margin:0;
+	
+	padding:0;
+}
+
+
+
+li ul {
+	
+	display:none;
+	
+	position:absolute;
+	
+	top:1.2em;
+	
+	left:0;
+
+}
+
+
+
+li:hover ul {
+	
+	display:block;
+
+}

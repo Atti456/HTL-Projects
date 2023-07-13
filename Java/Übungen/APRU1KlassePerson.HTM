@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0038)http://www.htl-wels.ac.at/rf/main.html -->
+<HTML xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40"><HEAD><TITLE>Main</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<LINK 
+href="../../sander-Dateien/stylesheet.css" type=text/css rel=stylesheet>
+<META content="Microsoft FrontPage 5.0" name=GENERATOR>
+<style>
+<!--
+ p.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0cm; margin-right:0cm; margin-top:0cm}
+p.MsoBodyTextIndent3
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:56.25pt;
+	margin-bottom:.0001pt;
+	font-size:14.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY background=background/synapse_background.gif>
+<h1>Übung1</h1>
+<p><font size="2">Entwickeln Sie ein Klasse <b>Person</b>, von 
+der folgendes Gerüst gegeben ist.</font></p>
+<p>&nbsp;</p>
+<p><font size="2">class Person</font></p>
+<p><font size="2">{</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; private String m_sVorname;</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; private String 
+m_sNachname;</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; private String 
+m_sGeburtsname;</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; private int m_iJahr;</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; private int m_iMonat;</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; private int m_iTag;</font></p>
+<p>&nbsp;</p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; public Person (....)</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; {</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+// Allgemeinkonstruktor, belegt alle Attribute mit einem Wert . Zu Beginn ist 
+nachname glich geburtsname.</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; }</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; </font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; // Standard Ein- und 
+Ausgabemethoden für alle Membervariablen. Siehe Bsp. für Vorname</font></p>
+<p>&nbsp;</p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; public String getVorname()</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; {</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+//Liefert den Vornamen</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; }</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; </font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; public String setVorname()</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; {</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+//Setzt den Vornamen</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; }</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; </font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; public void 
+aendereNachname(String neuerNachname)</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; {</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+//Ändert den Nachnamen.</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; }</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; </font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; public String 
+gibAlsString()</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; {</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+// Liefert ein String-Objekt, das alles enthält: Vorname, Name, Geburtsname 
+(falls von nachname verschiden)</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+// Geburtsjahr, Geburtsmonat und Tag im Geburtsmonat.</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; }</font></p>
+<p><font size="2">}</font></p>
+<p>&nbsp;</p>
+<p><font size="2">Die Methode gibAlsString() braucht eine 
+if-Anweisung:</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; if (nachname != 
+geburtsname)</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; {</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+s= s + &quot; ( Geburtsname: &quot; + geburtsname + &quot;)&quot;;</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp; }</font></p>
+<p><font size="2">wobei s der aufzubauende String ist, den die 
+Methode letzen Endes zurückgibt.</font></p>
+<p>&nbsp;</p>
+<p><font size="2">Die Klasse <b>PersonTest</b> ist eine 
+ausführbare Klasse und soll alle Funktionalitäten testen. Die Ausgabe soll so 
+aussehen:</font></p>
+<p>&nbsp;</p>
+<p><font size="2">Person 1: Andreas Gruber, beboren am 12. 6. 
+1967.</font></p>
+<p><font size="2">Person 2: Hans Sachs, geboren am 31. 3. 
+1940.</font></p>
+<p><font size="2">Person 3: Martha Pfleiderer, geboren am 23. 
+10. 1945.</font></p>
+<p><font size="2">Person 3 Martha Fuchs (Geburtsname: 
+Pfleiderer), geboren am 23. 10. 1945. </font></p>
+<p>&nbsp;</p>
+
+</BODY></HTML>
