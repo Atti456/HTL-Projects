@@ -132,12 +132,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# Custom
-/99_Adventure-of-You/*
-/venv/*
-/private_stuff/*
-/API/*
-*.pyc
-
 
 # End of https://www.gitignore.io/api/java,windows,intellij+all
